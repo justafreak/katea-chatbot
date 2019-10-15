@@ -27,6 +27,24 @@ It does this by asking the users to rate the recommendations that were received,
 
 Given enought time and interaction experiences with humans the system can learn to make really good recommendations and it only gets better at it.
 
+### Conversation structure
+
+The conversation that the bot is trained to perform is centered around getting the following pieces of information:
+
+1. The location where the user is going
+2. The type of trip it is looking to undertake - There is a big difference after all between a romantic getaway, a work related travel or a city break with friends.
+3. With whom the user is travelling - Because travelling with kids and travelling alone are totally different thing
+4. What are the most valuable features/attributes for the user.
+
+The last part of the conversation is about offering suggestions and getting back feedback
+from the user.
+
+The chatbot will make additional suggestions as long as the user wants to.
+
+Here is a high level overview of the conversation flow:
+
+![Chatbot Flow](./docs/Chatbot-Flow.png)
+
 ### High level architecture
 
 The system is comprised of 4 modules and it's built on the following stack:
@@ -37,7 +55,7 @@ The system is comprised of 4 modules and it's built on the following stack:
 - NodeJS (BE - recommender system)
 - NoSQL D
 
-![Chatbot image](./docs/Chatbot-HLD.png)
+![Chatbot HLD](./docs/Chatbot-HLD.png)
 
 #### Modules
 
