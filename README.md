@@ -84,6 +84,43 @@ It maintains a Deep Neural Net capable of constantly learning and it's serialize
 
 It's written in NodeJS.
 
+#### Entities
+
+The system is trained to recognize the following entities:
+
+1. city - eg London, Dubai etc
+2. travel_type_work - All the possible ways of expressing that the user is travelling for work
+3. travel_type_honeymoon - All the possible ways of expressing that the user is travelling for honeymoon
+4. travel_type_citybreak - All the possible ways of expressing that the user is travelling for a short period of time, in a city, mostly for visiting purposes
+5. travel_type_holiday - User is travelling for an extended period of time for relaxing purposes
+6. travel_companion_solo - User is travelling single
+7. travel_companion_kids - User is travelling with kids
+8. travel_companion_couple - User is travelling with the significant other
+9. travel_companion_friends - User is travelling with group of friends
+10. accomodation_quality_cleanliness - All the possible ways of saying the room is/must be clean.
+11. accomodation_quality_breakfast - The hotel has/must have good quality breakfast.
+12. accomodation_quality_quiet - The hotel must be/is in a quiet area
+13. accomodation_quality_price - The hotel has/must have a good price/quality ration
+14. accomodation_quality_location - The hotel is/must be in a very good location
+15. accomodation_quality_wifi - The hotel has/must have good quality wifi
+16. accomodation_quality_staff - The hotel has/must have very helpfull staff
+
+#### Training the entity extraction
+
+Trainign for entity extraction will be done manually from DialogFlow UI. For each entity
+we will look for possible way to express it by checking hundred of real reviews and extracting the most significant ways of expressing that entities.
+
+These identified phrases will be used for entity extraction training purposes.
+
+#### Training the recommendations AI
+
+The initial dataset for training the "Recommender system" comes from real world customer
+reviews of the hotel.
+
+The strategy is to scrape real world customer reviews for each and every hotel and for eac review to pass it trought the NLP layer so that we can start to make sense what desirable attributes the accomodation has.
+
+From this very initial training the recomendations continue to improve based on in-conversation feedback for the hotels suggestions shown.
+
 ## Code structure
 
 All of the UI source code lives in `ui` folder and it's built using Rollup.
