@@ -1,4 +1,4 @@
-# hoopoe-chatbot project
+# Katea Chatbot
 
 ## Project mission
 
