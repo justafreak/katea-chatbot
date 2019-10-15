@@ -62,7 +62,8 @@ The system is comprised of 4 modules and it's built on the following stack:
 The modules of the system are:
 
 - Chatbot UI - a custom built UI for the Chatbot enabling text dispay, typing indicators and display of image carousels.
-- DialogFlow agent - a NLP enabled chat layer, responsible for figuring out what the user is saying, what are the entities being present in the text and how to respond next
+- DialogFlow agent - a NLP enabled chat layer, responsible for figuring out what the user is saying, what are the entities being present in the text
+- Fullfilment service - Responsable for deciding how to respond to user queries and running the initial training phase for the Recommender system.
 - Recommender system - a system backed by AI capable of taking as input the entities detected by the NLP layer and making suggestions for hotels based on them. the Recommender system also employs re-inforcement learning by constantly asking for
   human feedback on the recommandations that it does.
 - Database - a NoSQL database holding the knownledge base of hotels, conversation history
