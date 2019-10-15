@@ -1,8 +1,8 @@
 <script>
-  import TypingIndicator from "./TypingIndicator.svelte";
-  import chatIconUrl from "../assets/icons/chat-icon.svg";
-  export let text = "";
-  export let messageSenderType = "";
+  import TypingIndicator from './TypingIndicator.svelte';
+  import chatIconUrl from '../assets/icons/chat-icon.svg';
+  export let text = '';
+  export let messageSenderType = '';
   export let isTyping = false;
 </script>
 
@@ -60,9 +60,7 @@
 </style>
 
 <div class="sc-message--content">
-  <div
-    class="sc-message--avatar"
-    style="background-image: url({chatIconUrl})" />
+  <div class="sc-message--avatar" style="background-image: url({chatIconUrl})" />
   <div class={`sc-message--text ${messageSenderType}`}>
     <TypingIndicator visible={isTyping} />
     {#if !isTyping}
