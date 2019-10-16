@@ -9,8 +9,6 @@ import java.io.IOException;
 @Service
 public class GoogleAuthentication {
 
-
-
    public GoogleCredentials getGoogleCredentials(Resource resource){
         try {
             return GoogleCredentials.fromStream(resource.getInputStream());
