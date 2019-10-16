@@ -1,7 +1,19 @@
 #Short Documentation
 
+#Build Application
+```
+./gradlew build
+```
+
+#Run Jar 
+```
+go to: /build/libs
+run: java -jar -Dspring.profiles.active=local katea-server-0.0.1-SNAPSHOT.jar
+```
+
 ####POST - http://strikers.ml:8080/dialog/webhook
-```{
+```
+{
   "responseId": "31c076fd-3f7f-425c-9c72-2e82939ebedc-f6406966",
   "queryResult": {
     "queryText": "Hi!",
