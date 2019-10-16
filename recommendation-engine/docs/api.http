@@ -1,0 +1,2 @@
+# Get accomodation suggestions
+POST http://localhost:3000/suggestions
