@@ -205,7 +205,8 @@ The entry point in the Chatbot UI is `main.js`.
 
 A development server will start on http://localhost:5000 , along with live
 reload and all the usual dev goodies.
-![Chatbot image](./docs/chatbot.png)
+![Chatbot image](./docs/Chatbot1.jpg)
+![Chatbot image2](./docs/Chatbot1.jpg)
 
 ### Recommendation Engine
 
