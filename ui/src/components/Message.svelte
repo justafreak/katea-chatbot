@@ -1,11 +1,13 @@
 <script>
-  import TextMessage from "./TextMessage.svelte";
-  import QuickReply from "./QuickReply.svelte";
+  import TextMessage from './TextMessage.svelte';
+  import QuickReply from './QuickReply.svelte';
+  import Carousel from './Carousel.svelte';
+  import { MSG_TYPE_TEXT, MSG_TYPE_QUICK_REPLY, MSG_TYPE_CAROUSEL } from '../constants/msgType';
 
   export let message = {
-    type: "text"
+    type: MSG_TYPE_TEXT
   };
-  $: messageSenderType = message.author === "me" ? "sent" : "received";
+  $: messageSenderType = message.author === 'me' ? 'sent' : 'received';
 </script>
 
 <style>
@@ -41,9 +43,11 @@
 
 <div class="sc-message">
 
-  {#if message.type === 'text'}
-    <TextMessage text={message.text} messageSenderType isTyping={false} />
+  {#if message.type === MSG_TYPE_TEXT}
+    <TextMessage {message} isTyping={false} />
   {:else if message.type === 'quickreply'}
     <QuickReply {message} />
+  {:else if message.type === 'carousel'}
+    <Carousel {message} />
   {:else}Other content{/if}
 </div>

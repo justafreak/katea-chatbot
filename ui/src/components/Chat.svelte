@@ -49,7 +49,7 @@
 </style>
 
 <div class="sc-chat-window" class:close={!open}>
-  <Header teamName="Test" imageUrl="" />
+  <Header teamName="Katea" imageUrl="" />
   <MessageList {messages} />
   <UserInput {messages} />
 </div>

@@ -2,6 +2,8 @@
   import SendIcon from './SendIcon.svelte';
   import { messages } from '../stores/messages.js';
   import { detectIntent } from '../api/intent';
+  import { HUMAN } from '../constants/author';
+  import { MSG_TYPE_TEXT } from '../constants/msgType';
 
   let active = false;
   let text = '';
@@ -12,12 +14,12 @@
     messages.set([
       ...$messages,
       {
-        type: 'text',
-        author: 'user',
+        type: MSG_TYPE_TEXT,
+        author: HUMAN,
         text
       }
     ]);
-    
+
     detectIntent(text);
 
     text = '';
