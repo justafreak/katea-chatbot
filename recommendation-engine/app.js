@@ -35,7 +35,7 @@ app.post("/suggestions", (req, res) => {
   res.json([accomodation]);
 });
 
-app.get("/learn", (req, res) => {
+app.post("/learn", (req, res) => {
   const hotelId = Math.floor(Math.random() * Math.floor(100));
   recEngine.learnFromUser(hotelId, {
     accomodation_quality_wifi: 0.5,
