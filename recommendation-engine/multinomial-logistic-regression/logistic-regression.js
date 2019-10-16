@@ -29,6 +29,7 @@ class LogisticRegression {
   }
   predict(observations) {
     observations = this.processFeatures(observations);
+    // @todo - get the top N hotels predicted instead of just the first one
     return observations
       .matMul(this.weights)
       .softmax()
