@@ -16,7 +16,6 @@ public class DataExtractor {
 
     private final ObjectMapper objectMapper;
 
-
     public DataExtractor(ObjectMapper objectMapper) {
         this.objectMapper = objectMapper;
     }

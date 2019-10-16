@@ -38,5 +38,6 @@ dependencies {
     compile 'com.google.cloud:google-cloud-datastore:1.2.1'
     compile 'com.google.cloud:google-cloud-dialogflow:0.114.0-alpha'
 
+//    compile group: 'com.google.auth', name: 'google-auth-library-parent', version: '0.18.0', ext: 'pom'
 
 }

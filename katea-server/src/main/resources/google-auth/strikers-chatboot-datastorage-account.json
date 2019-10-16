@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "strikers-chatboot",
+  "private_key_id": "7ffe91c8fc154e5c8913a73f4859c5204496693d",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDmrxwaIyaAshci\nCTbKFu7KHOVAV3sJ7FnW0B69Uwj3nJfxXQS5NjPX0JAbhX7n2Kc3GiERBJ9pSi44\n5n4+1RJZK45EU9sSNgiTXYMIMTdBHtWuEb+pgo/+0GFOfs7ec7yes1YeLcSIJDrd\nzFfPSUs5STwQslCNvW3zos83I4j8AiM3yQWQazPREjAI7kZOjwbR3PSu5Ahrqp8R\nMQgMChxpbFObWP1cxit/kyzQyWdQKa9twi7tTQEf6kMVCUR+OVIYBfddvD/l49Id\nUW/w0CvAubqC0ZVsuv+zv7ok/f2cQVSbZQuH8hiNIrV9+YSaCUhk6U0DNsDA++LL\nRopfLhLRAgMBAAECggEAAwCPPtGAytwmfBapxsuxcWIauLGQGXMLlfBbn2P7108g\n1MRnZJVYQOGHEpie7BuwIhczYXeRhIsG2s44do8K1VbBW/x0ZYJcWQtL7S4eIDlA\nwipwd7S034ss4lrjodZYmNR61TCMINJ0jVY/Y/mkopBPBA+cspo0cAneelhPzCnL\noHs0kHBgSCAiDvKdNBYUcdv7jAz4aIZF3T/KnE6ApNGLemkVv0Ea7CaUnC+YzHSl\nLGmgH69i72ttb7/V6zms+xd3VsdKPEEvTV3r+kpSwWsPEz413EM6j0CzgOkK41sU\nRtsWT9E3hEWwa3QMbAotytUjA7z6CdhxZsT556RJ/QKBgQD+DpC95pUswuRGPy4n\nvF7s5I0dFeEzuxvBazTonhilRjV05Wn6oTbyPV3n2NdnWpMlhZuv5JsUwLwkuH4t\nrtGUlyuUTgxiQMRJW2mq2maLZfxeNr4w2wMhnlDaYovKembYX3qSWZLA1cTgKQTK\nZkeeAQowj755HBTTbv2TGnXYZQKBgQDocsf2IVzAi6QkCtSb7BJgoTi1fv49quA9\nKdPYXYa6ZipZjx7payO31/r2c0S4SJhtBoAhC35JebWT8NvtmMZzHJ66h9T60iTl\nD+BQF39ywn77aMdzImmB8bzJA9bVl5IcNOc/G0EnGIb4iAPyemkl0mv5y/DOQ2Ky\nQFVFBWFr/QKBgQDFIEIYxyhqcdIz22QRuuygvPntXoO94um3W1rTP5B59Q8XY8am\njJ6YuRr7AVqpvDK+g3v4r9XQ9XdGusxU3/eIZv+OdDzRo9Vp4f8Mbafxc7Gs3KcY\nO2ejlza/LIWxFuZj7zmpAs2GyJeZItqvvUrGg6IHahFt4WcbY1xn3rkfrQKBgQC6\nxqAOEbiprorxuxIjR4lsw58Bl01K1+bevqFOlbgQRs94rxuzizdkHdO1++EYAp0X\n3cVOyCFtgLJ6cWsGe1/aVwDj+QkVkY270Qn40SjDWa0W7pZ02Q3WMBv1mXQipGvu\n5kN53bh4ZajuQryJNfsPPQkt6sVPt62ydScPEse5MQKBgQDM8oOqcV9XyrRgEx8Q\nKG2/V9NnkwuFRBYDsiOcTvfVkxOU/PtIDW284uAk3WqK6s0Fqp7yluL7zAaaAZ3T\nQLOp8eZGmtLNWdGd2gFq9A/CawRjJnDX97LbtXB5quPVe3UT1EPGxb49LH7nXopx\nrpjoAz5hIAkXfT8TkxU04BVpUg==\n-----END PRIVATE KEY-----\n",
+  "client_email": "database-dialog-account@strikers-chatboot.iam.gserviceaccount.com",
+  "client_id": "115153574239316519426",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/database-dialog-account%40strikers-chatboot.iam.gserviceaccount.com"
+}
