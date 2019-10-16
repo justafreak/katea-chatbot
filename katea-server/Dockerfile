@@ -1,13 +1,15 @@
+FROM gradle:5.6.2-jdk11 AS build
+COPY --chown=gradle:gradle . /home/gradle/src
+WORKDIR /home/gradle/src
+
+RUN gradle build --no-daemon
+
 FROM gradle:5.6.2-jdk11
 
-WORKDIR app
+EXPOSE 8080
 
-COPY .  /app
+RUN mkdir /app
 
-USER root
-RUN chown -R gradle /app
-USER gradle
+COPY --from=build /home/gradle/src/build/libs/*.jar /app/strikers-server.jar
 
-RUN ./gradlew build --stacktrace
-
-CMD [ "java", "-jar", "build/libs/katea-server-0.0.1-SNAPSHOT.jar" ]
+ENTRYPOINT ["java","-jar","/app/strikers-server.jar"]
