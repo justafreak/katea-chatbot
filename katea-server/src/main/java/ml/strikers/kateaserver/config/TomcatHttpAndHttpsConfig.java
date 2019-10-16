@@ -23,4 +23,5 @@ public class TomcatHttpAndHttpsConfig {
         connector.setRedirectPort(8443);
         return connector;
     }
+
 }
