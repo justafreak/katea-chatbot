@@ -10,6 +10,4 @@ public class KateaServerApplication {
     public static void main(String[] args) throws Exception {
         SpringApplication.run(KateaServerApplication.class, args);
     }
-
 }
-
