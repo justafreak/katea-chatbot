@@ -2,7 +2,7 @@ package ml.strikers.kateaserver.rest.v1.dialog;
 
 import com.google.cloud.dialogflow.v2.DetectIntentResponse;
 import ml.strikers.kateaserver.entity.Request;
-import ml.strikers.kateaserver.service.DialogFlowIntentExtractor;
+import ml.strikers.kateaserver.service.DialogProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
@@ -16,7 +16,7 @@ public class PassThroughController {
 
 
     @Autowired
-    private DialogFlowIntentExtractor dialogFlowIntentExtractor;
+    private DialogProvider dialogProvider;
 
     private final RestTemplate restTemplate;
 
@@ -25,8 +25,8 @@ public class PassThroughController {
     }
 
     @PostMapping("/query")
-    public DetectIntentResponse query(@RequestBody Request request) throws IOException {
-        return dialogFlowIntentExtractor.detectIntentTexts(request);
+    public String query(@RequestBody Request request) throws Exception {
+        return dialogProvider.detectIntentTexts(request).toString();
     }
 
 }
