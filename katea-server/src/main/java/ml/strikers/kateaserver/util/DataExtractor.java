@@ -23,7 +23,7 @@ public class DataExtractor {
 
     public <T> List<T> extract(Resource resource, Class<T[]> clazz) {
         try {
-            return Arrays.asList(objectMapper.readValue(resource.getFile(), clazz));
+            return Arrays.asList(objectMapper.readValue(resource.getInputStream(), clazz));
         } catch (IOException e) {
             log.error("Error occurred at deserialization!");
         }
