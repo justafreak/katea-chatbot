@@ -30,7 +30,7 @@ public class HotelDataStoreAdapter implements Repository<Hotel, UUID> {
     public Hotel save(Hotel entity) {
         IncompleteKey key = keyFactory.newKey();
         FullEntity<IncompleteKey> incBookEntity = Entity.newBuilder(key)
-                .set("name", entity.getName())
+//                .set("name", entity.getName())
                 .build();
         Entity hotel = datastore.add(incBookEntity);
         return entity;
