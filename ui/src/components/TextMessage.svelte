@@ -1,9 +1,16 @@
 <script>
-  import TypingIndicator from "./TypingIndicator.svelte";
-  import chatIconUrl from "../assets/icons/chat-icon.svg";
-  export let text = "";
-  export let messageSenderType = "";
+  import TypingIndicator from './TypingIndicator.svelte';
+  import chatIconUrl from '../assets/icons/chat-icon.svg';
+  import { MSG_TYPE_TEXT } from '../constants/msgType';
+  import { BOT } from '../constants/author';
+
+  export let message = {
+    type: MSG_TYPE_TEXT,
+    text: ''
+  };
   export let isTyping = false;
+
+  const authorClass = message.author === BOT ? 'sc-message--bot' : 'sc-message--human';
 </script>
 
 <style>
@@ -57,17 +64,19 @@
     background-color: #f4f7f9;
     margin-right: 40px;
   }
+
+  .sc-message--human {
+    margin-left: auto;
+  }
 </style>
 
-<div class="sc-message--content">
-  <div
-    class="sc-message--avatar"
-    style="background-image: url({chatIconUrl})" />
-  <div class={`sc-message--text ${messageSenderType}`}>
+<div class={`sc-message--content ${authorClass}`}>
+  <div class="sc-message--avatar" style="background-image: url({chatIconUrl})" />
+  <div class="sc-message--text">
     <TypingIndicator visible={isTyping} />
     {#if !isTyping}
       <span>
-        {@html text}
+        {@html message.text}
       </span>
     {/if}
   </div>

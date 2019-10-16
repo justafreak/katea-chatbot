@@ -1,7 +1,7 @@
 <script>
-  import Header from "./Header.svelte";
-  import MessageList from "./MessageList.svelte";
-  import UserInput from "./UserInput.svelte";
+  import Header from './Header.svelte';
+  import MessageList from './MessageList.svelte';
+  import UserInput from './UserInput.svelte';
 
   export let open = false;
   export let messages = [];
@@ -18,7 +18,11 @@
     justify-content: space-between;
     transition: 0.3s ease-in-out;
     border-radius: 10px;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: #eff8f8;
   }
   .sc-chat-window.close {
     opacity: 0;
@@ -45,7 +49,7 @@
 </style>
 
 <div class="sc-chat-window" class:close={!open}>
-  <Header teamName="Test" imageUrl="" />
+  <Header teamName="Katea" imageUrl="" />
   <MessageList {messages} />
   <UserInput {messages} />
 </div>

@@ -1,0 +1,9 @@
+<<<<<<< HEAD
+node_modules/
+=======
+.DS_Store
+node_modules
+public/bundle.*
+.vscode/
+npm-debug.log
+>>>>>>> 72a9270191b151620c24c5b2e0fb6addc7cbf07c

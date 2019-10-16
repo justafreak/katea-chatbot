@@ -1,16 +1,18 @@
 <script>
-  import { messages } from "../stores/messages.js";
+  import { messages } from '../stores/messages.js';
+  import { HUMAN } from '../constants/author';
+  import { MSG_TYPE_TEXT, MSG_TYPE_QUICK_REPLY } from '../constants/msgType';
 
   export let message = {
-    type: "quickreply",
+    type: MSG_TYPE_QUICK_REPLY,
     replies: []
   };
   const onSubmit = text => {
     messages.set([
       ...$messages,
       {
-        type: "text",
-        author: "user",
+        type: MSG_TYPE_TEXT,
+        author: HUMAN,
         text
       }
     ]);
