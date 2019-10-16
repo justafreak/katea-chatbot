@@ -1,5 +1,4 @@
 <script>
-  // your script goes here
   export let count = 0;
   export let open = false;
 </script>

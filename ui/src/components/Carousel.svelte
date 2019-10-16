@@ -12,19 +12,19 @@
 
   const btnData = [
     {
-      text: 'Like',
+      text: 'YEAH',
       name: 'likeBtn',
       onClick: () => {}
     },
     {
-      text: 'Dislike',
+      text: 'MEEH',
       name: 'dislikeBtn',
       onClick: () => {}
     }
   ];
 </script>
 
-<Carousel perPage={2} autoplay={1500}>
+<Carousel perPage={3} autoplay={2000}>
   {#each message.replies as carouselItem}
     <MessageWithButtons {btnData} direction={'column'}>
       <CarouselItem class="slide-content" {...carouselItem} />

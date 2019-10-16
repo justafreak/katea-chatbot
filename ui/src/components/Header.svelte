@@ -1,12 +1,11 @@
 <script>
-  import closeIcon from '../assets/icons/close.svg';
-  import { open } from '../stores/chat.js';
+  import chatIconUrl from '../assets/icons/chat-icon.svg';
+
   export let teamName = '';
 </script>
 
 <style>
   .sc-header {
-    background-image: linear-gradient(-225deg, #50cccc 35%, #45aeca);
     min-height: 75px;
     border-top-left-radius: 9px;
     border-top-right-radius: 9px;
@@ -16,13 +15,8 @@
     position: relative;
     box-sizing: border-box;
     display: flex;
-  }
-
-  .sc-header--img {
-    border-radius: 50%;
-    align-self: center;
-    padding: 10px;
-    width: 70px;
+    font-size: 20px;
+    color: #6b7e81;
   }
 
   .sc-header--team-name {
@@ -33,22 +27,15 @@
     cursor: pointer;
     border-radius: 5px;
   }
-
-  .sc-header--close-button {
-    width: 40px;
+  .sc-message--avatar {
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center;
+    min-width: 40px;
+    min-height: 40px;
+    border-radius: 50%;
     align-self: center;
-    height: 40px;
-    margin-right: 10px;
-    box-sizing: border-box;
-    cursor: pointer;
-    border-radius: 5px;
-  }
-
-  .sc-header--close-button img {
-    width: 100%;
-    height: 100%;
-    padding: 13px;
-    box-sizing: border-box;
+    margin-right: 15px;
   }
 
   @media (max-width: 450px) {
@@ -59,8 +46,6 @@
 </style>
 
 <div class="sc-header">
+  <div class="sc-message--avatar" style="background-image: url({chatIconUrl})" />
   <div class="sc-header--team-name">{teamName}</div>
-  <div class="sc-header--close-button">
-    <img src={closeIcon} alt="" on:click={() => ($open = false)} />
-  </div>
 </div>
