@@ -26,10 +26,11 @@
 
   .sc-message--quick .sc-message__reply {
     display: inline-block;
-    background-color: #ffffff;
-    border: 1px solid #333333;
+    background-color: #f4f7f9;
     margin: 10px;
     border-radius: 16px;
+    box-shadow: 0 1px 28px 0 rgba(90, 60, 122, 0.22);
+    border-radius: 21px;
   }
 
   .quickreply {
@@ -43,29 +44,19 @@
     cursor: pointer;
     height: auto;
     text-align: center;
-  }
-
-  .sc-message--quick.sent {
-    color: white;
-    background-color: #ffffff;
-    border: 1px solid grey;
-    max-width: calc(100% - 120px);
-    word-wrap: break-word;
+    cursor: pointer;
   }
 </style>
 
 <ul class="sc-message--quick">
   {#each message.replies as reply}
-    <li class="sc-message__reply">
-      <a
-        class="quickreply"
-        href="void(0)"
-        on:click={ev => {
-          ev.preventDefault();
-          onSubmit(reply);
-        }}>
-        {reply}
-      </a>
+    <li
+      class="sc-message__reply"
+      on:click={ev => {
+        ev.preventDefault();
+        onSubmit(reply);
+      }}>
+      <a class="quickreply" href="void(0)">{reply}</a>
     </li>
   {/each}
 </ul>
