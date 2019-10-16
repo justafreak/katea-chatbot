@@ -67,11 +67,17 @@
 
   .sc-message--human {
     margin-left: auto;
+    background-color: #89a8a5;
+  }
+  .sc-message--bot {
+    background-color: #f4f7f9;
   }
 </style>
 
 <div class={`sc-message--content ${authorClass}`}>
-  <div class="sc-message--avatar" style="background-image: url({chatIconUrl})" />
+  {#if message.author === BOT}
+    <div class="sc-message--avatar" style="background-image: url({chatIconUrl})" />
+  {/if}
   <div class="sc-message--text">
     <TypingIndicator visible={isTyping} />
     {#if !isTyping}

@@ -1,4 +1,5 @@
 <script>
+  export let isActive = false;
   export let onClick = () => {};
 </script>
 
@@ -17,6 +18,11 @@
   .sc-user-input--send-icon:hover path {
     fill: rgba(86, 88, 103, 1);
   }
+
+  .sc-user-input--send-icon.isActive path {
+    fill: #89a8a5;
+  }
+
   .sc-user-input--send-icon-wrapper {
     background: none;
     border: none;
@@ -35,6 +41,7 @@
   <svg
     version="1.1"
     class="sc-user-input--send-icon"
+    class:isActive
     xmlns="http://www.w3.org/2000/svg"
     x="0px"
     y="0px"

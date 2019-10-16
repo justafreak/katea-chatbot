@@ -1,0 +1,26 @@
+{
+  "name": "recommendation-engine",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "dev": "node --inspect-brk app.js",
+    "seed:hotels": "node ./training/seed-hotels.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@tensorflow/tfjs-node": "^0.1.17",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "csv-stringify": "^5.3.3",
+    "express": "^4.17.1",
+    "lodash": "^4.17.15",
+    "memoize": "^0.1.1",
+    "node-remote-plot": "^1.2.0",
+    "shuffle-seed": "^1.1.6"
+  }
+}

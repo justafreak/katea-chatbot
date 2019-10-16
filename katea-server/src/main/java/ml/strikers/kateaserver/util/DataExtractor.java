@@ -25,7 +25,7 @@ public class DataExtractor {
         try {
             return Arrays.asList(objectMapper.readValue(resource.getInputStream(), clazz));
         } catch (IOException e) {
-//            log.error("Error occurred at deserialization!");
+            log.error("Error occurred at deserialization!");
         }
         return Collections.emptyList();
     }

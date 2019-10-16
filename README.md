@@ -1,5 +1,27 @@
 # Katea Chatbot
 
+- [Katea Chatbot](#katea-chatbot)
+  - [Project mission](#project-mission)
+  - [What problem does it solve ?](#what-problem-does-it-solve-)
+  - [How we're solving the problem: personalizing recommendations with a human touch](#how-were-solving-the-problem-personalizing-recommendations-with-a-human-touch)
+    - [Conversation structure](#conversation-structure)
+    - [High level architecture](#high-level-architecture)
+    - [Modules](#modules)
+    - [UI](#ui)
+    - [Fullfillment service](#fullfillment-service)
+    - [Recommender service](#recommender-service)
+    - [Entities](#entities)
+    - [Training the entity extraction](#training-the-entity-extraction)
+    - [Training the recommendations AI](#training-the-recommendations-ai)
+    - [Code structure](#code-structure)
+    - [Chatbot UI](#chatbot-ui)
+    - [Installing and launching the UI](#installing-and-launching-the-ui)
+    - [Recommendation Engine](#recommendation-engine)
+    - [Important files and their roles](#important-files-and-their-roles)
+    - [How to run the recommendation engine ?](#how-to-run-the-recommendation-engine-)
+    - [Scraper](#scraper)
+    - [katea-server](#katea-server)
+
 ## Project mission
 
 Enable better, more custom tailored and meaningfull hotel recommendations to delight customers by discovering places and experiences that resonate with the user.
@@ -54,6 +76,8 @@ The system is comprised of 4 modules and it's built on the following stack:
 - Java (BE - fullfilment service)
 - NodeJS (BE - recommender system)
 - NoSQL D
+- TensorFlow - for implementing the logistic regression in Recommender Engine.
+- ExpressJS - For the Recommender Engine HTTP interface
 
 ![Chatbot HLD](./docs/Chatbot-HLD.png)
 
@@ -99,7 +123,21 @@ It operates in 2 modes:
 1. Suggestions - Takes parsed NLP entities as input and tries to match them to hotels
 2. Learning - Gets user feedback on suggestion and makes adjustments to it's algorithm for improved recommendations
 
-It maintains a Deep Neural Net capable of constantly learning and it's serialized and persisted in the NOSQL DB.
+The ideas behind the Recommender service is to perform a multi-nomial logistic regression based where:
+
+1. **INPUTS** - Desirable features that an user is looking for at an accomodation. Eg good wifi, great breakfast etc. These are quantified numerically with a number between 0-1.
+
+2. **OUTPUTS** - A vector containing the marginal probability distribution for all of the hotels in the selected location. From them we select top N that we haven't yet presented to the user and we make a suggestion.
+
+Basically each hotel in a certain location becomes a class(label) in the classification
+problem.
+
+The **INPUTS** for the classifier are generated in 2 phases:
+
+1. Fullfilment service - parses the user text and by employing NLP techniques it extracts the entities in the text.
+2. The entities are handed-of to the "Recommender service" which encodes each of them in the 0-1 value space and uses them to generate some suggestions.
+
+By tweaking the values for the features by on the NLP analisys it is possible to express subtle meanings that are otherwise impossible to express during traditional, form based, search. Eg: "the most important things is to have a pool, i care about it being quiet and i don't care too much about the location".
 
 It's written in NodeJS.
 
@@ -124,6 +162,10 @@ The system is trained to recognize the following entities:
 15. accomodation_quality_wifi - The hotel has/must have good quality wifi
 16. accomodation_quality_staff - The hotel has/must have very helpfull staff
 
+It should be also able to detect quantifiers such as "excelent", "poor", "medium", "good", "bad" associated with the above `accomodation_quality` type of entities so
+that it can quantify how desirable or not are these from the perspective of a prospect
+customer.
+
 #### Training the entity extraction
 
 Trainign for entity extraction will be done manually from DialogFlow UI. For each entity
@@ -138,16 +180,59 @@ reviews of the hotel.
 
 The strategy is to scrape real world customer reviews for each and every hotel and for eac review to pass it trought the NLP layer so that we can start to make sense what desirable attributes the accomodation has.
 
+The NLP layer should be able to also extract magnitude related information from the user text and user reviews, such as "has awesome wifi", "has good breakfast", "has poor location" etc could be expressed in a numeric form.
+
 From this very initial training the recomendations continue to improve based on in-conversation feedback for the hotels suggestions shown.
 
 ## Code structure
 
-All of the UI source code lives in `ui` folder and it's built using Rollup.
+The repo hosts all of the services involved.
 
-### Installing and launching the UI
+### Chatbot UI
+
+Lives in `ui` folder and it has the following structure:
+
+1. `ui->components` - Hosts all of the view components of the Chatbot
+2. `ui->stores` - Hosts the reactive Svelte stores
+3. `ui->assets` - Static assets such as icons, font icons etc
+4. `ui->api` - All of the BE interaction happens here
+
+The entry point in the Chatbot UI is `main.js`.
+
+#### Installing and launching the UI
 
 `console cd ui npm i npm run dev`
 
 A development server will start on http://localhost:5000 , along with live
 reload and all the usual dev goodies.
 ![Chatbot image](./docs/chatbot.png)
+
+### Recommendation Engine
+
+Lives in `recommendation-engine` folder.
+
+It is structured as an Express application oferring 2 routes:
+
+1. POST /suggestions - Called from the fullfilment service to get a suggestion. The request body should contain the detect entities in user input
+2. POST /learn - Used to incorporate user feedback into the learning process
+
+#### Important files and their roles
+
+The main entry point is `app.js`.
+The training and prediction is facilitated by `Brain.js` file which gets called from the main `app.js`.
+The logistic regression is performed in `logistic-regression.js`.
+
+#### How to run the recommendation engine ?
+
+In the folder where the engine code resides run `npm run start`.
+
+It will start a server on port 3000 that responds to these routes.
+
+### Scraper
+
+Contains the code that was used to scrape for real world hotel data and reviews
+used in the training process.
+
+### katea-server
+
+Serves the UI and is responsable for the fullfillment aspects.
