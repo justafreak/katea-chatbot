@@ -1,8 +1,15 @@
 <script>
-  import Message from "./Message.svelte";
+  import { afterUpdate } from 'svelte';
+  import Message from './Message.svelte';
+
   export let messages = [];
   export let onDelete = () => {};
   export let onSubmit = () => {};
+
+  let msgListElement;
+  afterUpdate(() => {
+    msgListElement.scrollTop = msgListElement.scrollHeight;
+  });
 </script>
 
 <style>
@@ -15,7 +22,7 @@
   }
 </style>
 
-<div class="sc-message-list">
+<div class="sc-message-list" bind:this={msgListElement}>
   {#each messages as message}
     <Message {message} {onDelete} {onSubmit} />
   {/each}

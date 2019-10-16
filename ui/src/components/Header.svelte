@@ -1,8 +1,7 @@
 <script>
-  import closeIcon from "../assets/icons/close.svg";
-  import { open } from "../stores/chat.js";
-  export let teamName = "";
-  export let imageUrl = "";
+  import closeIcon from '../assets/icons/close.svg';
+  import { open } from '../stores/chat.js';
+  export let teamName = '';
 </script>
 
 <style>
@@ -35,10 +34,6 @@
     border-radius: 5px;
   }
 
-  .sc-header--team-name:hover {
-    background: #4882ed;
-  }
-
   .sc-header--close-button {
     width: 40px;
     align-self: center;
@@ -47,10 +42,6 @@
     box-sizing: border-box;
     cursor: pointer;
     border-radius: 5px;
-  }
-
-  .sc-header--close-button:hover {
-    background: #4882ed;
   }
 
   .sc-header--close-button img {
@@ -68,7 +59,6 @@
 </style>
 
 <div class="sc-header">
-  <img class="sc-header--img" src={imageUrl} alt="" />
   <div class="sc-header--team-name">{teamName}</div>
   <div class="sc-header--close-button">
     <img src={closeIcon} alt="" on:click={() => ($open = false)} />

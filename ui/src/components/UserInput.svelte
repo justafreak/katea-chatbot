@@ -1,21 +1,28 @@
 <script>
-  import SendIcon from "./SendIcon.svelte";
-  import { messages } from "../stores/messages.js";
+  import SendIcon from './SendIcon.svelte';
+  import { messages } from '../stores/messages.js';
+  import { detectIntent } from '../api/intent';
+  import { HUMAN } from '../constants/author';
+  import { MSG_TYPE_TEXT } from '../constants/msgType';
+
   let active = false;
-  let text = "";
-  export let placeholder = "Scrie aici mesajul";
+  let text = '';
+  export let placeholder = 'Scrie aici mesajul';
 
   const submitText = ev => {
     ev.preventDefault();
     messages.set([
       ...$messages,
       {
-        type: "text",
-        author: "user",
+        type: MSG_TYPE_TEXT,
+        author: HUMAN,
         text
       }
     ]);
-    text = "";
+
+    detectIntent(text);
+
+    text = '';
   };
   const handleKey = event => {
     if (event.keyCode === 13 && !event.shiftKey) {
