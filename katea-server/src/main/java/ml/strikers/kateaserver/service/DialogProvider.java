@@ -18,7 +18,7 @@ import java.util.UUID;
 @Slf4j
 public class DialogProvider {
 
-    @Value("classpath:google-auth/strikers-chatboot-490ee012a9a7.json")
+    @Value("${dialogflow.credentials.location}")
     private Resource resourceFile;
 
     @Value("${dialogflow.project-id}")
