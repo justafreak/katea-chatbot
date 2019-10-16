@@ -1,5 +1,27 @@
 # Katea Chatbot
 
+- [Katea Chatbot](#katea-chatbot)
+  _ [Project mission](#project-mission)
+  _ [What problem does it solve ?](#what-problem-does-it-solve-)
+  _ [How we're solving the problem: personalizing recommendations with a human touch](#how-were-solving-the-problem-personalizing-recommendations-with-a-human-touch)
+  _ [Conversation structure](#conversation-structure)
+  _ [High level architecture](#high-level-architecture)
+  _ [Modules](#modules)
+  _ [UI](#ui)
+  _ [Fullfillment service](#fullfillment-service)
+  _ [Recommender service](#recommender-service)
+  _ [Entities](#entities)
+  _ [Training the entity extraction](#training-the-entity-extraction)
+  _ [Training the recommendations AI](#training-the-recommendations-ai)
+  _ [Code structure](#code-structure)
+  _ [Chatbot UI](#chatbot-ui)
+  _ [Installing and launching the UI](#installing-and-launching-the-ui)
+  _ [Recommendation Engine](#recommendation-engine)
+  _ [Important files and their roles](#important-files-and-their-roles)
+  _ [How to run the recommendation engine ?](#how-to-run-the-recommendation-engine-)
+  _ [Scraper](#scraper)
+  _ [katea-server](#katea-server)
+
 ## Project mission
 
 Enable better, more custom tailored and meaningfull hotel recommendations to delight customers by discovering places and experiences that resonate with the user.
