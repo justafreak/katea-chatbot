@@ -17,9 +17,10 @@
         text
       }
     ]);
-    text = '';
+    
+    detectIntent(text);
 
-    detectIntent();
+    text = '';
   };
   const handleKey = event => {
     if (event.keyCode === 13 && !event.shiftKey) {

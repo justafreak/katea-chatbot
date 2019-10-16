@@ -1,8 +1,8 @@
 const ACCESS_TOKEN =
-  'ya29.c.Kl6bB5ES0tibjHyo81dL - AvYioEk - yappDuXCezYaM1ijGRvAm - gk9azCu_NZFLpSC - I20rlMxX44GuP0JmHZwy9VVxAiHRUfm7_za5fQnlJgh3g6tgdhsHTrf299C9l';
+  'ya29.c.Kl6bB2AiMM16d4vE75HusgFrWD2E3I18_oYNGplWi3FnugeFIMNATWk6wBNyj7YPMDdMts7zxYD7aPREiAyTDOWY3Y0Lur67E-BejJM4FRPQpYIn-QC8DnrtB-cnkWhf';
 
 const url =
-  'https://dialogflow.googleapis.com/v2beta1/projects/movie-vscsqu/agent/sessions/32d27739-8402-c8bc-7575-b65e240f8755:detectIntent';
+  'https://dialogflow.googleapis.com/v2beta1/projects/strikers-chatboot/agent/sessions/1582ff86-0054-af5f-0a31-b85fdb8b71e8:detectIntent';
 
 export const detectIntent = async requestData => {
   const { text } = requestData;
@@ -19,7 +19,9 @@ export const detectIntent = async requestData => {
   };
 
   const response = await fetch(url, {
-    method: 'GET',
+    method: 'POST',
+    mode: 'cors',
+    credentials: 'include',
     headers: {
       'Content-Type': 'application/json',
       charset: 'utf-8',
