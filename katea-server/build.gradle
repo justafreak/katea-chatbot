@@ -18,6 +18,7 @@ configurations {
     }
 }
 
+ext['tomcat.version'] = '9.0.24'
 
 repositories {
     mavenCentral()
