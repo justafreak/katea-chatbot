@@ -37,7 +37,7 @@ dependencies {
     compile 'com.google.apis:google-api-services-dialogflow:v2-rev81-1.25.0'
     compile 'com.google.cloud:google-cloud-datastore:1.2.1'
     compile 'com.google.cloud:google-cloud-dialogflow:0.114.0-alpha'
-//    compile group: 'com.google.auth', name: 'google-auth-library-oauth2-http', version: '0.1.0'
+    compile group: 'com.google.auth', name: 'google-auth-library-oauth2-http', version: '0.1.0'
 
 
 }
