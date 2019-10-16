@@ -35,6 +35,8 @@ public class DialogController {
         return webhookResponse;
     }
 
+
+
     @GetMapping
     public List<Hotel> getAll() {
         return dataExtractor.extract(resourceFile, Hotel[].class);
