@@ -34,8 +34,7 @@ public class DialogFlowIntentExtractor {
     public DetectIntentResponse detectIntentTexts(Request request) throws IOException {
         Map<String, QueryResult> queryResults = Maps.newHashMap();
         final var credentialsProvider = FixedCredentialsProvider.create(googleAuthentication.getGoogleCredentials(resourceFile));
-        SessionsSettings sessionsSettings = SessionsSettings.newBuilder().setCredentialsProvider(credentialsProvider).build();
-        try (SessionsClient sessionsClient = SessionsClient.create(sessionsSettings)) {
+        try (SessionsClient sessionsClient = SessionsClient.create()) {
             SessionName sessionname = SessionName.of(projectId, request.getSesionId() == null ? UUID.randomUUID().toString() : request.getSesionId().toString());
 
             TextInput.Builder textInput = TextInput.newBuilder().setText(request.getRequestBody()).setLanguageCode(languageCode);
