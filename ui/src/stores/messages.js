@@ -64,47 +64,47 @@ export const messages = writable([
     reply: [
       {
         url: 'https://www.booking.com/hotel/gb/the-colonnade-london.en-gb.html',
-        imgSrc:
+        imageUrl:
           'https://r-cf.bstatic.com/xdata/images/hotel/square200/122358182.jpg?k=04522139bfae775f531554f2be8a966e14f11880e12c76f58aa7ec31269eb2d2&o=',
         price: {
           value: 2000.51,
           currency: 'RON'
         },
         rating: 5,
-        title: 'Paradiso Nr. 1'
+        name: 'Paradiso Nr. 1'
       },
       {
         url: 'https://www.booking.com/hotel/gb/the-colonnade-london.en-gb.html',
-        imgSrc:
+        imageUrl:
           'https://r-cf.bstatic.com/xdata/images/hotel/square200/122358182.jpg?k=04522139bfae775f531554f2be8a966e14f11880e12c76f58aa7ec31269eb2d2&o=',
         price: {
           value: 200.5,
           currency: 'RON'
         },
         rating: 3,
-        title: "La Shafu'"
+        name: "La Shafu'"
       },
       {
         url: 'https://www.booking.com/hotel/gb/the-colonnade-london.en-gb.html',
-        imgSrc:
+        imageUrl:
           'https://r-cf.bstatic.com/xdata/images/hotel/square200/122358182.jpg?k=04522139bfae775f531554f2be8a966e14f11880e12c76f58aa7ec31269eb2d2&o=',
         price: {
           value: 200.5,
           currency: 'RON'
         },
         rating: 1,
-        title: 'Hanul milei'
+        name: 'Hanul milei'
       },
       {
         url: 'https://www.booking.com/hotel/gb/the-colonnade-london.en-gb.html',
-        imgSrc:
+        imageUrl:
           'https://r-cf.bstatic.com/xdata/images/hotel/square200/122358182.jpg?k=04522139bfae775f531554f2be8a966e14f11880e12c76f58aa7ec31269eb2d2&o=',
         price: {
           value: 200.5,
           currency: 'RON'
         },
         rating: 4,
-        title: 'Pe Germania'
+        name: 'Pe Germania'
       }
     ]
   },

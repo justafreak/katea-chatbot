@@ -1,7 +1,7 @@
 interface ICarouselItem {
   url: string;
-  imgSrc: string;
-  title: string;
+  imageUrl: string;
+  name: string;
   price: {
     value: number;
     currency: string;

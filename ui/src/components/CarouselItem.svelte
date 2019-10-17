@@ -34,17 +34,17 @@
 
 <div class="carouselItem">
   <img
-    src={carouselItem.imgSrc}
+    src={carouselItem.imageUrl}
     alt=""
     class="carouselItem__img"
     on:click={ev => {
       ev.preventDefault();
       onViewRecommendation();
     }} />
-  <h3 class="carouselItem__title">{carouselItem.title}</h3>
+  <h3 class="carouselItem__title">{carouselItem.name}</h3>
   <p class="carouselItem__price">{formattedPrice}</p>
   <Rate
-    value={carouselItem.rating}
+    value={Math.round(carouselItem.rating / 2)}
     length={5}
     ratedesc={['Very bad', 'Bad', 'Normal', 'Good', 'Very good']}
     showCount={false} />
