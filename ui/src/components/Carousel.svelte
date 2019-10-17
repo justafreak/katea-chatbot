@@ -7,7 +7,7 @@
 
   export let message = {
     type: MSG_TYPE_QUICK_REPLY,
-    replies: []
+    reply: []
   };
 
   const btnData = [
@@ -25,7 +25,7 @@
 </script>
 
 <Carousel perPage={3} autoplay={2000}>
-  {#each message.replies as carouselItem}
+  {#each message.reply as carouselItem}
     <MessageWithButtons {btnData} direction={'column'}>
       <CarouselItem class="slide-content" {...carouselItem} />
     </MessageWithButtons>

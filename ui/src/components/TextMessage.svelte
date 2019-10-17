@@ -1,4 +1,5 @@
 <script>
+  import { fly } from 'svelte/transition';
   import TypingIndicator from './TypingIndicator.svelte';
   import chatIconUrl from '../assets/icons/chat-icon.svg';
   import { MSG_TYPE_TEXT } from '../constants/msgType';
@@ -6,11 +7,12 @@
 
   export let message = {
     type: MSG_TYPE_TEXT,
-    text: ''
+    reply: ''
   };
   export let isTyping = false;
 
   const authorClass = message.author === BOT ? 'sc-message--bot' : 'sc-message--human';
+  const transitionDirection = message.author === BOT ? '-200' : '200';
 </script>
 
 <style>
@@ -74,7 +76,9 @@
   }
 </style>
 
-<div class={`sc-message--content ${authorClass}`}>
+<div
+  transition:fly={{ x: transitionDirection, duration: 2000 }}
+  class={`sc-message--content ${authorClass}`}>
   {#if message.author === BOT}
     <div class="sc-message--avatar" style="background-image: url({chatIconUrl})" />
   {/if}
@@ -82,7 +86,7 @@
     <TypingIndicator visible={isTyping} />
     {#if !isTyping}
       <span>
-        {@html message.text}
+        {@html message.reply}
       </span>
     {/if}
   </div>

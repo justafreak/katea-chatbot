@@ -1,33 +1,30 @@
-const ACCESS_TOKEN =
-    'ya29.c.Kl6bBzlQhRvTKn7ToAGUujabi2X2hpVXr_YuGhkMR_kdWU1XbOOHIROcwOc1zsj-nFISDhkI6aQmoyfU_76xek1ZD0rpnQh9oRc1Q2ine257hPmu_seozwY16BJvZrVn';
-
-const url =
-    'https://dialogflow.googleapis.com/v2beta1/projects/strikers-chatboot/agent/sessions/1582ff86-0054-af5f-0a31-b85fdb8b71e8:detectIntent';
+import { storeBotMsg } from '../stores/messages.js';
+import { get } from 'svelte/store';
+import { storeSessionId, sessionId } from '../stores/session.js';
+import { BOT } from '../constants/author.js';
+import { MSG_TYPE_TEXT } from '../constants/msgType.js';
+import { INTENT_PATH } from '../constants/paths.js';
 
 export const detectIntent = async requestData => {
-    const body = {
-        queryInput: {
-            text: {
-                text: requestData,
-                languageCode: 'en'
-            }
-        },
-        queryParams: {
-            timeZone: 'Europe/Bucharest'
-        }
-    };
+  const body = { message: requestData, sessionId: get(sessionId) };
 
-    const headers = new Headers({
-        "Content-Type": "application/json",
-        charset: "utf-8",
-        Authorization: `Bearer ${ACCESS_TOKEN}`
-    })
+  const headers = new Headers({
+    'Content-Type': 'application/json',
+    charset: 'utf-8'
+  });
 
-    const response = await fetch(url, {
-        method: 'POST',
-        headers,
-        body: JSON.stringify(body)
+  try {
+    const response = await fetch(INTENT_PATH, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify(body)
     });
 
-    return await response.json();
+    const resp = await response.json();
+
+    storeBotMsg(resp.message.type, resp.message.reply);
+    storeSession(resp.sessionId);
+  } catch (e) {
+    storeBotMsg(MSG_TYPE_TEXT, 'Woops');
+  }
 };
