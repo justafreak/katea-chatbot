@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.api.services.dialogflow.v2.model.*;
 import ml.strikers.kateaserver.fulfilment.entity.FullfilmentHotelRequest;
 import ml.strikers.kateaserver.fulfilment.entity.Hotel;
-import ml.strikers.kateaserver.fulfilment.repository.HotelDataStoreAdapter;
+import ml.strikers.kateaserver.fulfilment.repository.HotelRepository;
 import ml.strikers.kateaserver.fulfilment.service.DialogProvider;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -39,7 +39,7 @@ public class DialogController {
         FullfilmentHotelRequest.builder().city(parameters.get("geo-city"))
                 .companions(parameters.get("companions"))//.facilities(parameters.get("quality"))
                 .tripType(parameters.get("trip-type")).build();
-        webhookResponse.setFulfillmentMessages(List.of(convert(HotelDataStoreAdapter.getByCity("London"))));
+        webhookResponse.setFulfillmentMessages(List.of(convert(HotelRepository.getByCity("London"))));
 //        final LinkedHashMap<String, String> intent = (LinkedHashMap<String, String>) queryResult.get("intent");
 //        if (intent.get("displayName").equals("recommend")) {
 //            final LinkedHashMap<String, Object> fullfillment = (LinkedHashMap<String, Object>) queryResult.get("fulfillmentMessages");

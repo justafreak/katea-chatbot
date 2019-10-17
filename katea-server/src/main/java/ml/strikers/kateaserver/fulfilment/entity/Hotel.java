@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.UUID;
 
@@ -17,6 +18,7 @@ public class Hotel {
     public static final String ID = "id";
     public static final String NAME = "name";
     public static final String IMAGE_URL = "imageUrl";
+    public static final String URL = "url";
     public static final String RATING = "rating";
     public static final String CITY = "city";
     public static final String PRICE_VALUE = "priceValue";
@@ -36,8 +38,11 @@ public class Hotel {
     private Price price;
     private String venueType;
     private String zone;
-    private int reviewCount;
+    private long reviewCount;
     private List<String> facilities;
     private String latLong;
+    private int recommendScore;
+
+    public static Comparator<Hotel> SCORE_COMPARATOR = Comparator.comparing(Hotel::getRecommendScore);
 
 }
