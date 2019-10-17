@@ -8,7 +8,7 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
-public class CarouselList implements Message {
+public class CarouselList implements IMessage {
 
     private ResponseType type = ResponseType.MSG_TYPE_CAROUSEL;
     private List<Hotel> reply;
