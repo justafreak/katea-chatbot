@@ -5,7 +5,8 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class SimpleReply implements Reply{
+public class SimpleReply implements Message {
 
+    private ResponseType type = ResponseType.MSG_TYPE_TEXT;
     private String reply;
 }
