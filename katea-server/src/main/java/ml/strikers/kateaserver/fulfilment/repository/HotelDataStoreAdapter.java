@@ -1,6 +1,7 @@
 package ml.strikers.kateaserver.fulfilment.repository;
 
 import com.google.cloud.datastore.*;
+import ml.strikers.kateaserver.fulfilment.entity.Currency;
 import ml.strikers.kateaserver.fulfilment.entity.Hotel;
 import ml.strikers.kateaserver.fulfilment.entity.Price;
 
@@ -40,9 +41,12 @@ public class HotelDataStoreAdapter implements Repository<Hotel, UUID> {
     }
 
     public static List<Hotel> getByCity(String city) {
+        Price price = new Price();
+        price.setCurrency(Currency.RON);
+        price.setValue(2.22);
         return List.of(Hotel.builder()
                 .name("The Colonnade")
-                .price(new Price())
+                .price(price)
                 .city(city)
                 .id(UUID.fromString("d3d46211-fa0c-44d2-939b-2252facb1ec0"))
                 .imageUrl("https://r-cf.bstatic.com/xdata/images/hotel/square200/122358182.jpg?k=04522139bfae775f531554f2be8a966e14f11880e12c76f58aa7ec31269eb2d2&o=")
