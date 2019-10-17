@@ -39,11 +39,13 @@ public class DialogController {
                 new ObjectMapper().readValue(response, GoogleCloudDialogflowV2beta1WebhookResponse.class);
 
         final LinkedHashMap<String, Object> queryResult = (LinkedHashMap) webhookResponse.get("queryResult");
-        final LinkedHashMap<String, String> parameters = (LinkedHashMap<String, String>) queryResult.get("parameters");
-        FullfilmentHotelRequest.builder().city(parameters.get("geo-city"))
-                .companions(parameters.get("companions"))//.facilities(parameters.get("quality"))
-                .tripType(parameters.get("trip-type")).build();
-        webhookResponse.setFulfillmentMessages(List.of(convert(HotelRepository.getByCity("London"))));
+        final LinkedHashMap<String, Object> parameters = (LinkedHashMap) queryResult.get("parameters");
+        FullfilmentHotelRequest request = FullfilmentHotelRequest.builder()
+                .city((String) parameters.get("geo-city"))
+                .companions((String) parameters.get("companions"))
+                .facilities((List) parameters.get("quality"))
+                .tripType((String) parameters.get("trip-type")).build();
+        webhookResponse.setFulfillmentMessages(List.of(convert(HotelDataStoreAdapter.getByCity("London"))));
 //        final LinkedHashMap<String, String> intent = (LinkedHashMap<String, String>) queryResult.get("intent");
 //        if (intent.get("displayName").equals("recommend")) {
 //            final LinkedHashMap<String, Object> fullfillment = (LinkedHashMap<String, Object>) queryResult.get("fulfillmentMessages");
