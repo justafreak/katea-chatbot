@@ -49,7 +49,7 @@ public class DialogController {
 //
 //        }
 
-        webhookResponse.setFulfillmentText("RECEIVED: " + parameters);
+        webhookResponse.setFulfillmentText("Here our recommendations");
         return webhookResponse;
     }
 
@@ -65,24 +65,11 @@ public class DialogController {
             carouselSelectItem.setImage(image);
             carouselSelectItem.setTitle(hotel.getName());
             carouselSelectItem.setDescription(new ObjectMapper().writeValueAsString(hotel));
-
-            carouselSelectItem.set("hotelId", hotel.getId());
-            carouselSelectItem.set("url", hotel.getUrl());
-            carouselSelectItem.set("rating", hotel.getRating());
-            carouselSelectItem.set("price", hotel.getPrice().getValue());
-            carouselSelectItem.set("currency", hotel.getPrice().getCurrency());
-            carouselSelectItem.set("city", hotel.getCity());
             carouselSelect.getItems().add(carouselSelectItem);
         }
 
         newMessage.setCarouselSelect(carouselSelect);
         return newMessage;
     }
-
-
-//    @PostMapping("/query")
-//    public String query(@RequestBody Request request) throws Exception {
-//        return detectIntentTexts.detectIntentTexts(request).toString();
-//    }
 
 }

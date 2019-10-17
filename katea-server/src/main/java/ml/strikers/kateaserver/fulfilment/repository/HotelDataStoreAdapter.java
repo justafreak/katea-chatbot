@@ -54,7 +54,14 @@ public class HotelDataStoreAdapter implements Repository<Hotel, UUID> {
         Price price = new Price();
         price.setCurrency(Currency.RON);
         price.setValue(2.22);
-        return List.of(Hotel.builder()
+        Price price2 = new Price();
+        price2.setCurrency(Currency.RON);
+        price2.setValue(999.22);
+        Price price3 = new Price();
+        price3.setCurrency(Currency.RON);
+        price3.setValue(809.22);
+        return List.of(
+                Hotel.builder()
                 .name("The Colonnade")
                 .price(price)
                 .city(city)
@@ -62,7 +69,26 @@ public class HotelDataStoreAdapter implements Repository<Hotel, UUID> {
                 .id(UUID.fromString("d3d46211-fa0c-44d2-939b-2252facb1ec0"))
                 .imageUrl("https://r-cf.bstatic.com/xdata/images/hotel/square200/122358182.jpg?k=04522139bfae775f531554f2be8a966e14f11880e12c76f58aa7ec31269eb2d2&o=")
                 .url("https://www.booking.com/hotel/gb/the-colonnade-london.en-gb.html")
-                .build());
+                .build(),
+                Hotel.builder()
+                        .name("Britannia International Hotel Canary Wharf")
+                        .price(price2)
+                        .city(city)
+                        .rating(9.60)
+                        .id(UUID.fromString("7a4ce2b7-7c43-48d8-a7d0-e254e555b479"))
+                        .imageUrl("https://q-cf.bstatic.com/xdata/images/hotel/square200/50756453.jpg?k=18558635c66b534dabc514ace7a15f69c7c363dc79acb6d3c206bc7e4004f20b&o=")
+                        .url("https://www.booking.com/hotel/gb/britannia-londoninternational.en-gb.html")
+                        .build(),
+                Hotel.builder()
+                        .name("Lovely 1 Bed near British Museum (5)")
+                        .price(price3)
+                        .city(city)
+                        .rating(10.0)
+                        .id(UUID.fromString("67a41446-598c-427a-9375-479936766a35"))
+                        .imageUrl("https://q-cf.bstatic.com/xdata/images/hotel/square200/219366877.jpg?k=79b7db28056fd01d72a4041203710b8f2a3aea071cdc6a1c66d894b49bd2ffd2&o=")
+                        .url("https://www.booking.com/hotel/gb/lovely-1-bed-near-british-museum-5.en-gb.html")
+                        .build()
+                );
     }
 
 }
