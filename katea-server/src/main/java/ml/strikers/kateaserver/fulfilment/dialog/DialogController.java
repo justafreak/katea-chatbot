@@ -1,9 +1,9 @@
-package ml.strikers.kateaserver.rest.v1.dialog;
+package ml.strikers.kateaserver.fulfilment.dialog;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.api.services.dialogflow.v2.model.GoogleCloudDialogflowV2beta1WebhookResponse;
-import ml.strikers.kateaserver.entity.Request;
-import ml.strikers.kateaserver.service.DialogProvider;
+import ml.strikers.kateaserver.fulfilment.entity.Request;
+import ml.strikers.kateaserver.fulfilment.service.DialogProvider;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;

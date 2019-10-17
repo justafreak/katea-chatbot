@@ -1,4 +1,4 @@
-package ml.strikers.kateaserver.entity;
+package ml.strikers.kateaserver.fulfilment.entity;
 
 import lombok.Builder;
 import lombok.Data;

@@ -1,12 +1,8 @@
-package ml.strikers.kateaserver.repository;
+package ml.strikers.kateaserver.fulfilment.repository;
 
-import com.google.auth.oauth2.AccessToken;
-import com.google.auth.oauth2.GoogleCredentials;
 import com.google.cloud.datastore.*;
-import ml.strikers.kateaserver.entity.Hotel;
+import ml.strikers.kateaserver.fulfilment.entity.Hotel;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.UUID;
 

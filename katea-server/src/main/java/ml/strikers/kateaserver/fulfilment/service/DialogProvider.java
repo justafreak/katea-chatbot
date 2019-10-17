@@ -1,11 +1,12 @@
-package ml.strikers.kateaserver.service;
+package ml.strikers.kateaserver.fulfilment.service;
 
 import com.google.api.client.util.Maps;
 import com.google.api.gax.core.FixedCredentialsProvider;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.cloud.dialogflow.v2.*;
 import lombok.extern.slf4j.Slf4j;
-import ml.strikers.kateaserver.entity.Request;
+import ml.strikers.kateaserver.fulfilment.entity.Fulfilment;
+import ml.strikers.kateaserver.fulfilment.entity.Request;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
@@ -27,8 +28,21 @@ public class DialogProvider {
     @Value("${dialogflow.default.language}")
     private String languageCode;
 
+   private final FulfilmentService fulfilmentService;
 
-    public Map<String, QueryResult> detectIntentTexts(Request request) throws Exception {
+    public DialogProvider(FulfilmentService fulfilmentService) {
+        this.fulfilmentService = fulfilmentService;
+    }
+
+    public Fulfilment getFulfilment(String queryMessage, UUID uuid) throws Exception {
+        Fulfilment fulfilment= new Fulfilment();
+        QueryResult queryResult = detectIntentTexts(queryMessage, uuid);
+        fulfilmentService
+        return new Fulfilment();
+    }
+
+
+    public QueryResult detectIntentTexts(String queryMessage, UUID uuid) throws Exception {
         final Map<String, QueryResult> queryResults = Maps.newHashMap();
         final var credentials = GoogleCredentials.fromStream(resourceFile.getInputStream());
         final var sessionsSettings = SessionsSettings.newBuilder().setCredentialsProvider(FixedCredentialsProvider.create(credentials)).build();
@@ -45,7 +59,7 @@ public class DialogProvider {
             log.info("Detected Intent: '{}' (confidence: {})", displayName, intentDetectionConfidence);
             log.info("Fulfillment Text: '{}'", queryResult.getFulfillmentText());
             queryResults.put(request.getMessage(), queryResult);
+            return queryResult;
         }
-        return queryResults;
     }
 }

@@ -1,13 +1,10 @@
-package ml.strikers.kateaserver.rest.v1.dialog;
+package ml.strikers.kateaserver.web.rest.v1;
 
-import com.google.cloud.dialogflow.v2.DetectIntentResponse;
-import ml.strikers.kateaserver.entity.Request;
-import ml.strikers.kateaserver.service.DialogProvider;
+import ml.strikers.kateaserver.fulfilment.entity.Request;
+import ml.strikers.kateaserver.fulfilment.service.DialogProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
-
-import java.io.IOException;
 
 @RestController
 @RequestMapping("/ui")

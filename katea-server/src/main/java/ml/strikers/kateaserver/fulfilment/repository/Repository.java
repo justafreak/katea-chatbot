@@ -1,4 +1,4 @@
-package ml.strikers.kateaserver.repository;
+package ml.strikers.kateaserver.fulfilment.repository;
 
 public interface Repository<T, ID> {
     T save(T entity);
