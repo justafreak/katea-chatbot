@@ -7,6 +7,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class SimpleReply implements IMessage {
 
-    private ResponseType type = ResponseType.MSG_TYPE_TEXT;
+    private ResponseType type = ResponseType.text;
     private String reply;
 }

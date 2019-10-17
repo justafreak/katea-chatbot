@@ -10,7 +10,7 @@ import java.util.List;
 @NoArgsConstructor
 public class CarouselList implements IMessage {
 
-    private ResponseType type = ResponseType.MSG_TYPE_CAROUSEL;
+    private ResponseType type = ResponseType.carousel;
     private List<Hotel> reply;
 
 

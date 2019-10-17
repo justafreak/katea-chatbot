@@ -17,10 +17,11 @@ public class QueryResultConverter {
     public static Fulfilment covertResultToFulfilment(QueryResult queryResult) {
         Fulfilment fulfilment = new Fulfilment();
         fulfilment.setFulfilmentSimpleResponse(queryResult.getFulfillmentText());
+        fulfilment.setHotelList(convert(queryResult.getFulfillmentMessages(0)));
         return fulfilment;
     }
 
-    private List<Hotel> convert(Intent.Message message) {
+    private static List<Hotel> convert(Intent.Message message) {
         return message.getCarouselSelect()
                 .getItemsList()
                 .stream()

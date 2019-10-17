@@ -9,6 +9,6 @@ import java.util.List;
 @NoArgsConstructor
 public class MultiOptionReply implements IMessage {
 
-    private ResponseType type = ResponseType.MSG_TYPE_QUICK_REPLY;
+    private ResponseType type = ResponseType.quickReply;
     private List<String> reply;
 }
