@@ -2,4 +2,4 @@ import { writable } from 'svelte/store';
 
 export const sessionId = writable(null);
 
-export const storeSessionId = sessionId => sessionId.set(sessionId);
+export const storeSessionId = id => sessionId.set(id);
