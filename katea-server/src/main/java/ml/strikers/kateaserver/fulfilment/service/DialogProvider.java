@@ -37,7 +37,7 @@ public class DialogProvider {
     public Fulfilment getFulfilment(String queryMessage, UUID uuid) throws Exception {
         Fulfilment fulfilment= new Fulfilment();
         QueryResult queryResult = detectIntentTexts(queryMessage, uuid);
-        fulfilmentService
+        fulfilmentService.processFulfilment();
         return new Fulfilment();
     }
 
@@ -47,9 +47,9 @@ public class DialogProvider {
         final var credentials = GoogleCredentials.fromStream(resourceFile.getInputStream());
         final var sessionsSettings = SessionsSettings.newBuilder().setCredentialsProvider(FixedCredentialsProvider.create(credentials)).build();
         try (SessionsClient sessionsClient = SessionsClient.create(sessionsSettings)) {
-            UUID sessionId = Objects.isNull(request.getSessionId()) ? UUID.randomUUID() : request.getSessionId();
+            UUID sessionId = uuid;
             final SessionName session = SessionName.of(projectId, sessionId.toString());
-            TextInput.Builder textInput = TextInput.newBuilder().setText(request.getMessage()).setLanguageCode(languageCode);
+            TextInput.Builder textInput = TextInput.newBuilder().setText(queryMessage).setLanguageCode(languageCode);
             QueryInput queryInput = QueryInput.newBuilder().setText(textInput).build();
             DetectIntentResponse response = sessionsClient.detectIntent(session, queryInput);
             QueryResult queryResult = response.getQueryResult();
@@ -58,7 +58,7 @@ public class DialogProvider {
             final var intentDetectionConfidence = queryResult.getIntentDetectionConfidence();
             log.info("Detected Intent: '{}' (confidence: {})", displayName, intentDetectionConfidence);
             log.info("Fulfillment Text: '{}'", queryResult.getFulfillmentText());
-            queryResults.put(request.getMessage(), queryResult);
+            queryResults.put(queryMessage, queryResult);
             return queryResult;
         }
     }

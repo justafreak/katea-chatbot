@@ -30,9 +30,9 @@ public class DialogController {
         return webhookResponse;
     }
 
-    @PostMapping("/query")
-    public String query(@RequestBody Request request) throws Exception {
-        return detectIntentTexts.detectIntentTexts(request).toString();
-    }
+//    @PostMapping("/query")
+//    public String query(@RequestBody Request request) throws Exception {
+//        return detectIntentTexts.detectIntentTexts(request).toString();
+//    }
 
 }

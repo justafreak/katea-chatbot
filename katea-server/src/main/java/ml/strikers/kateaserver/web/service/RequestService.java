@@ -18,7 +18,7 @@ public class RequestService {
         this.dialogProvider = dialogProvider;
     }
 
-    public Response getResponse(Request request) {
+    public Response getResponse(Request request) throws Exception {
         Response response = new Response();
         String queryMessage = request.getMessage();
         UUID uuid = request.getSessionId() == null ? UUID.randomUUID() : request.getSessionId();
