@@ -58,6 +58,7 @@ public class HotelDataStoreAdapter implements Repository<Hotel, UUID> {
                 .name("The Colonnade")
                 .price(price)
                 .city(city)
+                .rating(6.60)
                 .id(UUID.fromString("d3d46211-fa0c-44d2-939b-2252facb1ec0"))
                 .imageUrl("https://r-cf.bstatic.com/xdata/images/hotel/square200/122358182.jpg?k=04522139bfae775f531554f2be8a966e14f11880e12c76f58aa7ec31269eb2d2&o=")
                 .url("https://www.booking.com/hotel/gb/the-colonnade-london.en-gb.html")

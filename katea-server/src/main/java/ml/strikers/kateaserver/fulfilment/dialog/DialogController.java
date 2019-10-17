@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/dialog")
@@ -62,13 +63,16 @@ public class DialogController {
             image.setImageUri(hotel.getImageUrl());
             carouselSelectItem.setImage(image);
             carouselSelectItem.setTitle(hotel.getName());
-            GoogleCloudDialogflowV2beta1IntentMessageSelectItemInfo itemInfo = new GoogleCloudDialogflowV2beta1IntentMessageSelectItemInfo()
-                    .set("hotelId", hotel.getId())
-                    .set("url", hotel.getUrl())
-                    .set("rating", hotel.getRating())
-                    .set("price", hotel.getPrice().getValue())
-                    .set("currency", hotel.getPrice().getCurrency())
-                    .set("city", hotel.getCity());
+            GoogleCloudDialogflowV2beta1IntentMessageSelectItemInfo itemInfo = new GoogleCloudDialogflowV2beta1IntentMessageSelectItemInfo();
+            itemInfo.setUnknownKeys(Map.of(
+                    "hotelId", hotel.getId(),
+                    "url", hotel.getUrl(),
+                    "rating", hotel.getRating(),
+                    "price", hotel.getPrice().getValue(),
+                    "currency", hotel.getPrice().getCurrency(),
+                    "city", hotel.getCity()));
+
+
             carouselSelectItem.setInfo(itemInfo);
             carouselSelect.getItems().add(carouselSelectItem);
         }

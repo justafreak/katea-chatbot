@@ -34,7 +34,7 @@ public class QueryResultConverter {
                     return Hotel.builder()
                             .imageUrl(item.getImage().getImageUri())
                             .name(item.getTitle())
-//                            .city(item.getInfo().get("city").toString())
+//                            .city(item.getInfo()("city").toString())
 //                            .id(UUID.fromString(item.getInfo().get("hotelId").toString()))
                             .price(price)
                             .build();
