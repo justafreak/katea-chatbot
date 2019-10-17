@@ -1,6 +1,7 @@
 package ml.strikers.kateaserver.fulfilment.convertor;
 
 import com.google.api.services.dialogflow.v2.model.GoogleCloudDialogflowV2beta1IntentMessage;
+import com.google.cloud.dialogflow.v2.Intent;
 import com.google.cloud.dialogflow.v2.QueryResult;
 import ml.strikers.kateaserver.fulfilment.entity.Currency;
 import ml.strikers.kateaserver.fulfilment.entity.Fulfilment;
@@ -19,21 +20,21 @@ public class QueryResultConverter {
         return fulfilment;
     }
 
-    private List<Hotel> convert(GoogleCloudDialogflowV2beta1IntentMessage message) {
+    private List<Hotel> convert(Intent.Message message) {
         return message.getCarouselSelect()
-                .getItems()
+                .getItemsList()
                 .stream()
                 .map(item -> {
 
                     Price price = new Price();
-                    price.setValue(Double.valueOf(item.getInfo().get("price").toString()));
-                    price.setCurrency(Currency.valueOf(item.getInfo().get("currency").toString()));
+//                    price.setValue(Double.valueOf(item.getInfo(). get("price").toString()));
+//                    price.setCurrency(Currency.valueOf(item.getInfo().get("currency").toString()));
 
                     return Hotel.builder()
                             .imageUrl(item.getImage().getImageUri())
                             .name(item.getTitle())
-                            .city(item.getInfo().get("city").toString())
-                            .id(UUID.fromString(item.getInfo().get("hotelId").toString()))
+//                            .city(item.getInfo().get("city").toString())
+//                            .id(UUID.fromString(item.getInfo().get("hotelId").toString()))
                             .price(price)
                             .build();
 
