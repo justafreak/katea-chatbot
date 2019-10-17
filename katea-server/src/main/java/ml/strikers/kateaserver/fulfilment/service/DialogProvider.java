@@ -28,8 +28,6 @@ public class DialogProvider {
     private String languageCode;
 
 
-
-
     public Fulfilment getFulfilment(String queryMessage, UUID uuid) throws Exception {
         Fulfilment fulfilment;
         QueryResult queryResult = getDialogFlowResponse(queryMessage, uuid);
@@ -38,14 +36,12 @@ public class DialogProvider {
         return fulfilment;
     }
 
-
-    public QueryResult getDialogFlowResponse(String queryMessage, UUID uuid) throws Exception {
+    QueryResult getDialogFlowResponse(String queryMessage, UUID uuid) throws Exception {
         final Map<String, QueryResult> queryResults = Maps.newHashMap();
         final var credentials = GoogleCredentials.fromStream(resourceFile.getInputStream());
         final var sessionsSettings = SessionsSettings.newBuilder().setCredentialsProvider(FixedCredentialsProvider.create(credentials)).build();
         try (SessionsClient sessionsClient = SessionsClient.create(sessionsSettings)) {
-            UUID sessionId = uuid;
-            final SessionName session = SessionName.of(projectId, sessionId.toString());
+            final SessionName session = SessionName.of(projectId, uuid.toString());
             TextInput.Builder textInput = TextInput.newBuilder().setText(queryMessage).setLanguageCode(languageCode);
             QueryInput queryInput = QueryInput.newBuilder().setText(textInput).build();
             DetectIntentResponse response = sessionsClient.detectIntent(session, queryInput);
@@ -54,4 +50,6 @@ public class DialogProvider {
             return queryResult;
         }
     }
+
 }
+

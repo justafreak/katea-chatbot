@@ -1,28 +1,34 @@
 package ml.strikers.kateaserver.web.convertor;
 
 import ml.strikers.kateaserver.fulfilment.entity.Fulfilment;
-import ml.strikers.kateaserver.web.rest.v1.DTO.CarouselList;
-import ml.strikers.kateaserver.web.rest.v1.DTO.Response;
-import ml.strikers.kateaserver.web.rest.v1.DTO.ResponseType;
-import ml.strikers.kateaserver.web.rest.v1.DTO.SimpleReply;
+import ml.strikers.kateaserver.web.rest.v1.dto.CarouselList;
+import ml.strikers.kateaserver.web.rest.v1.dto.Response;
+import ml.strikers.kateaserver.web.rest.v1.dto.ResponseType;
+import ml.strikers.kateaserver.web.rest.v1.dto.SimpleReply;
+
+import static java.util.Objects.isNull;
 
 public class FulfilmentConvertor {
 
     public static Response fulfilmentToResponseConvertor(Fulfilment fulfilment) {
-        Response response = new Response();
+        final var response = new Response();
         response.setSessionId(fulfilment.getUUID());
+        final var hotelList = fulfilment.getHotelList();
 
-        if (fulfilment.getHotelList() == null || fulfilment.getHotelList().isEmpty()) {
-            SimpleReply simpleReply = new SimpleReply();
-            simpleReply.setReply(fulfilment.getFulfilmentSimpleResponse());
-            simpleReply.setType(ResponseType.text);
+        if (isNull(hotelList) || hotelList.isEmpty()) {
+            final var simpleReply = SimpleReply.builder()
+                    .reply(fulfilment.getFulfilmentSimpleResponse())
+                    .type(ResponseType.TEXT)
+                    .build();
             response.setMessage(simpleReply);
             return response;
         }
-        CarouselList carouselList = new CarouselList();
-        carouselList.setReply(fulfilment.getHotelList());
-        carouselList.setType(ResponseType.carousel);
+
+        final var carouselList = CarouselList.builder()
+                .reply(fulfilment.getHotelList())
+                .type(ResponseType.CAROUSEL).build();
         response.setMessage(carouselList);
+
         return response;
     }
 }

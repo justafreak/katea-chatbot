@@ -9,11 +9,15 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.UUID;
 
+import static java.util.Objects.requireNonNull;
+
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class Hotel {
+
+    public static final String KIND = "Hotels";
 
     public static final String ID = "id";
     public static final String NAME = "name";
@@ -44,5 +48,13 @@ public class Hotel {
     private int recommendScore;
 
     public static Comparator<Hotel> SCORE_COMPARATOR = Comparator.comparing(Hotel::getRecommendScore);
+
+    public Currency getPriceCurrency() {
+        return requireNonNull(this.price).getCurrency();
+    }
+
+    public Double getPriceValue() {
+        return requireNonNull(this.price).getValue();
+    }
 
 }

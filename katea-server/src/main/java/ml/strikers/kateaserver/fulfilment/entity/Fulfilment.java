@@ -11,7 +11,7 @@ public class Fulfilment {
 
     private java.util.UUID UUID;
     private String fulfilmentSimpleResponse;
-    private List<String> filfilmentResponses;
+    private List<String> fulfilmentResponses;
     private List<Hotel> hotelList;
 
 }

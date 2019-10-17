@@ -12,4 +12,6 @@ public class FuzzyMatchingService {
     public Hotel matchFacilities(Hotel hotel) {
         return hotel;
     }
+
 }
+
