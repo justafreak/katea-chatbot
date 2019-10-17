@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.api.services.dialogflow.v2.model.*;
 import ml.strikers.kateaserver.fulfilment.entity.FullfilmentHotelRequest;
 import ml.strikers.kateaserver.fulfilment.entity.Hotel;
+import ml.strikers.kateaserver.fulfilment.entity.VoteHotel;
 import ml.strikers.kateaserver.fulfilment.repository.HotelRepository;
 import ml.strikers.kateaserver.fulfilment.service.DialogProvider;
 import ml.strikers.kateaserver.fulfilment.service.HotelRecommendService;
@@ -17,6 +18,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/dialog")
@@ -32,6 +34,17 @@ public class DialogController {
         this.recommendService = recommendService;
     }
 
+    private enum Intent {
+        VOTE("vote"),
+        RECOMMEND("recommend");
+
+        private String fieldName;
+
+        Intent(String name) {
+            fieldName = name;
+        }
+    }
+
 
     @PostMapping("/webhook")
     public GoogleCloudDialogflowV2beta1WebhookResponse test(@RequestBody String response) throws IOException {
@@ -40,19 +53,32 @@ public class DialogController {
 
         final LinkedHashMap<String, Object> queryResult = (LinkedHashMap) webhookResponse.get("queryResult");
         final LinkedHashMap<String, Object> parameters = (LinkedHashMap) queryResult.get("parameters");
-        FullfilmentHotelRequest request = FullfilmentHotelRequest.builder()
-                .city((String) parameters.get("geo-city"))
-                .companions((String) parameters.get("companions"))
-                .facilities((List) parameters.get("quality"))
-                .tripType((String) parameters.get("trip-type")).build();
-        webhookResponse.setFulfillmentMessages(List.of(convert(HotelRepository.getByCity("London"))));
-//        final LinkedHashMap<String, String> intent = (LinkedHashMap<String, String>) queryResult.get("intent");
-//        if (intent.get("displayName").equals("recommend")) {
-//            final LinkedHashMap<String, Object> fullfillment = (LinkedHashMap<String, Object>) queryResult.get("fulfillmentMessages");
-//
-//        }
+        final LinkedHashMap<String, String> intent = (LinkedHashMap<String, String>) queryResult.get("intent");
+        String intentName = intent.get("displayName");
+        if (intentName.equals("recommend")) {
+            FullfilmentHotelRequest request = FullfilmentHotelRequest.builder()
+                    .city((String) parameters.get("geo-city"))
+                    .companions((String) parameters.get("companions"))
+                    .facilities((List) parameters.get("quality"))
+                    .tripType((String) parameters.get("trip-type")).build();
+            webhookResponse.setFulfillmentMessages(List.of(convert(HotelRepository.getByCity(request.getCity()))));
+            webhookResponse.setFulfillmentText("Here our recommendations");
+        } else if (intentName.equals("vote")) {
+            System.out.println(parameters);
+            final List<LinkedHashMap<String, Object>> contexts = (List) queryResult.get("outputContexts");
+            final LinkedHashMap<String, Object> contextParameters = (LinkedHashMap) contexts.get(0).get("parameters");
 
-        webhookResponse.setFulfillmentText("Here our recommendations");
+            VoteHotel request = VoteHotel.builder().fullfilmentHotelRequest(FullfilmentHotelRequest.builder()
+                    .city((String) contextParameters.get("geo-city"))
+                    .companions((String) contextParameters.get("companions"))
+                    .facilities((List) contextParameters.get("quality"))
+                    .tripType((String) contextParameters.get("trip-type")).build())
+                    .action(VoteHotel.Action.valueOf((String) parameters.get("recommend")))
+                    .hotelId(UUID.fromString((String) parameters.get("id")))
+                    .build();
+            System.out.println(request);
+            webhookResponse.setFulfillmentText("Thanks for voting");
+        }
         return webhookResponse;
     }
 

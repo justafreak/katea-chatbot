@@ -25,8 +25,8 @@ public class HotelRepository {
     private KeyFactory keyFactory;
 
     public HotelRepository() {
-        datastore = DatastoreOptions.getDefaultInstance().getService();
-        keyFactory = datastore.newKeyFactory().setKind(HOTEL_KIND);
+//        datastore = DatastoreOptions.getDefaultInstance().getService();
+//        keyFactory = datastore.newKeyFactory().setKind(HOTEL_KIND);
     }
 
 
