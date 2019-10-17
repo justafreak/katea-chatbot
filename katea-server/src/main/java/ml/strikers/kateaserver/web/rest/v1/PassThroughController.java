@@ -2,6 +2,7 @@ package ml.strikers.kateaserver.web.rest.v1;
 
 import ml.strikers.kateaserver.fulfilment.entity.Request;
 import ml.strikers.kateaserver.fulfilment.service.DialogProvider;
+import ml.strikers.kateaserver.web.rest.v1.DTO.Response;
 import ml.strikers.kateaserver.web.service.RequestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -23,8 +24,8 @@ public class PassThroughController {
     }
 
     @PostMapping("/query")
-    public String query(@RequestBody Request request) throws Exception {
-        return requestService.getResponse(request).toString();
+    public Response query(@RequestBody Request request) throws Exception {
+        return requestService.getResponse(request);
     }
 
 }

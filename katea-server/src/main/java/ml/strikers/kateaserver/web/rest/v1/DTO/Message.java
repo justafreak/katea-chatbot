@@ -9,6 +9,7 @@ import java.awt.*;
 @NoArgsConstructor
 public class Message {
 
-    private TrayIcon.MessageType messageType;
+    private ResponseType type;
+    private Reply reply;
 
 }

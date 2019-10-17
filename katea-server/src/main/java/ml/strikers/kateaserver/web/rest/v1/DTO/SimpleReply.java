@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class SimpleReply extends Reply{
+public class SimpleReply implements Reply{
 
     private String reply;
 }

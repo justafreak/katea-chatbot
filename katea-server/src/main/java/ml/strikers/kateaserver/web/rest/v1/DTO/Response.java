@@ -9,7 +9,7 @@ import java.util.UUID;
 @NoArgsConstructor
 public class Response {
 
-    private UUID uuid;
+    private UUID sessionId;
     private Message message;
 }
 

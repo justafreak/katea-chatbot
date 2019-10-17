@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class ICarouselItem {
+public class CarouselItem {
 
     private String url;
     private String imgSrc;

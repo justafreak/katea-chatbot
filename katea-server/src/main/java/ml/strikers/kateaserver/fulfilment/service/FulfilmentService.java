@@ -1,6 +1,7 @@
 package ml.strikers.kateaserver.fulfilment.service;
 
 
+import ml.strikers.kateaserver.fulfilment.entity.Fulfilment;
 import org.springframework.stereotype.Service;
 
 @Service
