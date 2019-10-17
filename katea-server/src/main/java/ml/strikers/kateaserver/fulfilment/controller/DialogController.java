@@ -45,7 +45,7 @@ public class DialogController {
                 .companions((String) parameters.get("companions"))
                 .facilities((List) parameters.get("quality"))
                 .tripType((String) parameters.get("trip-type")).build();
-        webhookResponse.setFulfillmentMessages(List.of(convert(HotelDataStoreAdapter.getByCity("London"))));
+        webhookResponse.setFulfillmentMessages(List.of(convert(HotelRepository.getByCity("London"))));
 //        final LinkedHashMap<String, String> intent = (LinkedHashMap<String, String>) queryResult.get("intent");
 //        if (intent.get("displayName").equals("recommend")) {
 //            final LinkedHashMap<String, Object> fullfillment = (LinkedHashMap<String, Object>) queryResult.get("fulfillmentMessages");
