@@ -27,7 +27,7 @@
 <Carousel perPage={3} autoplay={2000}>
   {#each message.reply as carouselItem}
     <MessageWithButtons {btnData} direction={'column'}>
-      <CarouselItem class="slide-content" {...carouselItem} />
+      <CarouselItem class="slide-content" {carouselItem} />
     </MessageWithButtons>
   {/each}
 </Carousel>
