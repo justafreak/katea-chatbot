@@ -38,7 +38,9 @@ public class DialogProvider {
         Fulfilment fulfilment= new Fulfilment();
         QueryResult queryResult = detectIntentTexts(queryMessage, uuid);
         fulfilmentService.processFulfilment();
-        return new Fulfilment();
+        fulfilment.setFulfilmentSimpleResponse(queryResult.getFulfillmentText());
+        fulfilment.setUUID(uuid);
+        return fulfilment;
     }
 
 

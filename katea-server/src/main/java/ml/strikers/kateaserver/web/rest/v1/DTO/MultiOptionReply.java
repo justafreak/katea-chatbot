@@ -7,7 +7,8 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
-public class MultiOptionReply extends Reply {
+public class MultiOptionReply implements Message {
 
-    private List<String> replyList;
+    private ResponseType type = ResponseType.MSG_TYPE_QUICK_REPLY;
+    private List<String> reply;
 }
