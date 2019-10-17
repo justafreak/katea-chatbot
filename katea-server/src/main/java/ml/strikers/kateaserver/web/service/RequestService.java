@@ -4,9 +4,7 @@ package ml.strikers.kateaserver.web.service;
 import ml.strikers.kateaserver.fulfilment.entity.Fulfilment;
 import ml.strikers.kateaserver.fulfilment.entity.Request;
 import ml.strikers.kateaserver.fulfilment.service.DialogProvider;
-import ml.strikers.kateaserver.web.rest.v1.DTO.Message;
 import ml.strikers.kateaserver.web.rest.v1.DTO.Response;
-import ml.strikers.kateaserver.web.rest.v1.DTO.ResponseType;
 import ml.strikers.kateaserver.web.rest.v1.DTO.SimpleReply;
 import org.springframework.stereotype.Service;
 

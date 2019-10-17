@@ -10,6 +10,6 @@ import java.util.UUID;
 public class Response {
 
     private UUID sessionId;
-    private Message message;
+    private IMessage message;
 }
 
