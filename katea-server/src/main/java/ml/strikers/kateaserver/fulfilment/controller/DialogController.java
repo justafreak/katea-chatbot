@@ -7,6 +7,7 @@ import ml.strikers.kateaserver.fulfilment.entity.FullfilmentHotelRequest;
 import ml.strikers.kateaserver.fulfilment.entity.Hotel;
 import ml.strikers.kateaserver.fulfilment.repository.HotelRepository;
 import ml.strikers.kateaserver.fulfilment.service.DialogProvider;
+import ml.strikers.kateaserver.fulfilment.service.HotelRecommendService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,9 +24,12 @@ public class DialogController {
 
     private final DialogProvider dialogProvider;
 
+    private final HotelRecommendService recommendService;
 
-    public DialogController(DialogProvider dialogProvider) {
+
+    public DialogController(DialogProvider dialogProvider, HotelRecommendService recommendService) {
         this.dialogProvider = dialogProvider;
+        this.recommendService = recommendService;
     }
 
 

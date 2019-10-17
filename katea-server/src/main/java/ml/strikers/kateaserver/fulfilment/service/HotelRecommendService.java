@@ -8,13 +8,13 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class HotelService {
+public class HotelRecommendService {
     private final HotelRepository hotelRepository;
     private final ReviewMatchingService reviewMatchingService;
     private final MLService mlService;
     private final FuzzyMatchingService fuzzyMatchingService;
 
-    public HotelService(HotelRepository hotelRepository, ReviewMatchingService reviewMatchingService, MLService mlService, FuzzyMatchingService fuzzyMatchingService) {
+    public HotelRecommendService(HotelRepository hotelRepository, ReviewMatchingService reviewMatchingService, MLService mlService, FuzzyMatchingService fuzzyMatchingService) {
         this.hotelRepository = hotelRepository;
         this.reviewMatchingService = reviewMatchingService;
         this.mlService = mlService;
