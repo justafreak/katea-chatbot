@@ -1,7 +1,6 @@
 import { storeBotMsg } from '../stores/messages.js';
 import { get } from 'svelte/store';
 import { storeSessionId, sessionId } from '../stores/session.js';
-import { BOT } from '../constants/author.js';
 import { MSG_TYPE_TEXT } from '../constants/msgType.js';
 import { INTENT_PATH } from '../constants/paths.js';
 
@@ -23,7 +22,7 @@ export const detectIntent = async requestData => {
     const resp = await response.json();
 
     storeBotMsg(resp.message.type, resp.message.reply);
-    storeSession(resp.sessionId);
+    storeSessionId(resp.sessionId);
   } catch (e) {
     storeBotMsg(MSG_TYPE_TEXT, 'Woops');
   }
