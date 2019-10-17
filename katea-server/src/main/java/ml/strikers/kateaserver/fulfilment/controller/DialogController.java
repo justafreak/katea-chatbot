@@ -1,13 +1,9 @@
-package ml.strikers.kateaserver.fulfilment.dialog;
+package ml.strikers.kateaserver.fulfilment.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.api.services.dialogflow.v2.model.GoogleCloudDialogflowV2beta1IntentMessage;
-import com.google.api.services.dialogflow.v2.model.GoogleCloudDialogflowV2beta1IntentMessageCarouselSelect;
-import com.google.api.services.dialogflow.v2.model.GoogleCloudDialogflowV2beta1IntentMessageCarouselSelectItem;
-import com.google.api.services.dialogflow.v2.model.GoogleCloudDialogflowV2beta1IntentMessageImage;
-import com.google.api.services.dialogflow.v2.model.GoogleCloudDialogflowV2beta1IntentMessageSelectItemInfo;
-import com.google.api.services.dialogflow.v2.model.GoogleCloudDialogflowV2beta1WebhookResponse;
+import com.google.api.services.dialogflow.v2.model.*;
+import ml.strikers.kateaserver.fulfilment.entity.FullfilmentHotelRequest;
 import ml.strikers.kateaserver.fulfilment.entity.Hotel;
 import ml.strikers.kateaserver.fulfilment.repository.HotelDataStoreAdapter;
 import ml.strikers.kateaserver.fulfilment.service.DialogProvider;
@@ -20,7 +16,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/dialog")
@@ -41,7 +36,9 @@ public class DialogController {
 
         final LinkedHashMap<String, Object> queryResult = (LinkedHashMap) webhookResponse.get("queryResult");
         final LinkedHashMap<String, String> parameters = (LinkedHashMap<String, String>) queryResult.get("parameters");
-
+        FullfilmentHotelRequest.builder().city(parameters.get("geo-city"))
+                .companions(parameters.get("companions"))//.facilities(parameters.get("quality"))
+                .tripType(parameters.get("trip-type")).build();
         webhookResponse.setFulfillmentMessages(List.of(convert(HotelDataStoreAdapter.getByCity("London"))));
 //        final LinkedHashMap<String, String> intent = (LinkedHashMap<String, String>) queryResult.get("intent");
 //        if (intent.get("displayName").equals("recommend")) {
