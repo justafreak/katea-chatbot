@@ -1,4 +1,4 @@
-package ml.strikers.kateaserver.web.rest.v1.DTO;
+package ml.strikers.kateaserver.web.rest.v1.dto;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,6 +9,7 @@ import java.util.List;
 @NoArgsConstructor
 public class MultiOptionReply implements IMessage {
 
-    private ResponseType type = ResponseType.quickReply;
+    private ResponseType type = ResponseType.QUICK_REPLY;
     private List<String> reply;
+
 }

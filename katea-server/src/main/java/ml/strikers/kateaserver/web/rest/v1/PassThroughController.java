@@ -1,26 +1,19 @@
 package ml.strikers.kateaserver.web.rest.v1;
 
 import ml.strikers.kateaserver.fulfilment.entity.Request;
-import ml.strikers.kateaserver.fulfilment.service.DialogProvider;
-import ml.strikers.kateaserver.web.rest.v1.DTO.Response;
+import ml.strikers.kateaserver.web.rest.v1.dto.Response;
 import ml.strikers.kateaserver.web.service.RequestService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
 
 @RestController
 @RequestMapping("/ui")
 @CrossOrigin(origins = "*", methods = RequestMethod.POST, allowedHeaders = "*", maxAge = 6000L)
 public class PassThroughController {
 
+    private final RequestService requestService;
 
-    @Autowired
-    private RequestService requestService;
-
-    private final RestTemplate restTemplate;
-
-    public PassThroughController(RestTemplate restTemplate) {
-        this.restTemplate = restTemplate;
+    public PassThroughController(RequestService requestService) {
+        this.requestService = requestService;
     }
 
     @PostMapping("/query")

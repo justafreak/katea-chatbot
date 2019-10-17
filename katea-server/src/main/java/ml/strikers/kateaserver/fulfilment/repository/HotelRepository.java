@@ -17,55 +17,64 @@ import java.util.UUID;
  * 2. https://github.com/googleapis/google-cloud-java/tree/master/google-cloud-clients/google-cloud-datastore
  */
 @Repository
-public class HotelRepository {
+public class HotelRepository extends AbstractRepository<Hotel, UUID> {
 
-    private static final String HOTEL_KIND = "Hotels";
-
-    private Datastore datastore;
-    private KeyFactory keyFactory;
-
-    public HotelRepository() {
-        datastore = DatastoreOptions.getDefaultInstance().getService();
-        keyFactory = datastore.newKeyFactory().setKind(HOTEL_KIND);
+    public HotelRepository(Datastore datastore) {
+        super(datastore, Hotel.KIND);
     }
 
-
-    public Hotel save(Hotel entity) {
-        IncompleteKey key = keyFactory.newKey();
-        FullEntity<IncompleteKey> hotelEntity = Entity.newBuilder(key)
-                .set(Hotel.ID, entity.getId().toString())
-                .set(Hotel.NAME, entity.getName())
-                .set(Hotel.IMAGE_URL, entity.getImageUrl())
-                .set(Hotel.URL, entity.getUrl())
-                .set(Hotel.RATING, entity.getRating())
-                .set(Hotel.CITY, entity.getCity())
-                .set(Hotel.PRICE_VALUE, entity.getPrice().getValue())
-                .set(Hotel.PRICE_CURRENCY, entity.getPrice().getCurrency().toString())
-                .set(Hotel.VENUE_TYPE, entity.getVenueType())
-                .set(Hotel.ZONE, entity.getZone())
-                .set(Hotel.REVIEW_COUNT, entity.getReviewCount())
-                .set(Hotel.FACILITIES, entity.getFacilities().toString().replace("[", "").replace("]", ""))//mizerie
-                .set(Hotel.LAT_LONG, entity.getLatLong())
-                .set(Hotel.LAT_LONG, entity.getLatLong())
+    @Override
+    public Hotel save(Hotel hotel) {
+        final var hotelEntity = Entity.newBuilder(keyFactory.newKey())
+                .set(Hotel.ID, hotel.getId().toString())
+                .set(Hotel.NAME, hotel.getName())
+                .set(Hotel.IMAGE_URL, hotel.getImageUrl())
+                .set(Hotel.URL, hotel.getUrl())
+                .set(Hotel.RATING, hotel.getRating())
+                .set(Hotel.CITY, hotel.getCity())
+                .set(Hotel.PRICE_VALUE, hotel.getPrice().getValue())
+                .set(Hotel.PRICE_CURRENCY, hotel.getPrice().getCurrency().toString())
+                .set(Hotel.VENUE_TYPE, hotel.getVenueType())
+                .set(Hotel.ZONE, hotel.getZone())
+                .set(Hotel.REVIEW_COUNT, hotel.getReviewCount())
+                .set(Hotel.FACILITIES, hotel.getFacilities().toString().replace("[", "").replace("]", ""))//mizerie
+                .set(Hotel.LAT_LONG, hotel.getLatLong())
+                .set(Hotel.LAT_LONG, hotel.getLatLong())
                 .build();
         datastore.add(hotelEntity);
-        return entity;
+        return hotel;
     }
 
-    public List<Hotel> getHotelsByCity(String city) {
-        Query<Entity> query = Query.newEntityQueryBuilder()
-                .setKind(HOTEL_KIND)
-                .setLimit(300)
-                .setOrderBy(StructuredQuery.OrderBy.desc(Hotel.RATING))
-                .setFilter(createFilter(city))
+    @Override
+    public List<Hotel> getEntityByProperty(String key, Object value) {
+        Query<Entity> query = Query.newGqlQueryBuilder(Query.ResultType.ENTITY,
+                "SELECT * FROM " + Hotel.KIND + " WHERE " + key + " = @key")
+                .setBinding("key", (String) value)
                 .build();
         return entityToHotels(datastore.run(query));
     }
 
+    public List<Hotel> getHotelsByCity(String city) {
+        Query<Entity> query = Query.newGqlQueryBuilder(Query.ResultType.ENTITY,
+                "SELECT * FROM " + Hotel.KIND + " WHERE " + Hotel.CITY + " = @city")
+                .setBinding("city", city)
+                .build();
+
+//        final var query = Query.newEntityQueryBuilder()
+//                .setKind(Hotel.KIND)
+//                .setLimit(300)
+//                .setOrderBy(StructuredQuery.OrderBy.desc(Hotel.RATING))
+////                .setFilter(StructuredQuery.PropertyFilter.eq(Hotel.ID, city))
+//                .build();
+
+
+        return entityToHotels(datastore.run(query));
+    }
+
     private List<Hotel> entityToHotels(QueryResults<Entity> queryResults) {
-        List<Hotel> resultHotels = new ArrayList<>();
-        while (queryResults.hasNext()) {  // We still have data
-            resultHotels.add(entityToHotel(queryResults.next()));      // Add the Book to the List
+        final var resultHotels = new ArrayList<Hotel>();
+        while (queryResults.hasNext()) {
+            resultHotels.add(entityToHotel(queryResults.next()));
         }
         return resultHotels;
     }
@@ -96,8 +105,9 @@ public class HotelRepository {
     }
 
     private StructuredQuery.Filter createFilter(String city) {
-        return StructuredQuery.PropertyFilter.eq(Hotel.CITY, city);
-//        StructuredQuery.CompositeFilter.and(StructuredQuery.PropertyFilter.eq(Hotel.CITY, request.getCity()))
+//        return StructuredQuery.PropertyFilter.eq(Hotel.CITY, city);
+
+        return StructuredQuery.CompositeFilter.and(StructuredQuery.PropertyFilter.eq(Hotel.CITY, city));
     }
 
     public static List<Hotel> getByCity(String city) {

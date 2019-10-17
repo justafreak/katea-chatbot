@@ -3,15 +3,16 @@ package ml.strikers.kateaserver.fulfilment.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.api.services.dialogflow.v2.model.*;
-import ml.strikers.kateaserver.fulfilment.entity.FullfilmentHotelRequest;
+import ml.strikers.kateaserver.fulfilment.entity.FulfilmentHotelRequest;
 import ml.strikers.kateaserver.fulfilment.entity.Hotel;
 import ml.strikers.kateaserver.fulfilment.repository.HotelRepository;
 import ml.strikers.kateaserver.fulfilment.service.DialogProvider;
 import ml.strikers.kateaserver.fulfilment.service.HotelRecommendService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import ml.strikers.kateaserver.util.DataExtractor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -26,12 +27,26 @@ public class DialogController {
 
     private final HotelRecommendService recommendService;
 
+    @Autowired
+    DataExtractor dataExtractor;
+
+    @Autowired
+    HotelRepository hotelRepository;
+
+
+    @Value("classpath:data/reviews.json")
+    Resource resource;
 
     public DialogController(DialogProvider dialogProvider, HotelRecommendService recommendService) {
         this.dialogProvider = dialogProvider;
         this.recommendService = recommendService;
     }
 
+
+    @GetMapping
+    public List<Hotel> trigger() {
+        return hotelRepository.getHotelsByCity("London");
+    }
 
     @PostMapping("/webhook")
     public GoogleCloudDialogflowV2beta1WebhookResponse test(@RequestBody String response) throws IOException {
@@ -40,7 +55,7 @@ public class DialogController {
 
         final LinkedHashMap<String, Object> queryResult = (LinkedHashMap) webhookResponse.get("queryResult");
         final LinkedHashMap<String, Object> parameters = (LinkedHashMap) queryResult.get("parameters");
-        FullfilmentHotelRequest request = FullfilmentHotelRequest.builder()
+        FulfilmentHotelRequest request = FulfilmentHotelRequest.builder()
                 .city((String) parameters.get("geo-city"))
                 .companions((String) parameters.get("companions"))
                 .facilities((List) parameters.get("quality"))

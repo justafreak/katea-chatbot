@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
 public class QueryResultConverter {
 
     public static Fulfilment covertResultToFulfilment(QueryResult queryResult) {

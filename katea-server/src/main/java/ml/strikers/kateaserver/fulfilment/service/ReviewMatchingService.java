@@ -1,6 +1,6 @@
 package ml.strikers.kateaserver.fulfilment.service;
 
-import ml.strikers.kateaserver.fulfilment.entity.FullfilmentHotelRequest;
+import ml.strikers.kateaserver.fulfilment.entity.FulfilmentHotelRequest;
 import ml.strikers.kateaserver.fulfilment.entity.Hotel;
 import ml.strikers.kateaserver.fulfilment.repository.ReviewRepository;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,8 @@ public class ReviewMatchingService {
         this.reviewRepository = reviewRepository;
     }
 
-    List<Hotel> getMatching(FullfilmentHotelRequest request) {
+    List<Hotel> getMatching(FulfilmentHotelRequest request) {
         return Collections.emptyList();
     }
+
 }

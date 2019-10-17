@@ -1,6 +1,6 @@
 package ml.strikers.kateaserver.fulfilment.service;
 
-import ml.strikers.kateaserver.fulfilment.entity.FullfilmentHotelRequest;
+import ml.strikers.kateaserver.fulfilment.entity.FulfilmentHotelRequest;
 import ml.strikers.kateaserver.fulfilment.entity.Hotel;
 import ml.strikers.kateaserver.fulfilment.repository.HotelRepository;
 import org.springframework.stereotype.Service;
@@ -21,11 +21,10 @@ public class HotelRecommendService {
         this.fuzzyMatchingService = fuzzyMatchingService;
     }
 
-    public List<Hotel> getMatchingHotels(FullfilmentHotelRequest request) {
+    public List<Hotel> getMatchingHotels(FulfilmentHotelRequest request) {
         List<Hotel> hotelsByCity = hotelRepository.getHotelsByCity(request.getCity());
         hotelsByCity.sort(Hotel.SCORE_COMPARATOR);
         return hotelsByCity;
     }
-
 
 }

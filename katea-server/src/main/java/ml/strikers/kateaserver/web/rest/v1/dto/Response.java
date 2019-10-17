@@ -1,4 +1,4 @@
-package ml.strikers.kateaserver.web.rest.v1.DTO;
+package ml.strikers.kateaserver.web.rest.v1.dto;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,5 +11,6 @@ public class Response {
 
     private UUID sessionId;
     private IMessage message;
+
 }
 
