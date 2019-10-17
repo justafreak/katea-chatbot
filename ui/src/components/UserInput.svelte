@@ -96,7 +96,7 @@
   }
 
   .sc-user-input-container {
-    padding: 20px 30%;
+    padding: 20px 28%;
   }
 </style>
 

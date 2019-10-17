@@ -21,7 +21,7 @@
     overflow-y: auto;
     background-color: transparent;
     background-size: 100%;
-    padding: 40px 30%;
+    padding: 40px 28%;
   }
 
   ::-webkit-scrollbar {

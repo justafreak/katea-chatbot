@@ -15,6 +15,11 @@
     border: none;
     margin: 0;
     cursor: pointer;
+    font-weight: bold;
+  }
+
+  .message__Btn:hover {
+    color: #555;
   }
 
   .message {

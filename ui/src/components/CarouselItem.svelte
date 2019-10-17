@@ -1,28 +1,51 @@
 <script>
-  export let src = '';
-  export let title = '';
-  export let description = '';
+  import Rate from './Rate.svelte';
+  export let carouselItem = '';
+
+  const formattedPrice = `${carouselItem.price.value} ${carouselItem.price.currency}`;
+
+  const onViewRecommendation = () => {
+    window.open(carouselItem.url);
+  };
 </script>
 
 <style>
   .carouselItem__img {
     width: 100%;
-    height: 90px;
+    cursor: pointer;
   }
 
   .carouselItem__title {
     font-size: 14px;
     margin: 0 8px;
+    text-align: center;
   }
 
-  .carouselItem__description {
+  .carouselItem__price {
     font-size: 12px;
     margin: 8px;
+  }
+
+  .carouselItem .left,
+  .carouselItem .right {
+    display: none;
   }
 </style>
 
 <div class="carouselItem">
-  <img {src} alt="" class="carouselItem__img" />
-  <h3 class="carouselItem__title">{title}</h3>
-  <p class="carouselItem__description">{description}</p>
+  <img
+    src={carouselItem.imgSrc}
+    alt=""
+    class="carouselItem__img"
+    on:click={ev => {
+      ev.preventDefault();
+      onViewRecommendation();
+    }} />
+  <h3 class="carouselItem__title">{carouselItem.title}</h3>
+  <p class="carouselItem__price">{formattedPrice}</p>
+  <Rate
+    value={carouselItem.rating}
+    length={5}
+    ratedesc={['Very bad', 'Bad', 'Normal', 'Good', 'Very good']}
+    showCount={false} />
 </div>

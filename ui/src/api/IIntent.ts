@@ -2,7 +2,11 @@ interface ICarouselItem {
   url: string;
   imgSrc: string;
   title: string;
-  price: string;
+  price: {
+    value: number;
+    currency: string;
+  };
+  rating: string;
 }
 
 type IType = 'text' | 'quickreply' | 'carousel';

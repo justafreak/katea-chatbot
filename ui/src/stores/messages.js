@@ -63,30 +63,48 @@ export const messages = writable([
     author: BOT,
     reply: [
       {
-        src:
-          'https://www.stlmag.com/downloads/291284/download/0219_Elmwood_0016.jpg?cb=05f56521ae049e15a8f3d244cafb3822&w=640',
-        title: 'Slide 1',
-        description:
-          'Lorem Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+        url: 'https://www.booking.com/hotel/gb/the-colonnade-london.en-gb.html',
+        imgSrc:
+          'https://r-cf.bstatic.com/xdata/images/hotel/square200/122358182.jpg?k=04522139bfae775f531554f2be8a966e14f11880e12c76f58aa7ec31269eb2d2&o=',
+        price: {
+          value: 2000.51,
+          currency: 'RON'
+        },
+        rating: 5,
+        title: 'Paradiso Nr. 1'
       },
       {
-        src: 'https://media.timeout.com/images/105239239/image.jpg',
-        title: 'Slide 2',
-        description:
-          'Lorem Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+        url: 'https://www.booking.com/hotel/gb/the-colonnade-london.en-gb.html',
+        imgSrc:
+          'https://r-cf.bstatic.com/xdata/images/hotel/square200/122358182.jpg?k=04522139bfae775f531554f2be8a966e14f11880e12c76f58aa7ec31269eb2d2&o=',
+        price: {
+          value: 200.5,
+          currency: 'RON'
+        },
+        rating: 3,
+        title: "La Shafu'"
       },
       {
-        src: 'http://cdn.cnn.com/cnnnext/dam/assets/190710135245-12-waterfront-restaurants.jpg',
-        title: 'Slide 3',
-        description:
-          'Lorem Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+        url: 'https://www.booking.com/hotel/gb/the-colonnade-london.en-gb.html',
+        imgSrc:
+          'https://r-cf.bstatic.com/xdata/images/hotel/square200/122358182.jpg?k=04522139bfae775f531554f2be8a966e14f11880e12c76f58aa7ec31269eb2d2&o=',
+        price: {
+          value: 200.5,
+          currency: 'RON'
+        },
+        rating: 1,
+        title: 'Hanul milei'
       },
       {
-        src:
-          'https://static.standard.co.uk/s3fs-public/thumbnails/image/2019/03/21/14/sexy-fish-2103-pwf.jpg?width=1000&height=614&fit=bounds&format=pjpg&auto=webp&quality=70&crop=16:9,offset-y0.5',
-        title: 'Slide 4',
-        description:
-          'Lorem Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+        url: 'https://www.booking.com/hotel/gb/the-colonnade-london.en-gb.html',
+        imgSrc:
+          'https://r-cf.bstatic.com/xdata/images/hotel/square200/122358182.jpg?k=04522139bfae775f531554f2be8a966e14f11880e12c76f58aa7ec31269eb2d2&o=',
+        price: {
+          value: 200.5,
+          currency: 'RON'
+        },
+        rating: 4,
+        title: 'Pe Germania'
       }
     ]
   },
