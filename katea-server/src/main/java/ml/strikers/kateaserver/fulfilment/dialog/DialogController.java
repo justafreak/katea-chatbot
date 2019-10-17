@@ -1,5 +1,6 @@
 package ml.strikers.kateaserver.fulfilment.dialog;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.api.services.dialogflow.v2.model.GoogleCloudDialogflowV2beta1IntentMessage;
 import com.google.api.services.dialogflow.v2.model.GoogleCloudDialogflowV2beta1IntentMessageCarouselSelect;
@@ -53,7 +54,7 @@ public class DialogController {
     }
 
 
-    private GoogleCloudDialogflowV2beta1IntentMessage convert(List<Hotel> hotels) {
+    private GoogleCloudDialogflowV2beta1IntentMessage convert(List<Hotel> hotels) throws JsonProcessingException {
         GoogleCloudDialogflowV2beta1IntentMessage newMessage = new GoogleCloudDialogflowV2beta1IntentMessage();
         GoogleCloudDialogflowV2beta1IntentMessageCarouselSelect carouselSelect = new GoogleCloudDialogflowV2beta1IntentMessageCarouselSelect()
                 .setItems(new ArrayList<>());
@@ -63,17 +64,14 @@ public class DialogController {
             image.setImageUri(hotel.getImageUrl());
             carouselSelectItem.setImage(image);
             carouselSelectItem.setTitle(hotel.getName());
-            GoogleCloudDialogflowV2beta1IntentMessageSelectItemInfo itemInfo = new GoogleCloudDialogflowV2beta1IntentMessageSelectItemInfo();
-            itemInfo.setUnknownKeys(Map.of(
-                    "hotelId", hotel.getId(),
-                    "url", hotel.getUrl(),
-                    "rating", hotel.getRating(),
-                    "price", hotel.getPrice().getValue(),
-                    "currency", hotel.getPrice().getCurrency(),
-                    "city", hotel.getCity()));
+            carouselSelectItem.setDescription(new ObjectMapper().writeValueAsString(hotel));
 
-
-            carouselSelectItem.setInfo(itemInfo);
+            carouselSelectItem.set("hotelId", hotel.getId());
+            carouselSelectItem.set("url", hotel.getUrl());
+            carouselSelectItem.set("rating", hotel.getRating());
+            carouselSelectItem.set("price", hotel.getPrice().getValue());
+            carouselSelectItem.set("currency", hotel.getPrice().getCurrency());
+            carouselSelectItem.set("city", hotel.getCity());
             carouselSelect.getItems().add(carouselSelectItem);
         }
 
