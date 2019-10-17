@@ -9,5 +9,4 @@ public interface Repository<T, ID> {
 
     T getById(ID id);
 
-    List<Hotel> getByCity(String city);
 }

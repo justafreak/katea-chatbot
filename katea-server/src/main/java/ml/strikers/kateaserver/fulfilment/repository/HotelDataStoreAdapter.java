@@ -13,7 +13,6 @@ import java.util.UUID;
  * 1. https://github.com/googleapis/google-cloud-java#authentication
  * 2. https://github.com/googleapis/google-cloud-java/tree/master/google-cloud-clients/google-cloud-datastore
  */
-@org.springframework.stereotype.Repository
 public class HotelDataStoreAdapter implements Repository<Hotel, UUID> {
 
     private Datastore datastore;
@@ -40,8 +39,7 @@ public class HotelDataStoreAdapter implements Repository<Hotel, UUID> {
         return null;
     }
 
-    @Override
-    public List<Hotel> getByCity(String city) {
+    public static List<Hotel> getByCity(String city) {
         return List.of(Hotel.builder()
                 .name("The Colonnade")
                 .price(new Price())
