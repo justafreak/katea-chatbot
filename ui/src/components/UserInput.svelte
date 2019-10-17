@@ -1,28 +1,22 @@
 <script>
   import SendIcon from './SendIcon.svelte';
-  import { messages } from '../stores/messages.js';
+  import { messages, storeHumanMsg } from '../stores/messages.js';
   import { detectIntent } from '../api/intent';
   import { HUMAN } from '../constants/author';
   import { MSG_TYPE_TEXT } from '../constants/msgType';
 
   let active = false;
-  let text = '';
+  let reply = '';
   export let placeholder = 'Free speech here';
 
   const submitText = ev => {
     ev.preventDefault();
-    messages.set([
-      ...$messages,
-      {
-        type: MSG_TYPE_TEXT,
-        author: HUMAN,
-        text
-      }
-    ]);
 
-    detectIntent(text);
+    storeHumanMsg(MSG_TYPE_TEXT, reply);
 
-    text = '';
+    detectIntent(reply);
+
+    reply = '';
   };
   const handleKey = event => {
     if (event.keyCode === 13 && !event.shiftKey) {
@@ -117,7 +111,7 @@
       on:blur={e => {
         active = false;
       }}
-      bind:textContent={text}
+      bind:textContent={reply}
       on:keydown={handleKey}
       contenteditable="true"
       {placeholder}

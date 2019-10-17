@@ -8,7 +8,10 @@
 
   let msgListElement;
   afterUpdate(() => {
-    msgListElement.scrollTop = msgListElement.scrollHeight;
+    msgListElement.scroll({
+      top: msgListElement.scrollHeight,
+      behavior: 'smooth'
+    });
   });
 </script>
 

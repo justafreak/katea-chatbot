@@ -6,62 +6,62 @@ export const messages = writable([
   {
     type: MSG_TYPE_TEXT,
     author: BOT,
-    text: 'Welcome! You may be exactly where you need to be now.'
+    reply: 'Welcome! You may be exactly where you need to be now.'
   },
   {
     type: MSG_TYPE_TEXT,
     author: BOT,
-    text: 'First things first. Where are you heading to?'
+    reply: 'First things first. Where are you heading to?'
   },
   {
     type: MSG_TYPE_TEXT,
     author: HUMAN,
-    text: 'Lisbon'
+    reply: 'Lisbon'
   },
   {
     type: MSG_TYPE_TEXT,
     author: BOT,
-    text: "And you'll be there to..."
+    reply: "And you'll be there to..."
   },
   {
     type: MSG_TYPE_TEXT,
     author: HUMAN,
-    text: 'To party my brains out'
+    reply: 'To party my brains out'
   },
   {
     type: MSG_TYPE_TEXT,
     author: BOT,
-    text: 'Any travel companions coming with you?'
+    reply: 'Any travel companions coming with you?'
   },
   {
     type: MSG_TYPE_TEXT,
     author: HUMAN,
-    text: 'One of my mates. No wives allowed :)'
+    reply: 'One of my mates. No wives allowed :)'
   },
   {
     type: MSG_TYPE_TEXT,
     author: BOT,
-    text: "I see. What's most important for you on this trip?"
+    reply: "I see. What's most important for you on this trip?"
   },
   {
     type: MSG_TYPE_TEXT,
     author: HUMAN,
-    text: 'I want the roof to be on fire'
+    reply: 'I want the roof to be on fire'
   },
   {
     type: MSG_TYPE_TEXT,
     author: BOT,
-    text: "Hmm. Let's see..."
+    reply: "Hmm. Let's see..."
   },
   {
     type: MSG_TYPE_TEXT,
     author: BOT,
-    text: 'H you go love. How about these'
+    reply: 'Here you go love. How about these'
   },
   {
     type: MSG_TYPE_CAROUSEL,
     author: BOT,
-    replies: [
+    reply: [
       {
         src:
           'https://www.stlmag.com/downloads/291284/download/0219_Elmwood_0016.jpg?cb=05f56521ae049e15a8f3d244cafb3822&w=640',
@@ -93,11 +93,33 @@ export const messages = writable([
   {
     type: MSG_TYPE_TEXT,
     author: BOT,
-    text: 'Anything you liked or would you like me to dig deeper?'
+    reply: 'Anything you liked or would you like me to dig deeper?'
   },
   {
     type: MSG_TYPE_QUICK_REPLY,
     author: BOT,
-    replies: ['No. I only need to buy you a drink now', 'Please dig deeper']
+    reply: ['No. I only need to buy you a drink now', 'Please dig deeper']
   }
 ]);
+
+export const storeBotMsg = (type, reply) => {
+  messages.update(msgs => [
+    ...msgs,
+    {
+      type,
+      author: BOT,
+      reply
+    }
+  ]);
+};
+
+export const storeHumanMsg = (type, reply) => {
+  messages.update(msgs => [
+    ...msgs,
+    {
+      type,
+      author: HUMAN,
+      reply
+    }
+  ]);
+};

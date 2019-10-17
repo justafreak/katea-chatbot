@@ -1,6 +1,6 @@
 <script>
-  import Launcher from "./components/Launcher.svelte";
-  import { messages } from "./stores/messages.js";
+  import Launcher from './components/Launcher.svelte';
+  import { messages } from './stores/messages.js';
   export let name;
 </script>
 

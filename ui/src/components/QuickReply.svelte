@@ -1,21 +1,14 @@
 <script>
-  import { messages } from '../stores/messages.js';
+  import { messages, storeHumanMsg } from '../stores/messages.js';
   import { HUMAN } from '../constants/author';
   import { MSG_TYPE_TEXT, MSG_TYPE_QUICK_REPLY } from '../constants/msgType';
 
   export let message = {
     type: MSG_TYPE_QUICK_REPLY,
-    replies: []
+    reply: []
   };
   const onSubmit = text => {
-    messages.set([
-      ...$messages,
-      {
-        type: MSG_TYPE_TEXT,
-        author: HUMAN,
-        text
-      }
-    ]);
+    storeHumanMsg(MSG_TYPE_TEXT, text);
   };
 </script>
 
@@ -49,7 +42,7 @@
 </style>
 
 <ul class="sc-message--quick">
-  {#each message.replies as reply}
+  {#each message.reply as reply}
     <li
       class="sc-message__reply"
       on:click={ev => {
