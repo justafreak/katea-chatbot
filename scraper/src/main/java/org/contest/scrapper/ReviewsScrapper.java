@@ -14,7 +14,7 @@ import java.io.InputStream;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class Scrapper {
+public class ReviewsScrapper {
     private static ObjectMapper mapper = new ObjectMapper();
 
     public static void main(String[] args) throws IOException {
@@ -22,7 +22,7 @@ public class Scrapper {
         DefaultPrettyPrinter prettyPrinter = new DefaultPrettyPrinter();
         prettyPrinter.indentArraysWith(DefaultPrettyPrinter.Lf2SpacesIndenter.instance);
 
-        InputStream input = Scrapper.class.getResourceAsStream("/input.json");
+        InputStream input = ReviewsScrapper.class.getResourceAsStream("/input.json");
         List<Map<String, Object>> hotels = mapper.readValue(input, List.class);
 
         FileWriter writer = new FileWriter("/Users/nicolae.popa/code/scrapper/src/main/resources/reviews.json");

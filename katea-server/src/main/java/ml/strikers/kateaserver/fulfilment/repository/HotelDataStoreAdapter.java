@@ -5,7 +5,6 @@ import ml.strikers.kateaserver.fulfilment.entity.Currency;
 import ml.strikers.kateaserver.fulfilment.entity.Hotel;
 import ml.strikers.kateaserver.fulfilment.entity.Price;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
@@ -28,10 +27,21 @@ public class HotelDataStoreAdapter implements Repository<Hotel, UUID> {
     @Override
     public Hotel save(Hotel entity) {
         IncompleteKey key = keyFactory.newKey();
-        FullEntity<IncompleteKey> incBookEntity = Entity.newBuilder(key)
-                .set("name", entity.getName())
+        FullEntity<IncompleteKey> hotelEntity = Entity.newBuilder(key)
+                .set(Hotel.ID, entity.getId().toString())
+                .set(Hotel.NAME, entity.getName())
+                .set(Hotel.IMAGE_URL, entity.getImageUrl())
+                .set(Hotel.RATING, entity.getRating())
+                .set(Hotel.CITY, entity.getCity())
+                .set(Hotel.PRICE_VALUE, entity.getPrice().getValue())
+                .set(Hotel.PRICE_CURRENCY, entity.getPrice().getCurrency().toString())
+                .set(Hotel.VENUE_TYPE, entity.getVenueType())
+                .set(Hotel.ZONE, entity.getZone())
+                .set(Hotel.REVIEW_COUNT, entity.getReviewCount())
+                .set(Hotel.FACILITIES, entity.getFacilities().toString())
+                .set(Hotel.LAT_LONG, entity.getLatLong())
                 .build();
-        Entity hotel = datastore.add(incBookEntity);
+        datastore.add(hotelEntity);
         return entity;
     }
 
