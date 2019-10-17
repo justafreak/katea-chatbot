@@ -19,16 +19,12 @@
     font-size: 14px;
     margin: 0 8px;
     text-align: center;
+    height: 34px;
   }
 
   .carouselItem__price {
     font-size: 12px;
     margin: 8px;
-  }
-
-  .carouselItem .left,
-  .carouselItem .right {
-    display: none;
   }
 </style>
 
