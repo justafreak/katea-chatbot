@@ -1,4 +1,4 @@
-package ml.strikers.kateaserver.entity;
+package ml.strikers.kateaserver.entity.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,7 +11,7 @@ import java.util.UUID;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Request {
+public class PassthroughRequest {
 
     private String message;
     private UUID sessionId;
