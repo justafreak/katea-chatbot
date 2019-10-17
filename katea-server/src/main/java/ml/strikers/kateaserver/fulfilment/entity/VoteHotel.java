@@ -13,11 +13,11 @@ import java.util.UUID;
 @AllArgsConstructor
 public class VoteHotel {
 
+    private FulfilmentHotelRequest fulfilmentHotelRequest;
+    private UUID hotelId;
+    private Action action;
     public enum Action {
-        upvote,downvote
+        UP_VOTE, DOWN_VOTE
     }
 
-    FullfilmentHotelRequest fullfilmentHotelRequest;
-    UUID hotelId;
-    Action action;
 }

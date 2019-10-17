@@ -14,6 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 public class CarouselList implements IMessage {
 
+    @Builder.Default
     private ResponseType type = ResponseType.CAROUSEL;
     private List<Hotel> reply;
 

@@ -23,7 +23,6 @@ public class DataStorageConfig {
     @Value("${datastore.project-id}")
     private String projectId;
 
-
     @Bean
     public Datastore datastore() {
         GoogleCredentials googleCredentials = null;
@@ -38,4 +37,5 @@ public class DataStorageConfig {
                 .build()
                 .getService();
     }
+
 }
