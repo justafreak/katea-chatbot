@@ -1,3 +1,3 @@
-export const MSG_TYPE_TEXT = 'text';
-export const MSG_TYPE_QUICK_REPLY = 'quickreply';
-export const MSG_TYPE_CAROUSEL = 'carousel';
+export const MSG_TYPE_TEXT = 'TEXT';
+export const MSG_TYPE_QUICK_REPLY = 'QUICKREPLY';
+export const MSG_TYPE_CAROUSEL = 'CAROUSEL';
