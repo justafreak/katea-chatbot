@@ -1,5 +1,6 @@
 package ml.strikers.kateaserver.fulfilment.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -49,10 +50,12 @@ public class Hotel {
 
     public static Comparator<Hotel> SCORE_COMPARATOR = Comparator.comparing(Hotel::getRecommendScore);
 
+    @JsonIgnore
     public Currency getPriceCurrency() {
         return requireNonNull(this.price).getCurrency();
     }
 
+    @JsonIgnore
     public Double getPriceValue() {
         return requireNonNull(this.price).getValue();
     }
