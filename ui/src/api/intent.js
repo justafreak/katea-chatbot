@@ -20,10 +20,16 @@ export const detectIntent = async requestData => {
     });
 
     const resp = await response.json();
-    const msgType = resp.message.type;
+    const msgs = resp.message;
+    const msgType = msgs.type;
     const type = msgType ? msgType.toUpperCase() : MSG_TYPE_TEXT;
 
-    storeBotMsg(type, resp.message.reply);
+    if (Array.isArray(msgs)) {
+      msgs.forEach(msg => storeBotMsg(type, msgs.reply))
+    } else {
+      storeBotMsg(type, msgs.reply);
+    }
+    
     storeSessionId(resp.sessionId);
   } catch (e) {
     storeBotMsg(MSG_TYPE_TEXT, 'Woops');
