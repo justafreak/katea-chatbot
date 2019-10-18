@@ -30,3 +30,7 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### Secret ###
+google-auth/strikers-chatboot-dialog-account.json
+google-auth/strikers-chatboot-datastorege-account.json
