@@ -29,9 +29,8 @@ public class DialogProvider {
 
 
     public Fulfilment getFulfilment(String queryMessage, UUID uuid) throws Exception {
-        Fulfilment fulfilment;
         QueryResult queryResult = getDialogFlowResponse(queryMessage, uuid);
-        fulfilment = QueryResultConverter.covertResultToFulfilment(queryResult);
+        Fulfilment fulfilment = QueryResultConverter.covertResultToFulfilment(queryResult);
         fulfilment.setUUID(uuid);
         return fulfilment;
     }

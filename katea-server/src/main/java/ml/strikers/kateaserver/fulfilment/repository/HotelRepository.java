@@ -33,8 +33,8 @@ public class HotelRepository extends AbstractRepository<Hotel, UUID> {
         super(datastore);
     }
 
-    private KeyFactory hotelKeyFactory = datastore.newKeyFactory().setKind(Hotel.KIND);
-    private KeyFactory priceKeyFactory = datastore.newKeyFactory().setKind(Price.KIND);
+    private final KeyFactory hotelKeyFactory = datastore.newKeyFactory().setKind(Hotel.KIND);
+    private final KeyFactory priceKeyFactory = datastore.newKeyFactory().setKind(Price.KIND);
 
     @Override
     public Hotel save(Hotel hotel) {

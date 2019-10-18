@@ -13,7 +13,7 @@ import java.io.IOException;
 @Slf4j
 public class SerializationUtil {
 
-    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
+    public static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
     public static <T> T read(String input, Class<T> classToConvert) {
         try {

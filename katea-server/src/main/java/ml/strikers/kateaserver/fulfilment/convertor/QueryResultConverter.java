@@ -1,11 +1,11 @@
 package ml.strikers.kateaserver.fulfilment.convertor;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.cloud.dialogflow.v2.Intent;
 import com.google.cloud.dialogflow.v2.QueryResult;
 import lombok.experimental.UtilityClass;
 import ml.strikers.kateaserver.fulfilment.entity.Fulfilment;
 import ml.strikers.kateaserver.fulfilment.entity.Hotel;
+import ml.strikers.kateaserver.util.SerializationUtil;
 
 import java.io.IOException;
 import java.util.List;
@@ -26,15 +26,19 @@ public class QueryResultConverter {
         return message.getCarouselSelect()
                 .getItemsList()
                 .stream()
-                .map(item -> {
-                    try {
-                        return new ObjectMapper().readValue(item.getDescription(), Hotel.class);
-                    } catch (IOException e) {
-                        return Hotel.builder()
-                                .imageUrl(item.getImage().getImageUri())
-                                .name(item.getTitle())
-                                .build();
-                    }
-                }).collect(Collectors.toList());
+                .map(QueryResultConverter::getHotel)
+                .collect(Collectors.toList());
     }
+
+    private Hotel getHotel(Intent.Message.CarouselSelect.Item item) {
+        try {
+            return SerializationUtil.OBJECT_MAPPER.readValue(item.getDescription(), Hotel.class);
+        } catch (IOException e) {
+            return Hotel.builder()
+                    .imageUrl(item.getImage().getImageUri())
+                    .name(item.getTitle())
+                    .build();
+        }
+    }
+
 }
