@@ -1,5 +1,6 @@
 package ml.strikers.kateaserver.fulfilment.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,8 +26,7 @@ public class Hotel {
     public static final String URL = "url";
     public static final String RATING = "rating";
     public static final String CITY = "city";
-    public static final String PRICE_VALUE = "priceValue";
-    public static final String PRICE_CURRENCY = "priceCurrency";
+    public static final String PRICE = "price";
     public static final String VENUE_TYPE = "venueType";
     public static final String ZONE = "zone";
     public static final String REVIEW_COUNT = "reviewCount";
@@ -47,14 +47,7 @@ public class Hotel {
     private String latLong;
     private int recommendScore;
 
-    public static Comparator<Hotel> SCORE_COMPARATOR = Comparator.comparing(Hotel::getRecommendScore);
+    public static final Comparator<Hotel> SCORE_COMPARATOR = Comparator.comparing(Hotel::getRecommendScore);
 
-    public Currency getPriceCurrency() {
-        return requireNonNull(this.price).getCurrency();
-    }
-
-    public Double getPriceValue() {
-        return requireNonNull(this.price).getValue();
-    }
 
 }

@@ -1,5 +1,6 @@
 package ml.strikers.kateaserver.web.convertor;
 
+import lombok.experimental.UtilityClass;
 import ml.strikers.kateaserver.fulfilment.entity.Fulfilment;
 import ml.strikers.kateaserver.web.rest.v1.dto.CarouselList;
 import ml.strikers.kateaserver.web.rest.v1.dto.Response;
@@ -8,6 +9,7 @@ import ml.strikers.kateaserver.web.rest.v1.dto.SimpleReply;
 
 import static java.util.Objects.isNull;
 
+@UtilityClass
 public class FulfilmentConvertor {
 
     public static Response fulfilmentToResponseConvertor(Fulfilment fulfilment) {
@@ -26,9 +28,11 @@ public class FulfilmentConvertor {
 
         final var carouselList = CarouselList.builder()
                 .reply(fulfilment.getHotelList())
-                .type(ResponseType.CAROUSEL).build();
+                .type(ResponseType.CAROUSEL)
+                .build();
         response.setMessage(carouselList);
 
         return response;
     }
+
 }

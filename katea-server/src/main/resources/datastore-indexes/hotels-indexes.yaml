@@ -1,0 +1,7 @@
+indexes:
+  - kind: Test
+    properties:
+      - name: city
+        direction: asc
+      - name: rating
+        direction: desc

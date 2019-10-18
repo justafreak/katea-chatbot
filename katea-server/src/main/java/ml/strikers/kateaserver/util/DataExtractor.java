@@ -20,7 +20,7 @@ public class DataExtractor {
         this.objectMapper = objectMapper;
     }
 
-    public <T> List<T> extract(Resource resource, Class<T[]> clazz) {
+    <T> List<T> extract(Resource resource, Class<T[]> clazz) {
         try {
             return Arrays.asList(objectMapper.readValue(resource.getInputStream(), clazz));
         } catch (IOException e) {

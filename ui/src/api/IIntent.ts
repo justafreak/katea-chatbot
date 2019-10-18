@@ -9,7 +9,7 @@ interface ICarouselItem {
   rating: string;
 }
 
-type IType = 'text' | 'quickreply' | 'carousel';
+type IType = 'TEST' | 'QUICKREPLY' | 'CAROUSEL';
 
 interface IIntentResponse {
   message: {

@@ -27,7 +27,6 @@ public class RequestService {
         final var fulfilment = dialogProvider.getFulfilment(queryMessage, uuid);
         return FulfilmentConvertor.fulfilmentToResponseConvertor(fulfilment);
     }
-
 }
 
 
