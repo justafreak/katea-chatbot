@@ -25,7 +25,6 @@ public class QueryResultConverter {
                 .getItemsList()
                 .stream()
                 .map(item -> {
-
                     try {
                         return new ObjectMapper().readValue(item.getDescription(), Hotel.class);
                     } catch (IOException e) {
@@ -34,7 +33,6 @@ public class QueryResultConverter {
                                 .name(item.getTitle())
                                 .build();
                     }
-
                 }).collect(Collectors.toList());
     }
 }

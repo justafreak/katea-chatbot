@@ -26,7 +26,8 @@ public class FulfilmentConvertor {
 
         final var carouselList = CarouselList.builder()
                 .reply(fulfilment.getHotelList())
-                .type(ResponseType.CAROUSEL).build();
+                .type(ResponseType.CAROUSEL)
+                .build();
         response.setMessage(carouselList);
 
         return response;

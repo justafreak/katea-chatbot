@@ -48,7 +48,7 @@ public class Hotel {
     private String latLong;
     private int recommendScore;
 
-    public static Comparator<Hotel> SCORE_COMPARATOR = Comparator.comparing(Hotel::getRecommendScore);
+    public static final Comparator<Hotel> SCORE_COMPARATOR = Comparator.comparing(Hotel::getRecommendScore);
 
     @JsonIgnore
     public Currency getPriceCurrency() {
@@ -58,6 +58,12 @@ public class Hotel {
     @JsonIgnore
     public Double getPriceValue() {
         return requireNonNull(this.price).getValue();
+    }
+
+    // Am mutat mizeria aici
+    @JsonIgnore
+    public String getFacilitiesAsString() {
+        return this.facilities.toString().replace("[", "").replace("]", "");
     }
 
 }

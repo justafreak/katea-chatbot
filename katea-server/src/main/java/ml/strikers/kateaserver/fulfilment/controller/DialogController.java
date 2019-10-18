@@ -70,7 +70,7 @@ public class DialogController {
                     .companions((String) parameters.get("companions"))
                     .facilities((List) parameters.get("quality"))
                     .tripType((String) parameters.get("trip-type")).build();
-            webHookResponse.setFulfillmentMessages(List.of(convert(HotelRepository.getByCity(request.getCity()))));
+            webHookResponse.setFulfillmentMessages(List.of(convert(hotelRepository.getHotelsByCity(request.getCity()))));
             webHookResponse.setFulfillmentText("Here our recommendations");
         } else if ("vote".equals(intentName)) {
             log.info("Parameters: {}", parameters);
