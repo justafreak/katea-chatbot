@@ -1,17 +1,13 @@
 package ml.strikers.kateaserver.fulfilment.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.google.api.services.dialogflow.v2.model.GoogleCloudDialogflowV2beta1IntentMessage;
-import com.google.api.services.dialogflow.v2.model.GoogleCloudDialogflowV2beta1IntentMessageCarouselSelect;
-import com.google.api.services.dialogflow.v2.model.GoogleCloudDialogflowV2beta1IntentMessageCarouselSelectItem;
-import com.google.api.services.dialogflow.v2.model.GoogleCloudDialogflowV2beta1IntentMessageImage;
-import com.google.api.services.dialogflow.v2.model.GoogleCloudDialogflowV2beta1WebhookResponse;
+import com.google.api.services.dialogflow.v2.model.*;
+import lombok.Getter;
 import ml.strikers.kateaserver.fulfilment.entity.FulfilmentHotelRequest;
 import ml.strikers.kateaserver.fulfilment.entity.Hotel;
 import ml.strikers.kateaserver.fulfilment.entity.VoteHotel;
 import ml.strikers.kateaserver.fulfilment.repository.HotelRepository;
 import ml.strikers.kateaserver.util.SerializationUtil;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -19,19 +15,20 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.UUID;
 
-@SuppressWarnings("unchecked")
 @Service
 public class FulfillmentDispatchService {
 
-    @Autowired
-    private HotelRepository hotelRepository;
+    private final HotelRepository hotelRepository;
 
+    public FulfillmentDispatchService(HotelRepository hotelRepository) {
+        this.hotelRepository = hotelRepository;
+    }
 
     @SuppressWarnings("unchecked")
     public GoogleCloudDialogflowV2beta1WebhookResponse dispatch(GoogleCloudDialogflowV2beta1WebhookResponse webHookResponse) throws JsonProcessingException {
         final LinkedHashMap<String, Object> queryResult = (LinkedHashMap) webHookResponse.get("queryResult");
-        String intentString = (String) ((LinkedHashMap) queryResult.get("intent")).get("displayName");
-        Intent intent = Intent.valueOf(intentString);
+        final var intentString = (String) ((LinkedHashMap) queryResult.get("intent")).get("displayName");
+        final var intent = Intent.valueOf(intentString.toUpperCase());
         switch (intent) {
             case VOTE:
                 return voteIntent(webHookResponse);
@@ -42,10 +39,10 @@ public class FulfillmentDispatchService {
     }
 
     @SuppressWarnings("unchecked")
-    private GoogleCloudDialogflowV2beta1WebhookResponse recommendIntent(GoogleCloudDialogflowV2beta1WebhookResponse webHookResponse) throws JsonProcessingException {
+    private GoogleCloudDialogflowV2beta1WebhookResponse recommendIntent(GoogleCloudDialogflowV2beta1WebhookResponse webHookResponse) {
         final LinkedHashMap<String, Object> queryResult = (LinkedHashMap) webHookResponse.get("queryResult");
         final LinkedHashMap<String, Object> parameters = (LinkedHashMap) queryResult.get("parameters");
-        FulfilmentHotelRequest request = FulfilmentHotelRequest.builder()
+        final var request = FulfilmentHotelRequest.builder()
                 .city((String) parameters.get("geo-city"))
                 .companions((String) parameters.get("companions"))
                 .facilities((List) parameters.get("quality"))
@@ -55,6 +52,7 @@ public class FulfillmentDispatchService {
         return webHookResponse;
     }
 
+    @SuppressWarnings("unchecked")
     private GoogleCloudDialogflowV2beta1WebhookResponse voteIntent(GoogleCloudDialogflowV2beta1WebhookResponse webHookResponse) {
         final LinkedHashMap<String, Object> queryResult = (LinkedHashMap) webHookResponse.get("queryResult");
         final List<LinkedHashMap<String, Object>> contexts = (List) queryResult.get("outputContexts");
@@ -76,7 +74,7 @@ public class FulfillmentDispatchService {
         return webHookResponse;
     }
 
-    private GoogleCloudDialogflowV2beta1IntentMessage convert(List<Hotel> hotels) throws JsonProcessingException {
+    private GoogleCloudDialogflowV2beta1IntentMessage convert(List<Hotel> hotels) {
         GoogleCloudDialogflowV2beta1IntentMessage newMessage = new GoogleCloudDialogflowV2beta1IntentMessage();
         GoogleCloudDialogflowV2beta1IntentMessageCarouselSelect carouselSelect = new GoogleCloudDialogflowV2beta1IntentMessageCarouselSelect()
                 .setItems(new ArrayList<>());
@@ -94,15 +92,17 @@ public class FulfillmentDispatchService {
         return newMessage;
     }
 
+    @Getter
     private enum Intent {
         VOTE("vote"),
         RECOMMEND("recommend");
 
-        private String fieldName;
+        private String type;
 
-        Intent(String name) {
-            fieldName = name;
+        Intent(String type) {
+            this.type = type;
         }
+
     }
 
 }

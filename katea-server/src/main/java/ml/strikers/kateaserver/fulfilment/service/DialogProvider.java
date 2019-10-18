@@ -43,6 +43,7 @@ public class DialogProvider {
             final SessionName session = SessionName.of(projectId, uuid.toString());
             TextInput.Builder textInput = TextInput.newBuilder().setText(queryMessage).setLanguageCode(languageCode);
             QueryInput queryInput = QueryInput.newBuilder().setText(textInput).build();
+            log.info(queryInput.toString());
             DetectIntentResponse response = sessionsClient.detectIntent(session, queryInput);
             QueryResult queryResult = response.getQueryResult();
             queryResults.put(queryMessage, queryResult);

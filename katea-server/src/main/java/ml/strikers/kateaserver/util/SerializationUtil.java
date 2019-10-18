@@ -32,4 +32,5 @@ public class SerializationUtil {
             throw new SerializationException(e.getMessage());
         }
     }
+
 }

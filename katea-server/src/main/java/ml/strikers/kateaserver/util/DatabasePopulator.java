@@ -35,9 +35,9 @@ public class DatabasePopulator {
 
     public void populate() {
         List<Hotel> hotels = dataExtractor.extract(hotelsResource, Hotel[].class);
-//        List<Review> reviews = dataExtractor.extract(reviewsResource, Review[].class);
+        List<Review> reviews = dataExtractor.extract(reviewsResource, Review[].class);
         hotels.forEach(hotelRepository::save);
-//        reviews.forEach(reviewRepository::save);
+        reviews.forEach(reviewRepository::save);
     }
 
 }
