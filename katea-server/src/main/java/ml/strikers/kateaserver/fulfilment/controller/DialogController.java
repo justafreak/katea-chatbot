@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import ml.strikers.kateaserver.fulfilment.entity.Hotel;
 import ml.strikers.kateaserver.fulfilment.repository.HotelRepository;
 import ml.strikers.kateaserver.fulfilment.service.FulfillmentDispatchService;
+import ml.strikers.kateaserver.util.DatabasePopulator;
 import ml.strikers.kateaserver.util.SerializationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,14 +23,17 @@ import java.util.List;
 @Slf4j
 public class DialogController {
 
-    @Autowired
-    HotelRepository hotelRepository;
+    private final HotelRepository hotelRepository;
+    private final FulfillmentDispatchService fulfillmentDispatchService;
 
-    @Autowired
-    private FulfillmentDispatchService fulfillmentDispatchService;
+    public DialogController(FulfillmentDispatchService fulfillmentDispatchService, HotelRepository hotelRepository) {
+        this.fulfillmentDispatchService = fulfillmentDispatchService;
+        this.hotelRepository = hotelRepository;
+    }
+
 
     @GetMapping
-    public List<Hotel> trigger(@RequestParam String city) {
+    public List<Hotel> getTopThreeHotelsFrom(@RequestParam String city) {
         return hotelRepository.getHotelsByCity(city);
     }
 

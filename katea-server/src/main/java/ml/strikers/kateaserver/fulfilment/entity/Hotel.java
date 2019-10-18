@@ -26,8 +26,7 @@ public class Hotel {
     public static final String URL = "url";
     public static final String RATING = "rating";
     public static final String CITY = "city";
-    public static final String PRICE_VALUE = "priceValue";
-    public static final String PRICE_CURRENCY = "priceCurrency";
+    public static final String PRICE = "price";
     public static final String VENUE_TYPE = "venueType";
     public static final String ZONE = "zone";
     public static final String REVIEW_COUNT = "reviewCount";
@@ -50,20 +49,5 @@ public class Hotel {
 
     public static final Comparator<Hotel> SCORE_COMPARATOR = Comparator.comparing(Hotel::getRecommendScore);
 
-    @JsonIgnore
-    public Currency getPriceCurrency() {
-        return requireNonNull(this.price).getCurrency();
-    }
-
-    @JsonIgnore
-    public Double getPriceValue() {
-        return requireNonNull(this.price).getValue();
-    }
-
-    // Am mutat mizeria aici
-    @JsonIgnore
-    public String getFacilitiesAsString() {
-        return this.facilities.toString().replace("[", "").replace("]", "");
-    }
 
 }

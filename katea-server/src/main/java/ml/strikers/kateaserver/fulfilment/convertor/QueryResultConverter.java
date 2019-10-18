@@ -3,6 +3,7 @@ package ml.strikers.kateaserver.fulfilment.convertor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.cloud.dialogflow.v2.Intent;
 import com.google.cloud.dialogflow.v2.QueryResult;
+import lombok.experimental.UtilityClass;
 import ml.strikers.kateaserver.fulfilment.entity.Fulfilment;
 import ml.strikers.kateaserver.fulfilment.entity.Hotel;
 
@@ -11,6 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
+@UtilityClass
 public class QueryResultConverter {
 
     public static Fulfilment covertResultToFulfilment(QueryResult queryResult) {
