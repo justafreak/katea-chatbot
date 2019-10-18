@@ -8,12 +8,16 @@ const Accomodations = require("./db/accomodations");
 const app = express();
 const port = 3000;
 
-const recEngine = new Brain();
-recEngine.train();
 const accomodationsDB = new Accomodations();
+const recEngine = new Brain(accomodationsDB.getAccomodationIds());
+recEngine.train();
 
 app.use(cors());
 app.use(bodyParser.json());
+
+app.get("/train", (req, res) => {
+  recEngine.train();
+});
 
 app.post("/suggestions", (req, res) => {
   const { features } = req.body;
@@ -28,24 +32,29 @@ app.post("/suggestions", (req, res) => {
     accomodation_quality_cleanliness: 0.5
   };
   const bestHotelMatches = recEngine.suggest(
-    features || Object.values(defaultPredictionPoint)
+    features || defaultPredictionPoint
   );
-  const bestMatch = bestHotelMatches.get(0);
-  const accomodation = accomodationsDB.findByIdx(bestMatch);
-  res.json([accomodation]);
+
+  res.json(bestHotelMatches);
 });
 
 app.post("/learn", (req, res) => {
   const hotelId = Math.floor(Math.random() * Math.floor(100));
-  recEngine.learnFromUser(hotelId, {
-    accomodation_quality_wifi: 0.5,
-    accomodation_quality_staff: 0.5,
-    accomodation_quality_location: 0.5,
-    accomodation_quality_price: 0.5,
-    accomodation_quality_quiet: 0.5,
-    accomodation_quality_breakfast: 0.5,
-    accomodation_quality_cleanliness: 0.5
-  });
+  //
+  const outcome = 1;
+  recEngine.learnFromUser(
+    hotelId,
+    {
+      accomodation_quality_wifi: 0.5,
+      accomodation_quality_staff: 0.5,
+      accomodation_quality_location: 0.5,
+      accomodation_quality_price: 0.5,
+      accomodation_quality_quiet: 0.5,
+      accomodation_quality_breakfast: 0.5,
+      accomodation_quality_cleanliness: 0.5
+    },
+    outcome
+  );
 });
 
 app.listen(port, () =>

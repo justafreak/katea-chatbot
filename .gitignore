@@ -3,3 +3,4 @@ node_modules
 public/bundle.*
 .vscode/
 npm-debug.log
+account.json

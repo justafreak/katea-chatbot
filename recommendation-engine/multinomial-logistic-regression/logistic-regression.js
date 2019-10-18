@@ -18,7 +18,7 @@ class LogisticRegression {
     this.weights = tf.zeros([this.features.shape[1], this.labels.shape[1]]);
   }
   gradientDescent(features, labels) {
-    const currentGuesses = features.matMul(this.weights).sigmoid();
+    const currentGuesses = features.matMul(this.weights).softmax();
     const differences = currentGuesses.sub(labels);
     const slopes = features
       .transpose()
@@ -29,11 +29,7 @@ class LogisticRegression {
   }
   predict(observations) {
     observations = this.processFeatures(observations);
-    // @todo - get the top N hotels predicted instead of just the first one
-    return observations
-      .matMul(this.weights)
-      .softmax()
-      .argMax(1);
+    return observations.matMul(this.weights).softmax();
   }
   train() {
     const totalBatches = Math.floor(
