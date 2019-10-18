@@ -1,12 +1,1 @@
-{
-  "type": "service_account",
-  "project_id": "strikers-chatboot",
-  "private_key_id": "490ee012a9a781ef8e46723a22337a7d8ea9cdc4",
-  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDUH3ta6NJFnPI0\nyO3EfdYZUefVCfmWBinAwQY0dbcWKHt2PRgIOYSfbZ84R7KjWTxlks37tF/gXFLc\nNNSDkZCReF5MyNeaAHMjSqpkKUJ8xck+61d3fm/ku9xrYqHFb4y46BCA9goqcbhk\nM+RRbcQMuPHz3N8iDnIQ0NQS4PJynpOPj0yath8v67G8pk0eGSwvoP0V2Z2vZlUR\ncxEspZDhs7UEA/wnFrqpi7iJiIh3Ce8IbbyodZ/Kel8hPrQbzf/uHkCuMTpNNb+9\nRo/bc5I21Egk+vt7SG8Y1nMx+d+NRMGnCz1e8Vo49pVDfgdIpgFhpwUp/fym7MQu\nfuA+aOMrAgMBAAECggEAClLL6JU7IossWHhM5gqvwES1sS8OmAgNwSVDvYrbEbd/\nprX7dO8DrtShcpY+sed2YoUeBDl3jw4/NBtYGl0buZCvmjIOGB8ce2O3Xi+J3lOr\n4yWF+LlNDcc8x3ch41917EvS/cu7m+wz6qCB5Jqgd3QKxnEB5QDp+TqIj7Cl7AEI\nAM9ruFJs5KeqvQefiiSpt+zo4sC/1zwetOow0JuH1gyMCX14VB5BjRR55CUxdKZr\nE8tnYMyrI3zxzwR3OyUZDzKfI9M6sXedAuVoHl4oyfL++BnBwyk5vnnsxFIws9Ok\nUzuXcJSGJgiHqDXv+rsRdNslfvNlsPP/9vmN1yiOZQKBgQDwlbo0tR0agFnRjj4D\n1/kbfHws2Qo1tZFvKBsN/+zD6HMhKRSqguEcga68h2UIu/b7Kh8TNHu7wq5D9NKr\nWA1WdEpse4Fw7N3/DFXJ7Tmlmsi0nTT8KCk9fStW2lTm72XyzkWmhtLD+8dgmB4H\n0R0ktjAOJMuFrLB4oJwRomJy/wKBgQDhtuYbVCYaoaOpoGR32G3Z/kKQ79OnEG3N\n8zl0KVz74ZV9QhKb9U8MNb8g9bswSFkBGEJJmi2BS0CBHG11gzwM8EgaeQxJ5wAG\nzOs72wVhGmWjai2g3H5ahrTDT4BJ9lVDuGRqpTxEFbh7HxEp/jZ05TS4KpF8NOSI\nov5kcbHL1QKBgA+M3fhCLJtl6GhPFVsSPpu0NCKB9NL75WaV5QnGnPscrzRZf2h2\nBS7egvjUl4c0/wXE9zU6kzTTpIfn7yX8DwCji5vvb7Jo3QB7P6BJoQw/MPHbp20U\n+3Vp/b8jZZF3r9M92eqllEHuqDhqHKbMsWGKFRkU78K4Ir/pQa0yHcLpAoGAF088\nFDZsePOYYzwdJANF1O1dEnqx8N7ReCNWG5jp8VkqhvT71v9OWoRyaIT3/9R43JQU\nxGUXrfKHhs3Yv/n9iZiG2bUGf9tLNWiUImpL8+s189pTO/mJUu/2WvUq2niF9ahl\nNl46Cw3zL0PWEfAez5OcDijXPWx47WNnwhe7tMECgYBlkmizKQgBqsENGrYsE3CF\nQ63MUdmfAtw1YLJfM2Onx8F1v1GEldc2BxgQnbie0ec7/pLdBfZFxhotzmNIm26Q\na3oduSo11R/PAhb30cG9owYGnJqnXlMmqz3Q0/vxyGto4+8sQ76auF2tEA/yTCJD\ndbMcK7Xbb6QjDce+Rd/3BQ==\n-----END PRIVATE KEY-----\n",
-  "client_email": "dialogflow-jciqob@strikers-chatboot.iam.gserviceaccount.com",
-  "client_id": "117291985188031997662",
-  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-  "token_uri": "https://oauth2.googleapis.com/token",
-  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/dialogflow-jciqob%40strikers-chatboot.iam.gserviceaccount.com"
-}
+"INSERT GOOGLE DIALOGFLOW ACCOUNT SERVICE KEY HERE"
