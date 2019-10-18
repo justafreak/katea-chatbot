@@ -45,9 +45,9 @@
 
   {#if message.type === MSG_TYPE_TEXT}
     <TextMessage {message} isTyping={false} />
-  {:else if message.type === 'quickreply'}
+  {:else if message.type === MSG_TYPE_QUICK_REPLY}
     <QuickReply {message} />
-  {:else if message.type === 'carousel'}
+  {:else if message.type === MSG_TYPE_CAROUSEL}
     <Carousel {message} />
   {:else}Other content{/if}
 </div>
