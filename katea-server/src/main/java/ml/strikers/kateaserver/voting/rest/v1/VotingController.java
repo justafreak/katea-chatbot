@@ -29,6 +29,7 @@ public class VotingController {
         CarouselList carouselList = new CarouselList();
         carouselList.setType(ResponseType.CAROUSEL);
         carouselList.setReply(recommendations);
+        response.setParameters(voteRequest.getParameters());
         response.setMessage(carouselList);
         response.setSessionId(voteRequest.getSessionId());
         return response;
