@@ -67,7 +67,7 @@ public class FulfillmentDispatchService {
                 .build();
 
         final var request = VoteHotel.builder().fulfilmentHotelRequest(build)
-                .action(VoteHotel.Action.valueOf((String) parameters.get("recommend")))
+                .action(VoteHotel.Action.valueOf(((String) parameters.get("recommend")).toUpperCase()))
                 .hotelId(UUID.fromString((String) parameters.get("id")))
                 .build();
         webHookResponse.setFulfillmentText("Thanks for voting");

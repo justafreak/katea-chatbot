@@ -12,17 +12,21 @@ public class HotelRecommendService {
     private final HotelRepository hotelRepository;
     private final ReviewMatchingService reviewMatchingService;
     private final MLService mlService;
-    private final FuzzyMatchingService fuzzyMatchingService;
 
     public HotelRecommendService(HotelRepository hotelRepository, ReviewMatchingService reviewMatchingService, MLService mlService, FuzzyMatchingService fuzzyMatchingService) {
         this.hotelRepository = hotelRepository;
         this.reviewMatchingService = reviewMatchingService;
         this.mlService = mlService;
-        this.fuzzyMatchingService = fuzzyMatchingService;
     }
 
     public List<Hotel> getMatchingHotels(FulfilmentHotelRequest request) {
         List<Hotel> hotelsByCity = hotelRepository.getHotelsByCity(request.getCity());
+        hotelsByCity.sort(Hotel.SCORE_COMPARATOR);
+        return hotelsByCity;
+    }
+
+    public List<Hotel> getMatchingHotelsML(FulfilmentHotelRequest request) {
+        List<Hotel> hotelsByCity = mlService.getSuggestions(request);
         hotelsByCity.sort(Hotel.SCORE_COMPARATOR);
         return hotelsByCity;
     }

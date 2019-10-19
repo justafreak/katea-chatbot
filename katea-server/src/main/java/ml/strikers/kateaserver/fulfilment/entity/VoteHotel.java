@@ -17,7 +17,7 @@ public class VoteHotel {
     private UUID hotelId;
     private Action action;
     public enum Action {
-        UP_VOTE, DOWN_VOTE
+        UPVOTE, DOWNVOTE
     }
 
 }
