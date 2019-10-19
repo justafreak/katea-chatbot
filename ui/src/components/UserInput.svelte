@@ -4,9 +4,12 @@
   import { detectIntent } from '../api/intent';
   import { HUMAN } from '../constants/author';
   import { MSG_TYPE_TEXT } from '../constants/msgType';
+  import TypingIndicator from './TypingIndicator.svelte';
+  import { showTypingIndicator } from '../stores/chat';
 
   let active = false;
   let reply = '';
+  $: showIndicator = $showTypingIndicator;
   export let placeholder = 'Free speech here';
 
   const submitText = ev => {
@@ -109,6 +112,7 @@
 </style>
 
 <div class="sc-user-input-container">
+  <TypingIndicator visible={showIndicator} />
   <form class="sc-user-input" class:active>
     <div
       role="button"

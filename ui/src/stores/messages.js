@@ -111,7 +111,7 @@ export const messages = writable([
   //       name: 'Pe Germania'
   //     }
   //   ]
-  // }
+  // },
   // {
   //   type: MSG_TYPE_TEXT,
   //   author: BOT,

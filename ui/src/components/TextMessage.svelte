@@ -1,6 +1,5 @@
 <script>
   import { fly } from 'svelte/transition';
-  import TypingIndicator from './TypingIndicator.svelte';
   import chatIconUrl from '../assets/icons/chat-icon.svg';
   import { MSG_TYPE_TEXT } from '../constants/msgType';
   import { BOT } from '../constants/author';
@@ -83,7 +82,6 @@
     <div class="sc-message--avatar" style="background-image: url({chatIconUrl})" />
   {/if}
   <div class="sc-message--text">
-    <TypingIndicator visible={isTyping} />
     {#if !isTyping}
       <span>
         {@html message.reply}
