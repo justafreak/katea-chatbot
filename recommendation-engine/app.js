@@ -8,6 +8,16 @@ const app = express();
 const port = 3000;
 
 const recEngine = new Brain();
+// This prediction point is for testing purposes only
+const defaultPredictionPoint = {
+  accomodation_quality_wifi: 0.5,
+  accomodation_quality_staff: 0.5,
+  accomodation_quality_location: 0.5,
+  accomodation_quality_price: 0.5,
+  accomodation_quality_quiet: 0.5,
+  accomodation_quality_breakfast: 0.5,
+  accomodation_quality_cleanliness: 0.5
+};
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -18,16 +28,7 @@ app.get("/train", (req, res) => {
 
 app.post("/suggestions", async (req, res) => {
   const { features } = req.body;
-  // @todo - This prediction point is for testing purposes only
-  const defaultPredictionPoint = {
-    accomodation_quality_wifi: 0.5,
-    accomodation_quality_staff: 0.5,
-    accomodation_quality_location: 0.5,
-    accomodation_quality_price: 0.5,
-    accomodation_quality_quiet: 0.5,
-    accomodation_quality_breakfast: 0.5,
-    accomodation_quality_cleanliness: 0.5
-  };
+
   const bestHotelMatches = await recEngine.suggest(
     features || defaultPredictionPoint
   );

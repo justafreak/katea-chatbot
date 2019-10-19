@@ -1,7 +1,6 @@
 const fs = require("fs");
 const path = require("path");
 const DB = require("./DB");
-const loadCSV = require("../load-csv");
 
 const kind = "Hotels";
 

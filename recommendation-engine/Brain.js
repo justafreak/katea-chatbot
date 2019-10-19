@@ -1,6 +1,4 @@
 const tf = require("@tensorflow/tfjs");
-const loadCSV = require("./load-csv");
-const fs = require("fs");
 const LogisticRegression = require("./multinomial-logistic-regression/logistic-regression");
 const {
   buildLabelsVector,
@@ -54,19 +52,15 @@ class Brain {
 
     const trainingData = reviews
       .map(review => {
-        const features = { ...review };
-        const hotel = hotels.find(h => h.id == features.hotel_id);
+        const features = {
+          ..._.pick(review, UserReviewsRepository.ALL_USER_FEATURES)
+        };
+        const hotel = hotels.find(h => h.id == review.hotel_id);
         if (!hotel) {
           return null;
         }
         // Transform the hotel into a vector representing it's characteristics
         const labels = labelsToObject(hotel, hotelFeaturesVector);
-
-        // Each record in the DB contains also the sessionId and hotelId.
-        // We need to remove these
-        delete features.session_id;
-        delete features.hotel_id;
-        delete features.like;
 
         return { ...features, ...labels };
       })
@@ -88,7 +82,9 @@ class Brain {
         const hotelTraitsTensor = tf.tensor([
           toVector(hotel, hotelFeaturesVector)
         ]);
-        const distance = hotelTraitsTensor.mul(hotelTraitsTensor).norm();
+        const distance = hotelTraitsTensor
+          .mul(idealAccomodationTraitsTensor)
+          .norm();
 
         return { hotel, distance };
       })
