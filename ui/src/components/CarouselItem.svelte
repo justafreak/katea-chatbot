@@ -42,6 +42,5 @@
   <Rate
     value={Math.round(carouselItem.rating / 2)}
     length={5}
-    ratedesc={['Very bad', 'Bad', 'Normal', 'Good', 'Very good']}
-    showCount={false} />
+    ratedesc={['Very bad', 'Bad', 'Normal', 'Good', 'Very good']} />
 </div>

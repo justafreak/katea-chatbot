@@ -3,7 +3,7 @@
   import Chat from './Chat.svelte';
   import { messages } from '../stores/messages.js';
 
-  export let name = '';
+  export let botName;
 </script>
 
 <style>
@@ -14,6 +14,6 @@
 </style>
 
 <div class="app-container">
-  <Header teamName="Katea" imageUrl="" />
-  <Chat {name} messages={$messages} />
+  <Header {botName} />
+  <Chat messages={$messages} />
 </div>

@@ -63,6 +63,7 @@ export const messages = writable([
   //   author: BOT,
   //   reply: [
   //     {
+  //       id: 'd3d46211-fa0c-44d2-939b-2252facb1ec0',
   //       url: 'https://www.booking.com/hotel/gb/the-colonnade-london.en-gb.html',
   //       imageUrl:
   //         'https://r-cf.bstatic.com/xdata/images/hotel/square200/122358182.jpg?k=04522139bfae775f531554f2be8a966e14f11880e12c76f58aa7ec31269eb2d2&o=',
@@ -74,6 +75,7 @@ export const messages = writable([
   //       name: 'Paradiso Nr. 1'
   //     },
   //     {
+  //       id: 'd3d46211-fa0c-44d2-939b-2252facb1ec0',
   //       url: 'https://www.booking.com/hotel/gb/the-colonnade-london.en-gb.html',
   //       imageUrl:
   //         'https://r-cf.bstatic.com/xdata/images/hotel/square200/122358182.jpg?k=04522139bfae775f531554f2be8a966e14f11880e12c76f58aa7ec31269eb2d2&o=',
@@ -85,6 +87,7 @@ export const messages = writable([
   //       name: "La Shafu'"
   //     },
   //     {
+  //       id: 'd3d46211-fa0c-44d2-939b-2252facb1ec0',
   //       url: 'https://www.booking.com/hotel/gb/the-colonnade-london.en-gb.html',
   //       imageUrl:
   //         'https://r-cf.bstatic.com/xdata/images/hotel/square200/122358182.jpg?k=04522139bfae775f531554f2be8a966e14f11880e12c76f58aa7ec31269eb2d2&o=',
@@ -96,6 +99,7 @@ export const messages = writable([
   //       name: 'Hanul milei'
   //     },
   //     {
+  //       id: 'd3d46211-fa0c-44d2-939b-2252facb1ec0',
   //       url: 'https://www.booking.com/hotel/gb/the-colonnade-london.en-gb.html',
   //       imageUrl:
   //         'https://r-cf.bstatic.com/xdata/images/hotel/square200/122358182.jpg?k=04522139bfae775f531554f2be8a966e14f11880e12c76f58aa7ec31269eb2d2&o=',
@@ -107,7 +111,7 @@ export const messages = writable([
   //       name: 'Pe Germania'
   //     }
   //   ]
-  // },
+  // }
   // {
   //   type: MSG_TYPE_TEXT,
   //   author: BOT,

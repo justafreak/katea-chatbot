@@ -1,6 +1,7 @@
 <script>
   export let btnData = [];
   export let direction = 'column';
+  export let id = '';
 </script>
 
 <style>
@@ -33,7 +34,9 @@
   <slot />
   <div class="message__Btns">
     {#each btnData as btn}
-      <button class="message__Btn" name={btn.name} on:click={btn.onClick}>{btn.text}</button>
+      <button class="message__Btn" name={btn.name} on:click={btn.onClick} value={id}>
+        {btn.text}
+      </button>
     {/each}
   </div>
 </div>
