@@ -6,12 +6,13 @@ export const messages = writable([
   {
     type: MSG_TYPE_TEXT,
     author: BOT,
-    reply: 'Welcome! You may be exactly where you need to be now.'
+    reply: 'Hi there! My name is Katea, your virtual travel assistant.'
   },
   {
     type: MSG_TYPE_TEXT,
     author: BOT,
-    reply: 'First things first. Where are you heading to?'
+    reply:
+      "I'm here to help you finding your perfect accommodation. You can tell me some info about your trip, or we can just chat."
   }
   // {
   //   type: MSG_TYPE_TEXT,

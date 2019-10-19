@@ -50,8 +50,8 @@
 <style>
   .icon {
     display: inline-block;
-    width: 15px;
-    height: 15px;
+    width: 12px;
+    height: 12px;
     stroke-width: 0;
     stroke: currentColor;
     fill: currentColor;
@@ -66,18 +66,14 @@
   .Rate__star {
     color: #89a8a5;
     display: inline-block;
-    padding: 0 7px;
+    padding: 0 6px;
     text-decoration: none;
-    cursor: pointer;
     background: transparent none;
     border: 0;
   }
   .Rate__star .icon {
     top: 0;
     vertical-align: middle;
-  }
-  .Rate__star.hover {
-    color: #555;
   }
   .Rate__star.filled {
     color: #555;
