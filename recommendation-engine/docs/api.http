@@ -1,5 +1,30 @@
 # Get accomodation suggestions
 POST http://localhost:3000/suggestions
+Content-Type: application/json
+
+{ 
+   "review":null,
+   "id":null,
+   "sessionId":"06126649-7dc2-4998-b17c-496d96ee4e8b",
+   "hotel_id":null,
+   "like":0,
+   "accomodation_quality_wifi":0,
+   "accomodation_quality_staff":0,
+   "accomodation_quality_location":0,
+   "accomodation_quality_price":0,
+   "accomodation_quality_quiet":0,
+   "accomodation_quality_breakfast":0,
+   "accomodation_quality_cleanliness":0,
+   "travel_type_work":0,
+   "travel_type_honeymoon":0,
+   "travel_type_citybreak":0,
+   "travel_type_holiday":0,
+   "travel_companion_solo":0,
+   "travel_companion_kids":0,
+   "travel_companion_couple":0,
+   "travel_companion_friends":0,
+   "sentiment_score":0
+}
 
 # Get accomodation suggestions
 GET http://localhost:3000/train?city=London

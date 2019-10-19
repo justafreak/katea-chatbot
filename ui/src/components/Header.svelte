@@ -16,7 +16,7 @@
     box-sizing: border-box;
     display: flex;
     font-size: 20px;
-    color: #6b7e81;
+    color: #585a56;
   }
 
   .sc-header--team-name {

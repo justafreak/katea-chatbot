@@ -13,13 +13,16 @@
 </script>
 
 <style>
-  .sc-message--quick {
-    color: white;
+  .sc-message--quick a:visited,
+  .sc-message--quick a:hover {
+    background-color: #a1a3a7;
+    color: #f1f3f2;
   }
 
   .sc-message--quick .sc-message__reply {
     display: inline-block;
-    background-color: #f4f7f9;
+    background-color: #a1a3a7;
+    color: #f1f3f2;
     margin: 10px;
     border-radius: 16px;
     box-shadow: 0 1px 28px 0 rgba(90, 60, 122, 0.22);
@@ -28,7 +31,6 @@
 
   .quickreply {
     text-decoration: none;
-    color: #333333;
     font-size: 12px;
     font-weight: bold;
     padding: 0 15px;

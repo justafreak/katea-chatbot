@@ -2,25 +2,17 @@ require("@tensorflow/tfjs-node");
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const morgan = require("morgan");
 const Brain = require("./Brain");
 
 const app = express();
 const port = 3000;
 
 const recEngine = new Brain();
-// This prediction point is for testing purposes only
-const defaultPredictionPoint = {
-  accomodation_quality_wifi: 0.5,
-  accomodation_quality_staff: 0.5,
-  accomodation_quality_location: 0.5,
-  accomodation_quality_price: 0.5,
-  accomodation_quality_quiet: 0.5,
-  accomodation_quality_breakfast: 0.5,
-  accomodation_quality_cleanliness: 0.5
-};
 
 app.use(cors());
 app.use(bodyParser.json());
+app.use(morgan("common"));
 
 app.get("/train", (req, res) => {
   recEngine.train();
@@ -28,11 +20,9 @@ app.get("/train", (req, res) => {
 
 app.post("/suggestions", async (req, res) => {
   console.log(`Processing request with params ${JSON.stringify(req.body)}`);
-  const { features } = req.body;
+  const { session_id } = req.body;
 
-  const bestHotelMatches = await recEngine.suggest(
-    features || defaultPredictionPoint
-  );
+  const bestHotelMatches = await recEngine.suggest(req.body, session_id);
 
   res.json(bestHotelMatches);
 });

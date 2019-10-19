@@ -10,6 +10,9 @@ const toConstantWord = f =>
 
 const toRangeVector = numericalValues => jenks(numericalValues, 3);
 
+const VenueMap = {};
+const ZoneMap = {};
+
 function getAccomodationLabels(h) {
   const hotelLabels = h.facilities.reduce((facilities, f) => {
     const k = toConstantWord(f);
@@ -19,10 +22,14 @@ function getAccomodationLabels(h) {
     return facilities;
   }, {});
   if (h.venueType) {
-    hotelLabels[toConstantWord(h.venueType)] = 1;
+    const venueType = toConstantWord(h.venueType);
+    hotelLabels[venueType] = 1;
+    VenueMap[venueType] = 1;
   }
   if (h.zone) {
-    hotelLabels[toConstantWord(h.zone)] = 1;
+    const zone = toConstantWord(h.zone);
+    hotelLabels[zone] = 1;
+    ZoneMap[zone] = 1;
   }
   return hotelLabels;
 }
@@ -114,5 +121,7 @@ module.exports = {
   toVector,
   objectToVector,
   labelsToObject,
-  buildLabelsVector
+  buildLabelsVector,
+  ZoneMap,
+  VenueMap
 };

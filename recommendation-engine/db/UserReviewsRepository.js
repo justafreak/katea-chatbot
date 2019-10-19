@@ -1,7 +1,4 @@
-const fs = require("fs");
 const DB = require("./DB");
-const AccomodationsRepository = require("./AccomodationsRepository");
-const kind = "Hotels";
 /**
  * A user review represents informations parsed from real scraped reviews or from
  * user rating.
@@ -30,35 +27,59 @@ const dummyUserReview = {
   session_id: 1,
   hotel_id: 1,
   like: 1,
-  travel_type_work: 1,
+  travel_type_work: 0,
   travel_type_honeymoon: 0,
   travel_type_citybreak: 0,
   travel_type_holiday: 0,
   travel_companion_solo: 0,
-  travel_companion_kids: 1,
-  travel_companion_couple: 1,
+  travel_companion_kids: 0,
+  travel_companion_couple: 0,
   travel_companion_friends: 0,
-  accomodation_quality_cleanliness: 1,
-  accomodation_quality_breakfast: 1,
+  accomodation_quality_cleanliness: 0,
+  accomodation_quality_breakfast: 0,
   accomodation_quality_quiet: 0,
   accomodation_quality_price: 0,
-  accomodation_quality_location: 1,
+  accomodation_quality_location: 0,
   accomodation_quality_wifi: 0,
   accomodation_quality_staff: 0
 };
 
 class UserReviewsRepository {
-  async loadUserReviews() {
-    const accomodationRepo = new AccomodationsRepository();
-    const hotels = await accomodationRepo.loadAccomodations();
+  constructor() {
+    this.reviews = [];
+  }
+  async loadHotelsRatedByUser(sessionId) {
+    const db = DB.getConnection();
+    const query = db.createQuery(UserReviewsRepository.ENTITY_KIND);
+    if (sessionId) {
+      query.filter("session_id", "=", sessionId);
+    }
+    const [botRecommendation] = await db.runQuery(query);
 
-    return hotels.map((h, i) => ({
-      ...dummyUserReview,
-      hotel_id: h.id,
-      session_id: i
-    }));
+    return botRecommendation;
+  }
+  async loadUserReviews(hotels) {
+    if (this.reviews.length > 0) {
+      return this.reviews;
+    }
+    const db = DB.getConnection();
+    const query = db.createQuery(UserReviewsRepository.ENTITY_KIND);
+
+    const [reviews] = await db.runQuery(query);
+    this.reviews = reviews.filter(r => r.like === 1 || r.sentiment_score === 1);
+
+    return this.reviews;
+
+    // return hotels.map((h, i) => ({
+    //   ...dummyUserReview,
+    //   hotel_id: h.id,
+    //   session_id: i
+    // }));
   }
 }
+
+UserReviewsRepository.ENTITY_KIND = "Recommendation";
+
 UserReviewsRepository.ALL_USER_FEATURES = [
   "travel_type_work",
   "travel_companion_solo",
