@@ -2,28 +2,19 @@ const fs = require("fs");
 const path = require("path");
 const DB = require("./DB");
 
-const kind = "Hotels";
-
 class AccomodationsRepository {
-  findByIdx(idx) {
-    const [id] = features.find(f => f[1] === idx);
-    if (id) {
-      return hotels.find(hotel => hotel.id === id);
-    }
-  }
   async loadAccomodations() {
-    const hotels = JSON.parse(
-      fs.readFileSync(
-        path.join(__dirname, "..", "data", "hotels.json"),
-        "utf-8"
-      )
-    );
-    // const db = DB.getConnection();
-    // const query = datastore.createQuery('Hotels');
-    // const [hotels] = await datastore.runQuery(query);
+    const db = DB.getConnection();
+    const query = db.createQuery(AccomodationsRepository.ENTITY_KIND);
+    const [hotels] = await db.runQuery(query);
 
-    return hotels;
+    return hotels.map(h => {
+      h.facilities = JSON.parse(h.facilities);
+
+      return h;
+    });
   }
 }
+AccomodationsRepository.ENTITY_KIND = "Hotels";
 
 module.exports = AccomodationsRepository;
