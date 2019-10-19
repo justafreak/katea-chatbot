@@ -3,6 +3,7 @@ package ml.strikers.kateaserver.fulfilment.convertor;
 import com.google.api.services.dialogflow.v2.model.GoogleCloudDialogflowV2beta1WebhookResponse;
 import ml.strikers.kateaserver.fulfilment.entity.DialogFlowEntity;
 import ml.strikers.kateaserver.fulfilment.entity.Recommendation;
+import ml.strikers.kateaserver.fulfilment.entity.VoteHotel;
 import ml.strikers.kateaserver.fulfilment.service.RecommendationMapper;
 import ml.strikers.kateaserver.voting.rest.v1.dto.VoteRequest;
 
@@ -18,6 +19,7 @@ public class RecommendationConverter {
         final var recommendation = RecommendationMapper.map(facilities);
         recommendation.setSessionId(voteRequest.getSessionId());
         recommendation.setHotelId(voteRequest.getId());
+        recommendation.setLike(voteRequest.getVote() == VoteHotel.Action.upvote ? 1.0 : 0.0);
         recommendation.setId(UUID.randomUUID());
         return recommendation;
     }

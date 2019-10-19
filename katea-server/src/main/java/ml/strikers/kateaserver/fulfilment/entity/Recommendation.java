@@ -41,7 +41,7 @@ public class Recommendation {
     @JsonProperty("id")
     private UUID id;
 
-    @JsonProperty("sessionId")
+    @JsonProperty("session_id")
     private UUID sessionId;
 
     @JsonProperty("hotel_id")
