@@ -33,7 +33,7 @@ public class FulfilmentConvertor {
                 .reply(fulfilment.getHotelList())
                 .type(ResponseType.CAROUSEL)
                 .build();
-        response.setMessage(List.of(carouselList));
+        response.setMessage(List.of(new SimpleReply("Here are our recommendations"), carouselList));
         return response;
     }
 
