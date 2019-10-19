@@ -17,25 +17,25 @@ public class Recommendation {
     public static final String KIND = "Recommendation";
 
     public static final String ID = "id";
-    public static final String SESSION_ID = "sessionId";
-    public static final String HOTEL_ID = "hotelId";
+    public static final String SESSION_ID = "session_id";
+    public static final String HOTEL_ID = "hotel_id";
     public static final String LIKE = "like";
-    public static final String ACCOMMODATION_QUALITY_WIFI = "accommodationQualityWifi";
-    public static final String ACCOMMODATION_QUALITY_STAFF = "accommodationQualityStaff";
-    public static final String ACCOMMODATION_QUALITY_LOCATION = "accommodationQualityLocation";
-    public static final String ACCOMMODATION_QUALITY_PRICE = "accommodationQualityPrice";
-    public static final String ACCOMMODATION_QUALITY_QUIET = "accommodationQualityQuiet";
-    public static final String ACCOMMODATION_QUALITY_BREAKFAST = "accommodationQualityBreakFast";
-    public static final String ACCOMMODATION_QUALITY_CLEANLINESS = "accommodationQualityCleanLiness";
-    public static final String TRAVEL_TYPE_WORK = "travelTypeWork";
-    public static final String TRAVEL_TYPE_HONEYMOON = "travelTypeWork";
-    public static final String TRAVEL_TYPE_CITY_BREAK = "travelTypeCityBreak";
-    public static final String TRAVEL_TYPE_HOLIDAY = "travelTypeHoliday";
-    public static final String TRAVEL_TYPE_COMPANION_SOLO = "travelTypeCompanionSolo";
-    public static final String TRAVEL_TYPE_COMPANION_KIDS = "travelTypeCompanionKids";
-    public static final String TRAVEL_TYPE_COMPANION_COUPLE = "travelTypeCompanionCouple";
-    public static final String TRAVEL_TYPE_COMPANION_FRIENDS = "travelTypeCompanionFriends";
-    public static final String SENTIMENT_SCORE = "sentimentScore";
+    public static final String ACCOMMODATION_QUALITY_WIFI = "accomodation_quality_wifi";
+    public static final String ACCOMMODATION_QUALITY_STAFF = "accomodation_quality_staff";
+    public static final String ACCOMMODATION_QUALITY_LOCATION = "accomodation_quality_location";
+    public static final String ACCOMMODATION_QUALITY_PRICE = "accomodation_quality_price";
+    public static final String ACCOMMODATION_QUALITY_QUIET = "accomodation_quality_quiet";
+    public static final String ACCOMMODATION_QUALITY_BREAKFAST = "accomodation_quality_breakfast";
+    public static final String ACCOMMODATION_QUALITY_CLEANLINESS = "accomodation_quality_cleanliness";
+    public static final String TRAVEL_TYPE_WORK = "travel_type_work";
+    public static final String TRAVEL_TYPE_HONEYMOON = "travel_type_honeymoon";
+    public static final String TRAVEL_TYPE_CITY_BREAK = "travel_type_citybreak";
+    public static final String TRAVEL_TYPE_HOLIDAY = "travel_type_holiday";
+    public static final String TRAVEL_TYPE_COMPANION_SOLO = "travel_companion_solo";
+    public static final String TRAVEL_TYPE_COMPANION_KIDS = "travel_companion_kids";
+    public static final String TRAVEL_TYPE_COMPANION_COUPLE = "travel_companion_couple";
+    public static final String TRAVEL_TYPE_COMPANION_FRIENDS = "travel_companion_friends";
+    public static final String SENTIMENT_SCORE = "sentiment_score";
     public static final String REVIEW = "review";
 
     @JsonProperty("id")
