@@ -50,7 +50,7 @@ app.post("/learn", (req, res) => {
 });
 
 app.post("/train", async (req, res) => {
-  await recEngine.train();
+  recEngine.train();
 
   res.json({ ok: "ok" });
 });
