@@ -1,6 +1,5 @@
 package ml.strikers.kateaserver.fulfilment.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,8 +8,6 @@ import lombok.NoArgsConstructor;
 import java.util.Comparator;
 import java.util.List;
 import java.util.UUID;
-
-import static java.util.Objects.requireNonNull;
 
 @Data
 @Builder
