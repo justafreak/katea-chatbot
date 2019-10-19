@@ -1,7 +1,7 @@
 package ml.strikers.kateaserver.fulfilment.repository.mapping;
 
 import com.google.cloud.datastore.*;
-import ml.strikers.kateaserver.fulfilment.service.Recommendation;
+import ml.strikers.kateaserver.fulfilment.entity.Recommendation;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

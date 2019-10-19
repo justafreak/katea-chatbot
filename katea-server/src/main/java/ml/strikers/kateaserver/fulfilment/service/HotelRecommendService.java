@@ -26,7 +26,8 @@ public class HotelRecommendService {
     }
 
     public List<Hotel> getMatchingHotelsML(FulfilmentHotelRequest request) {
-        List<Hotel> hotelsByCity = mlService.getSuggestions(request);
+//        List<Hotel> hotelsByCity = mlService.getSuggestions(request);
+        List<Hotel> hotelsByCity = null;
         hotelsByCity.sort(Hotel.SCORE_COMPARATOR);
         return hotelsByCity;
     }

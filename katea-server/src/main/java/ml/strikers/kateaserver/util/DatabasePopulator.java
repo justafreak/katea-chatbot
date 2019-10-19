@@ -1,10 +1,10 @@
 package ml.strikers.kateaserver.util;
 
 
+import ml.strikers.kateaserver.fulfilment.entity.Recommendation;
 import ml.strikers.kateaserver.fulfilment.repository.HotelRepository;
 import ml.strikers.kateaserver.fulfilment.repository.RecommendationRepository;
 import ml.strikers.kateaserver.fulfilment.repository.ReviewRepository;
-import ml.strikers.kateaserver.fulfilment.service.Recommendation;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;

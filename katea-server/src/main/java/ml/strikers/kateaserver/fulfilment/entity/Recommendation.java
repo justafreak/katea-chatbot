@@ -1,4 +1,4 @@
-package ml.strikers.kateaserver.fulfilment.service;
+package ml.strikers.kateaserver.fulfilment.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

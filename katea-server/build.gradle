@@ -37,5 +37,6 @@ dependencies {
     compile 'com.google.apis:google-api-services-dialogflow:v2-rev81-1.25.0'
     compile 'com.google.cloud:google-cloud-datastore:1.2.1'
     compile 'com.google.cloud:google-cloud-dialogflow:0.114.0-alpha'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.10.0'
 
 }

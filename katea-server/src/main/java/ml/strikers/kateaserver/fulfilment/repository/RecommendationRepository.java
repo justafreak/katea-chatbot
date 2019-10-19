@@ -2,8 +2,8 @@ package ml.strikers.kateaserver.fulfilment.repository;
 
 import com.google.cloud.datastore.Datastore;
 import com.google.cloud.datastore.KeyFactory;
+import ml.strikers.kateaserver.fulfilment.entity.Recommendation;
 import ml.strikers.kateaserver.fulfilment.repository.mapping.RecommendationEntityMapper;
-import ml.strikers.kateaserver.fulfilment.service.Recommendation;
 import org.springframework.stereotype.Repository;
 
 import java.util.UUID;
