@@ -8,7 +8,8 @@
 
 <style>
   .app-container {
-    background-image: linear-gradient(-225deg, #b4cccc 35%, #ffffff);
+    /* background-image: linear-gradient(-225deg, #b4cccc 35%, #ffffff); */
+    background-color: #f1f3f2;
     height: 100%;
   }
 
