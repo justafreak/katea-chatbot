@@ -12,9 +12,11 @@
   const submitText = ev => {
     ev.preventDefault();
 
-    storeHumanMsg(MSG_TYPE_TEXT, reply);
+    if (reply) {
+      storeHumanMsg(MSG_TYPE_TEXT, reply);
 
-    detectIntent(reply);
+      detectIntent(reply);
+    }
 
     reply = '';
   };
@@ -97,6 +99,12 @@
 
   .sc-user-input-container {
     padding: 20px 28%;
+  }
+
+  @media (max-width: 450px) {
+    .sc-user-input-container {
+      padding: 40px 0;
+    }
   }
 </style>
 
