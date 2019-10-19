@@ -11,6 +11,12 @@
     background-image: linear-gradient(-225deg, #b4cccc 35%, #ffffff);
     height: 100%;
   }
+
+  @media (max-width: 450px) {
+    .app-container {
+      height: 94%;
+    }
+  }
 </style>
 
 <div class="app-container">
