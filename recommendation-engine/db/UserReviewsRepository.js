@@ -66,17 +66,10 @@ class UserReviewsRepository {
     }
     const db = DB.getConnection();
     const query = db.createQuery(UserReviewsRepository.ENTITY_KIND);
-
     const [reviews] = await db.runQuery(query);
-    this.reviews = reviews.filter(r => r.like === 1 || r.sentiment_score === 1);
+    this.reviews = reviews.filter(r => r.like === 1);
 
     return this.reviews;
-
-    // return hotels.map((h, i) => ({
-    //   ...dummyUserReview,
-    //   hotel_id: h.id,
-    //   session_id: i
-    // }));
   }
 }
 
