@@ -25,7 +25,7 @@ public class ReviewAnalysisController {
             String responseMessage = reviewAnalysisService.startReviewAnalysis();
             return new ResponseEntity<>(responseMessage, HttpStatus.OK);
         } catch (Exception e) {
-            log.error("Ceva error", e);
+            log.error("Unexpected error", e);
             return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

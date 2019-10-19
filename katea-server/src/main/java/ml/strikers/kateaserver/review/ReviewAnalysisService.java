@@ -1,7 +1,7 @@
 package ml.strikers.kateaserver.review;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.api.gax.rpc.InvalidArgumentException;
+import com.google.api.gax.rpc.ApiException;
 import com.google.cloud.dialogflow.v2.QueryResult;
 import com.google.protobuf.Value;
 import lombok.extern.slf4j.Slf4j;
@@ -110,7 +110,7 @@ public class ReviewAnalysisService {
                 maybeSentiment.ifPresent(response::setSentiment);
                 return Optional.of(response);
             }
-        } catch (InvalidArgumentException e) {
+        } catch (ApiException e) {
             log.error("Unable to do DialogFlow request", e);
             return Optional.empty();
         } catch (Exception e) {
