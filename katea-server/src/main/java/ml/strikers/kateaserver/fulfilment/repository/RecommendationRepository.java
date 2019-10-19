@@ -2,6 +2,7 @@ package ml.strikers.kateaserver.fulfilment.repository;
 
 import com.google.cloud.datastore.Datastore;
 import com.google.cloud.datastore.KeyFactory;
+import lombok.extern.slf4j.Slf4j;
 import ml.strikers.kateaserver.fulfilment.entity.Recommendation;
 import ml.strikers.kateaserver.fulfilment.repository.mapping.RecommendationEntityMapper;
 import org.springframework.stereotype.Repository;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import java.util.UUID;
 
 @Repository
+@Slf4j
 public class RecommendationRepository extends AbstractRepository<Recommendation, UUID> {
 
     private final KeyFactory hotelKeyFactory = datastore.newKeyFactory().setKind(Recommendation.KIND);
@@ -22,7 +24,11 @@ public class RecommendationRepository extends AbstractRepository<Recommendation,
 
     @Override
     public Recommendation save(Recommendation recommendation) {
-        datastore.add(recommendationEntityMapper.buildRecommendationEntity(hotelKeyFactory, recommendation));
+        try {
+            datastore.add(recommendationEntityMapper.buildRecommendationEntity(hotelKeyFactory, recommendation));
+        } catch (Exception e) {
+            log.error("Unable to save recommendation", e);
+        }
         return recommendation;
     }
 

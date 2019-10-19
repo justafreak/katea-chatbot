@@ -35,6 +35,8 @@ public class Recommendation {
     public static final String TRAVEL_TYPE_COMPANION_KIDS = "travelTypeCompanionKids";
     public static final String TRAVEL_TYPE_COMPANION_COUPLE = "travelTypeCompanionCouple";
     public static final String TRAVEL_TYPE_COMPANION_FRIENDS = "travelTypeCompanionFriends";
+    public static final String SENTIMENT_SCORE = "sentimentScore";
+    public static final String REVIEW = "review";
 
     @JsonProperty("id")
     private UUID id;
@@ -93,5 +95,9 @@ public class Recommendation {
     @JsonProperty("travel_companion_friends")
     private double travelTypeCompanionFriends;
 
+    @JsonProperty("sentiment_score")
+    private double sentimentScore;
 
+    @JsonProperty
+    private String review;
 }
