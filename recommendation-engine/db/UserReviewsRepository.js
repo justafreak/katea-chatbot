@@ -1,7 +1,4 @@
-const fs = require("fs");
 const DB = require("./DB");
-const AccomodationsRepository = require("./AccomodationsRepository");
-const kind = "Hotels";
 /**
  * A user review represents informations parsed from real scraped reviews or from
  * user rating.
@@ -51,23 +48,33 @@ class UserReviewsRepository {
   constructor() {
     this.reviews = [];
   }
+  async loadHotelsRatedByUser(sessionId) {
+    const db = DB.getConnection();
+    const query = db.createQuery(UserReviewsRepository.ENTITY_KIND);
+    if (sessionId) {
+      query.filter("session_id", "=", sessionId);
+    }
+    const [botRecommendation] = await db.runQuery(query);
+
+    return botRecommendation;
+  }
   async loadUserReviews(hotels) {
     if (this.reviews.length > 0) {
       return this.reviews;
     }
     const db = DB.getConnection();
-    const query = db
-      .createQuery(UserReviewsRepository.ENTITY_KIND)
-      .filter("like", "=", 1);
+    const query = db.createQuery(UserReviewsRepository.ENTITY_KIND);
 
     const [reviews] = await db.runQuery(query);
-    this.reviews = reviews;
+    this.reviews = reviews.filter(r => r.like === 1 || r.sentiment_score === 1);
 
-    return hotels.map((h, i) => ({
-      ...dummyUserReview,
-      hotel_id: h.id,
-      session_id: i
-    }));
+    return this.reviews;
+
+    // return hotels.map((h, i) => ({
+    //   ...dummyUserReview,
+    //   hotel_id: h.id,
+    //   session_id: i
+    // }));
   }
 }
 

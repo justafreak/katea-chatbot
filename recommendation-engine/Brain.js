@@ -78,7 +78,12 @@ class Brain {
 
     return { trainingData, hotelFeaturesVector };
   }
-  async suggest(features, howMany = 5) {
+  async suggest(features, sessionId, howMany = 5) {
+    const botRecommendationRepo = new UserReviewsRepository();
+    const currentRecommendations = await botRecommendationRepo.loadHotelsRatedByUser(
+      sessionId
+    );
+
     const idealAccomodationTraitsTensor = this.regression.predict([
       objectToVector(features, UserReviewsRepository.ALL_USER_FEATURES, true)
     ]);
@@ -86,8 +91,11 @@ class Brain {
     const accomodationsRepo = new AccomodationsRepository();
     const hotels = await accomodationsRepo.loadAccomodations();
     const hotelFeaturesVector = buildLabelsVector(hotels);
+    const notYetRecommended = item =>
+      !currentRecommendations.find(r => r.hotel_id === item.hotel.id);
+
     // Find the most similar hotels to this one
-    return hotels
+    const recommendations = hotels
       .map(hotel => {
         const hotelTraitsTensor = tf.tensor([
           toVector(hotel, hotelFeaturesVector)
@@ -99,8 +107,11 @@ class Brain {
         return { hotel, distance };
       })
       .sort((h1, h2) => h1.distance - h2.distance)
+      .filter(notYetRecommended)
       .slice(0, howMany)
       .map(r => r.hotel);
+
+    return recommendations;
   }
   // @todo - Incorporate user feedback in the learning data set
   learnFromUser(hotelId, suggestedFeatures) {}
