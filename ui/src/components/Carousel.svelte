@@ -18,12 +18,12 @@
 
   const btnData = [
     {
-      text: 'YEAH',
+      text: 'Thumbs up',
       name: 'likeBtn',
       onClick: event => handleUserFeedback(USER_FEEDBACK_LIKE, event)
     },
     {
-      text: 'MEEH',
+      text: 'Thumbs down',
       name: 'dislikeBtn',
       onClick: event => handleUserFeedback(USER_FEEDBACK_DISLIKE, event)
     }
@@ -31,27 +31,27 @@
 </script>
 
 <style>
-  .carousel-container {
+  .kcb-carousel-container {
     display: flex;
     width: 100%;
   }
-  .carousel-container :global(.carousel ul) {
+  .kcb-carousel-container :global(.carousel ul) {
     margin-top: 0;
   }
-  .carousel-container :global(.carousel ul li) {
+  .kcb-carousel-container :global(.carousel ul li) {
     background-color: #a1a3a7;
     cursor: pointer;
   }
-  .carousel-container :global(.carousel ul li):hover {
+  .kcb-carousel-container :global(.carousel ul li):hover {
     background-color: #585a56;
   }
-  .carousel-container :global(button.right),
-  .carousel-container :global(button.left) {
+  .kcb-carousel-container :global(button.right),
+  .kcb-carousel-container :global(button.left) {
     display: none;
   }
 </style>
 
-<div class="carousel-container">
+<div class="kcb-carousel-container">
   <Carousel perPage={{ 1: 1, 451: 3 }} autoplay={10000}>
     {#each message.reply as carouselItem}
       <MessageWithButtons {btnData} direction={'column'} id={carouselItem.id}>
