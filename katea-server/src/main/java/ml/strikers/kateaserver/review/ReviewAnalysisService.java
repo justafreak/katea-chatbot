@@ -6,7 +6,6 @@ import com.google.cloud.dialogflow.v2.QueryResult;
 import com.google.protobuf.Value;
 import lombok.extern.slf4j.Slf4j;
 import ml.strikers.kateaserver.exception.DeserializationException;
-import ml.strikers.kateaserver.fulfilment.entity.Fulfilment;
 import ml.strikers.kateaserver.fulfilment.service.DialogProvider;
 import ml.strikers.kateaserver.review.entity.*;
 import org.springframework.stereotype.Component;

@@ -3,7 +3,6 @@ package ml.strikers.kateaserver.fulfilment.service;
 import lombok.extern.slf4j.Slf4j;
 import ml.strikers.kateaserver.fulfilment.entity.QualityFacilities;
 import ml.strikers.kateaserver.fulfilment.entity.Recommendation;
-import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 import java.util.List;
