@@ -18,7 +18,7 @@ public class VoteHotel {
     private Action action;
 
     public enum Action {
-        UPVOTE, DOWNVOTE
+        upvote, downvote
     }
 
 }

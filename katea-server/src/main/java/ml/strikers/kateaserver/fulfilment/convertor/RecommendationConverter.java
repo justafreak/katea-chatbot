@@ -17,6 +17,8 @@ public class RecommendationConverter {
         final var facilities = getFacilitiesFromParametersMap(voteRequest.getParameters(), DialogFlowEntity.QUALITY);
         final var recommendation = RecommendationMapper.map(facilities);
         recommendation.setSessionId(voteRequest.getSessionId());
+        recommendation.setHotelId(voteRequest.getId());
+        recommendation.setId(UUID.randomUUID());
         return recommendation;
     }
 
