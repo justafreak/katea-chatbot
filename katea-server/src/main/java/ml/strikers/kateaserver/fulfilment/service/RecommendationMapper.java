@@ -31,5 +31,6 @@ public class RecommendationMapper {
         return recommendation;
     }
 
-
+    public RecommendationMapper() {
+    }
 }

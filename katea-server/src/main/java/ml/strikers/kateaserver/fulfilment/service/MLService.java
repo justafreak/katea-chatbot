@@ -4,7 +4,6 @@ import com.google.api.services.dialogflow.v2.model.GoogleCloudDialogflowV2beta1W
 import ml.strikers.kateaserver.fulfilment.convertor.RecommendationConverter;
 import ml.strikers.kateaserver.fulfilment.entity.Hotel;
 import ml.strikers.kateaserver.fulfilment.entity.Recommendation;
-import ml.strikers.kateaserver.voting.rest.v1.dto.VoteRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -29,16 +28,11 @@ public class MLService {
 
     }
 
-
     public List<Hotel> preprocessQualityFacilities(GoogleCloudDialogflowV2beta1WebhookResponse webHookResponse) {
-        return sendRecommendation(RecommendationConverter.webHookToRecmmendation(webHookResponse));
+        return getSuggestions(RecommendationConverter.webHookToRecmmendation(webHookResponse));
     }
 
-    public List<Hotel> processVoteRequest(VoteRequest voteRequest) {
-        return sendRecommendation(RecommendationConverter.voteRequestTRecommendation(voteRequest));
-    }
-
-    private List<Hotel> sendRecommendation(Recommendation recommendation) {
+    public List<Hotel> getSuggestions(Recommendation recommendation) {
         return Arrays.asList(restTemplate.postForObject(recommendationUrl, recommendation, Hotel[].class));
     }
 

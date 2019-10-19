@@ -1,9 +1,14 @@
 package ml.strikers.kateaserver.voting.rest.v1;
 
+import ml.strikers.kateaserver.fulfilment.entity.Hotel;
 import ml.strikers.kateaserver.voting.rest.v1.dto.VoteRequest;
 import ml.strikers.kateaserver.voting.service.VoteService;
+import ml.strikers.kateaserver.web.rest.v1.dto.CarouselList;
 import ml.strikers.kateaserver.web.rest.v1.dto.Response;
+import ml.strikers.kateaserver.web.rest.v1.dto.ResponseType;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/vote")
@@ -18,7 +23,14 @@ public class VotingController {
 
 
     @PostMapping("")
-    public Response query(@RequestBody VoteRequest voteRequest) throws Exception {
-        return voteService.getResponse(voteRequest);
+    public Response query(@RequestBody VoteRequest voteRequest) {
+        final List<Hotel> recommendations = voteService.getResponse(voteRequest);
+        Response response = new Response();
+        CarouselList carouselList = new CarouselList();
+        carouselList.setType(ResponseType.CAROUSEL);
+        carouselList.setReply(recommendations);
+        response.setMessage(carouselList);
+        response.setSessionId(voteRequest.getSessionId());
+        return response;
     }
 }

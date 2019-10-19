@@ -1,11 +1,13 @@
 package ml.strikers.kateaserver.voting.service;
 
+import ml.strikers.kateaserver.fulfilment.convertor.RecommendationConverter;
+import ml.strikers.kateaserver.fulfilment.entity.Hotel;
+import ml.strikers.kateaserver.fulfilment.entity.Recommendation;
 import ml.strikers.kateaserver.fulfilment.service.MLService;
 import ml.strikers.kateaserver.voting.rest.v1.dto.VoteRequest;
-import ml.strikers.kateaserver.web.rest.v1.dto.CarouselList;
-import ml.strikers.kateaserver.web.rest.v1.dto.Response;
-import ml.strikers.kateaserver.web.rest.v1.dto.ResponseType;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class VoteService {
@@ -17,13 +19,8 @@ public class VoteService {
     }
 
 
-    public Response getResponse(VoteRequest voteRequest) {
-        Response response = new Response();
-        CarouselList carouselList = new CarouselList();
-        carouselList.setType(ResponseType.CAROUSEL);
-        carouselList.setReply(mlService.processVoteRequest(voteRequest));
-        response.setMessage(carouselList);
-        response.setSessionId(voteRequest.getSessionId());
-        return response;
+    public List<Hotel> getResponse(VoteRequest voteRequest) {
+        final Recommendation recommendation = RecommendationConverter.voteRequestTRecommendation(voteRequest);
+        return mlService.getSuggestions(recommendation);
     }
 }

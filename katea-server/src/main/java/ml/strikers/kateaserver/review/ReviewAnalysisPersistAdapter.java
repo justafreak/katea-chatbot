@@ -18,14 +18,11 @@ public class ReviewAnalysisPersistAdapter {
 
     private final HotelRepository hotelRepository;
     private final RecommendationRepository recommendationRepository;
-    private final RecommendationMapper recommendationMapper;
 
     public ReviewAnalysisPersistAdapter(HotelRepository hotelRepository,
-                                        RecommendationRepository recommendationRepository,
-                                        RecommendationMapper recommendationMapper) {
+                                        RecommendationRepository recommendationRepository) {
         this.hotelRepository = hotelRepository;
         this.recommendationRepository = recommendationRepository;
-        this.recommendationMapper = recommendationMapper;
     }
 
 
@@ -40,7 +37,7 @@ public class ReviewAnalysisPersistAdapter {
     }
 
     private Recommendation reviewToRecommendation(String hotelId, ReviewAnalysisResponse response) {
-        Recommendation recommendation = recommendationMapper.map(new ArrayList<>(response.getFacilities()));
+        Recommendation recommendation = RecommendationMapper.map(new ArrayList<>(response.getFacilities()));
         recommendation.setId(UUID.randomUUID());
         recommendation.setHotelId(UUID.fromString(hotelId));
         recommendation.setReview(response.getReview());
