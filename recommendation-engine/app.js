@@ -20,9 +20,12 @@ app.get("/train", (req, res) => {
 
 app.post("/suggestions", async (req, res) => {
   console.log(`Processing request with params ${JSON.stringify(req.body)}`);
-  const { session_id } = req.body;
+  const { session_id, sessionId } = req.body;
 
-  const bestHotelMatches = await recEngine.suggest(req.body, session_id);
+  const bestHotelMatches = await recEngine.suggest(
+    req.body,
+    session_id || sessionId
+  );
 
   res.json(bestHotelMatches);
 });
