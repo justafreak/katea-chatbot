@@ -40,7 +40,7 @@ public class MLService {
     }
 
     public void triggerTrain() {
-        return restTemplate.postForObject(trainUrl, null, Hotel[].class));
+        restTemplate.postForObject(trainUrl, null, String.class);
     }
 
 }
