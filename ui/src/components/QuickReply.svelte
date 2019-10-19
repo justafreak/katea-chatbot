@@ -2,20 +2,21 @@
   import { messages, storeHumanMsg } from '../stores/messages.js';
   import { HUMAN } from '../constants/author';
   import { MSG_TYPE_TEXT, MSG_TYPE_QUICK_REPLY } from '../constants/msgType';
+  import { detectIntent } from '../api/intent';
 
   export let message = {
     type: MSG_TYPE_QUICK_REPLY,
     reply: []
   };
-  const onSubmit = text => {
-    storeHumanMsg(MSG_TYPE_TEXT, text);
+  const onSubmit = reply => {
+    storeHumanMsg(MSG_TYPE_TEXT, reply);
+    detectIntent(reply);
   };
 </script>
 
 <style>
   .sc-message--quick a:visited,
   .sc-message--quick a:hover {
-    background-color: #a1a3a7;
     color: #f1f3f2;
   }
 
@@ -40,6 +41,10 @@
     height: auto;
     text-align: center;
     cursor: pointer;
+  }
+
+  .sc-message--quick .sc-message__reply:hover {
+    background-color: #585a56;
   }
 </style>
 

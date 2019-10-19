@@ -58,60 +58,60 @@ export const messages = writable([
   //   author: BOT,
   //   reply: 'Here you go love. How about these'
   // },
-  // {
-  //   type: MSG_TYPE_CAROUSEL,
-  //   author: BOT,
-  //   reply: [
-  //     {
-  //       id: 'd3d46211-fa0c-44d2-939b-2252facb1ec0',
-  //       url: 'https://www.booking.com/hotel/gb/the-colonnade-london.en-gb.html',
-  //       imageUrl:
-  //         'https://r-cf.bstatic.com/xdata/images/hotel/square200/122358182.jpg?k=04522139bfae775f531554f2be8a966e14f11880e12c76f58aa7ec31269eb2d2&o=',
-  //       price: {
-  //         value: 2000.51,
-  //         currency: 'RON'
-  //       },
-  //       rating: 5,
-  //       name: 'Paradiso Nr. 1'
-  //     },
-  //     {
-  //       id: 'd3d46211-fa0c-44d2-939b-2252facb1ec0',
-  //       url: 'https://www.booking.com/hotel/gb/the-colonnade-london.en-gb.html',
-  //       imageUrl:
-  //         'https://r-cf.bstatic.com/xdata/images/hotel/square200/122358182.jpg?k=04522139bfae775f531554f2be8a966e14f11880e12c76f58aa7ec31269eb2d2&o=',
-  //       price: {
-  //         value: 200.5,
-  //         currency: 'RON'
-  //       },
-  //       rating: 3,
-  //       name: "La Shafu'"
-  //     },
-  //     {
-  //       id: 'd3d46211-fa0c-44d2-939b-2252facb1ec0',
-  //       url: 'https://www.booking.com/hotel/gb/the-colonnade-london.en-gb.html',
-  //       imageUrl:
-  //         'https://r-cf.bstatic.com/xdata/images/hotel/square200/122358182.jpg?k=04522139bfae775f531554f2be8a966e14f11880e12c76f58aa7ec31269eb2d2&o=',
-  //       price: {
-  //         value: 200.5,
-  //         currency: 'RON'
-  //       },
-  //       rating: 1,
-  //       name: 'Hanul milei'
-  //     },
-  //     {
-  //       id: 'd3d46211-fa0c-44d2-939b-2252facb1ec0',
-  //       url: 'https://www.booking.com/hotel/gb/the-colonnade-london.en-gb.html',
-  //       imageUrl:
-  //         'https://r-cf.bstatic.com/xdata/images/hotel/square200/122358182.jpg?k=04522139bfae775f531554f2be8a966e14f11880e12c76f58aa7ec31269eb2d2&o=',
-  //       price: {
-  //         value: 200.5,
-  //         currency: 'RON'
-  //       },
-  //       rating: 4,
-  //       name: 'Pe Germania'
-  //     }
-  //   ]
-  // },
+  {
+    type: MSG_TYPE_CAROUSEL,
+    author: BOT,
+    reply: [
+      {
+        id: 'd3d46211-fa0c-44d2-939b-2252facb1ec0',
+        url: 'https://www.booking.com/hotel/gb/the-colonnade-london.en-gb.html',
+        imageUrl:
+          'https://r-cf.bstatic.com/xdata/images/hotel/square200/122358182.jpg?k=04522139bfae775f531554f2be8a966e14f11880e12c76f58aa7ec31269eb2d2&o=',
+        price: {
+          value: 2000.51,
+          currency: 'RON'
+        },
+        rating: 5,
+        name: 'Paradiso Nr. 1'
+      },
+      {
+        id: 'd3d46211-fa0c-44d2-939b-2252facb1ec0',
+        url: 'https://www.booking.com/hotel/gb/the-colonnade-london.en-gb.html',
+        imageUrl:
+          'https://r-cf.bstatic.com/xdata/images/hotel/square200/122358182.jpg?k=04522139bfae775f531554f2be8a966e14f11880e12c76f58aa7ec31269eb2d2&o=',
+        price: {
+          value: 200.5,
+          currency: 'RON'
+        },
+        rating: 3,
+        name: "La Shafu'"
+      },
+      {
+        id: 'd3d46211-fa0c-44d2-939b-2252facb1ec0',
+        url: 'https://www.booking.com/hotel/gb/the-colonnade-london.en-gb.html',
+        imageUrl:
+          'https://r-cf.bstatic.com/xdata/images/hotel/square200/122358182.jpg?k=04522139bfae775f531554f2be8a966e14f11880e12c76f58aa7ec31269eb2d2&o=',
+        price: {
+          value: 200.5,
+          currency: 'RON'
+        },
+        rating: 1,
+        name: 'Hanul milei'
+      },
+      {
+        id: 'd3d46211-fa0c-44d2-939b-2252facb1ec0',
+        url: 'https://www.booking.com/hotel/gb/the-colonnade-london.en-gb.html',
+        imageUrl:
+          'https://r-cf.bstatic.com/xdata/images/hotel/square200/122358182.jpg?k=04522139bfae775f531554f2be8a966e14f11880e12c76f58aa7ec31269eb2d2&o=',
+        price: {
+          value: 200.5,
+          currency: 'RON'
+        },
+        rating: 4,
+        name: 'Pe Germania'
+      }
+    ]
+  },
   // {
   //   type: MSG_TYPE_TEXT,
   //   author: BOT,

@@ -1,11 +1,12 @@
 import { get } from 'svelte/store';
-import { sessionId } from '../stores/session.js';
+import { storeSessionId, sessionId } from '../stores/session.js';
 import { RECOMMENDATION_PATH } from '../constants/paths';
 import { entities } from '../stores/recommendation';
 import { storeBotMsg } from '../stores/messages.js';
 import { MSG_TYPE_TEXT } from '../constants/msgType.js';
 import { switchTypingIndicator } from '../stores/chat';
 import { waitUntil } from '../utils/utils';
+import { setEntities } from '../stores/recommendation';
 
 const generateRequestBody = requestData => {
   const { id, userFeedback } = requestData;

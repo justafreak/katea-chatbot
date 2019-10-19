@@ -12,7 +12,8 @@
 
   .message__Btn {
     font-size: 12px;
-    color: #89a8a5;
+    background-color: #a1a3a7;
+    color: #f1f3f2;
     border: none;
     margin: 0;
     cursor: pointer;
@@ -20,12 +21,13 @@
   }
 
   .message__Btn:hover {
-    color: #555;
+    background-color: #585a56;
   }
 
   .message {
     box-shadow: 0 1px 10px 0 rgba(90, 60, 122, 0.22);
-    background-color: #e2e8ec;
+    background-color: #c2d2da;
+    color: #585a56;
     margin: 0 10px;
   }
 </style>
