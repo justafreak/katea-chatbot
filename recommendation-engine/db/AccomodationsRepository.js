@@ -4,13 +4,6 @@ const DB = require("./DB");
 
 const kind = "Hotels";
 
-let { features } = loadCSV(__dirname + "/../data/hotels.csv", {
-  shuffle: false,
-  splitTest: 0,
-  dataColumns: ["id", "idx"],
-  labelColumns: [""]
-});
-
 class AccomodationsRepository {
   findByIdx(idx) {
     const [id] = features.find(f => f[1] === idx);

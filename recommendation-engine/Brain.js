@@ -6,6 +6,8 @@ const {
   toVector,
   objectToVector
 } = require("./AccomodationDataProcessor");
+
+const _ = require("lodash");
 const TrainingDataSplitter = require("./training/TrainingDataSplitter");
 const AccomodationsRepository = require("./db/AccomodationsRepository");
 const UserReviewsRepository = require("./db/UserReviewsRepository");
