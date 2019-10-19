@@ -18,16 +18,14 @@ class LogisticRegression {
     this.weights = tf.zeros([this.features.shape[1], this.labels.shape[1]]);
   }
   gradientDescent(features, labels) {
-    this.weights = tf.tidy(() => {
-      const currentGuesses = features.matMul(this.weights).softmax();
-      const differences = currentGuesses.sub(labels);
-      const slopes = features
-        .transpose()
-        .matMul(differences)
-        .div(features.shape[0]);
+    const currentGuesses = features.matMul(this.weights).softmax();
+    const differences = currentGuesses.sub(labels);
+    const slopes = features
+      .transpose()
+      .matMul(differences)
+      .div(features.shape[0]);
 
-      return this.weights.sub(slopes.mul(this.options.learningRate));
-    });
+    this.weights = this.weights.sub(slopes.mul(this.options.learningRate));
   }
   predict(observations) {
     observations = this.processFeatures(observations);

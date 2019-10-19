@@ -49,11 +49,13 @@ class UserReviewsRepository {
     this.reviews = [];
   }
   async loadHotelsRatedByUser(sessionId) {
+    if (!sessionId) {
+      return [];
+    }
     const db = DB.getConnection();
     const query = db.createQuery(UserReviewsRepository.ENTITY_KIND);
-    if (sessionId) {
-      query.filter("session_id", "=", sessionId);
-    }
+
+    query.filter("session_id", "=", sessionId);
     const [botRecommendation] = await db.runQuery(query);
 
     return botRecommendation;

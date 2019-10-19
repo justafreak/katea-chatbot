@@ -5,7 +5,7 @@ Content-Type: application/json
 { 
    "review":null,
    "id":null,
-   "sessionId":"06126649-7dc2-4998-b17c-496d96ee4e8b",
+   "session_id":"06126649-7dc2-4998-b17c-496d96ee4e8b",
    "hotel_id":null,
    "like":0,
    "accomodation_quality_wifi":0,

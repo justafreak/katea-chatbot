@@ -79,21 +79,28 @@ class Brain {
     return { trainingData, hotelFeaturesVector };
   }
   async suggest(features, sessionId, howMany = 5) {
+    console.time("[PERF]loadReviews");
     const botRecommendationRepo = new UserReviewsRepository();
     const currentRecommendations = await botRecommendationRepo.loadHotelsRatedByUser(
       sessionId
     );
+    console.timeEnd("[PERF]loadReviews");
 
+    console.time("[PERF]predict");
     const idealAccomodationTraitsTensor = this.regression.predict([
       objectToVector(features, UserReviewsRepository.ALL_USER_FEATURES, true)
     ]);
-
+    console.timeEnd("[PERF]predict");
+    console.time("[PERF]loadAccomodations");
     const accomodationsRepo = new AccomodationsRepository();
     const hotels = await accomodationsRepo.loadAccomodations();
     const hotelFeaturesVector = buildLabelsVector(hotels);
+    console.timeEnd("[PERF]loadAccomodations");
+
     const notYetRecommended = item =>
       !currentRecommendations.find(r => r.hotel_id === item.hotel.id);
 
+    console.time("[PERF]generateRecommendations");
     // Find the most similar hotels to this one
     const recommendations = hotels
       .map(hotel => {
@@ -111,6 +118,7 @@ class Brain {
       .slice(0, howMany)
       .map(r => r.hotel);
 
+    console.timeEnd("[PERF]generateRecommendations");
     return recommendations;
   }
   // @todo - Incorporate user feedback in the learning data set
