@@ -31,7 +31,10 @@ public class VotingController {
         carouselList.setType(ResponseType.CAROUSEL);
         carouselList.setReply(recommendations);
         response.setParameters(voteRequest.getParameters());
-        response.setMessage(List.of(new SimpleReply("Here are our recommendations"), carouselList));
+        response.setMessage(List.of(
+                SimpleReply.builder().reply("Here are our recommendations").build(),
+                carouselList)
+        );
         response.setSessionId(voteRequest.getSessionId());
         return response;
     }
