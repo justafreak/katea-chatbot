@@ -3,10 +3,7 @@ package ml.strikers.kateaserver.voting.rest.v1;
 import ml.strikers.kateaserver.fulfilment.entity.Hotel;
 import ml.strikers.kateaserver.voting.rest.v1.dto.VoteRequest;
 import ml.strikers.kateaserver.voting.service.VoteService;
-import ml.strikers.kateaserver.web.rest.v1.dto.CarouselList;
-import ml.strikers.kateaserver.web.rest.v1.dto.Response;
-import ml.strikers.kateaserver.web.rest.v1.dto.ResponseType;
-import ml.strikers.kateaserver.web.rest.v1.dto.SimpleReply;
+import ml.strikers.kateaserver.web.rest.v1.dto.*;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,7 +29,7 @@ public class VotingController {
         carouselList.setReply(recommendations);
         response.setParameters(voteRequest.getParameters());
         response.setMessage(List.of(
-                SimpleReply.builder().reply("Here are our recommendations").build(),
+                SimpleReply.builder().reply(Constants.RECOMMENDATIONS).build(),
                 carouselList)
         );
         response.setSessionId(voteRequest.getSessionId());

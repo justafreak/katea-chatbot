@@ -2,10 +2,7 @@ package ml.strikers.kateaserver.web.convertor;
 
 import lombok.experimental.UtilityClass;
 import ml.strikers.kateaserver.fulfilment.entity.Fulfilment;
-import ml.strikers.kateaserver.web.rest.v1.dto.CarouselList;
-import ml.strikers.kateaserver.web.rest.v1.dto.Response;
-import ml.strikers.kateaserver.web.rest.v1.dto.ResponseType;
-import ml.strikers.kateaserver.web.rest.v1.dto.SimpleReply;
+import ml.strikers.kateaserver.web.rest.v1.dto.*;
 
 import java.util.List;
 
@@ -34,7 +31,7 @@ public class FulfilmentConvertor {
                 .type(ResponseType.CAROUSEL)
                 .build();
         response.setMessage(List.of(
-                SimpleReply.builder().reply("Here are our recommendations").build(),
+                SimpleReply.builder().reply(Constants.RECOMMENDATIONS).build(),
                 carouselList)
         );
         return response;
