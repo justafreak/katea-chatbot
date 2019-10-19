@@ -1,6 +1,5 @@
 <script>
   import Carousel from '@beyonk/svelte-carousel';
-  import { ChevronLeftIcon, ChevronRightIcon } from 'svelte-feather-icons';
   import CarouselItem from './CarouselItem.svelte';
   import MessageWithButtons from './MessageWithButtons.svelte';
   import { MSG_TYPE_CAROUSEL } from '../constants/msgType';

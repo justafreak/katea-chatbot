@@ -9,7 +9,8 @@ public enum QualityFacilities {
     price(Recommendation::setAccommodationQualityPrice),
     location(Recommendation::setAccommodationQualityLocation),
     wifi(Recommendation::setAccommodationQualityWifi),
-    staff(Recommendation::setAccommodationQualityStaff);
+    staff(Recommendation::setAccommodationQualityStaff),
+    quiet(Recommendation::setAccommodationQualityQuiet);
 //    restaurant(Recommendation::setAccommodationQualityRestaurant),
 //    bar(Recommendation::setAccommodationQualityBar);
 

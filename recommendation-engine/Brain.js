@@ -29,12 +29,15 @@ class Brain {
     } = await this.getRawTrainingData();
 
     // Split the data by 80/20 rule.
-    let { features, labels } = dataSplitter.load(trainingData, {
-      shuffle: true,
-      splitTestPercent: 20,
-      featureColumns: UserReviewsRepository.ALL_USER_FEATURES,
-      labelColumns: hotelFeaturesVector
-    });
+    let { features, labels, testFeatures, testLabels } = dataSplitter.load(
+      trainingData,
+      {
+        shuffle: true,
+        splitTestPercent: 20,
+        featureColumns: UserReviewsRepository.ALL_USER_FEATURES,
+        labelColumns: hotelFeaturesVector
+      }
+    );
 
     this.regression = new LogisticRegression(features, labels, {
       learningRate: 0.5,
@@ -43,6 +46,10 @@ class Brain {
     });
 
     this.regression.train();
+    const precision = this.regression.test(testFeatures, testLabels);
+    console.log(
+      `Finished training the system. Achieved precision is ${precision}`
+    );
   }
   async getRawTrainingData() {
     const userReviewsRepo = new UserReviewsRepository();

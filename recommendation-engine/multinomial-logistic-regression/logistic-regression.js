@@ -53,7 +53,7 @@ class LogisticRegression {
     }
   }
   test(testFeatures, testLabels) {
-    const predictions = this.predict(testFeatures);
+    const predictions = this.predict(testFeatures).argMax(1);
     const labels = tf.tensor(testLabels).argMax(1);
 
     const incorrect = predictions

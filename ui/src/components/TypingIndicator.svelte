@@ -11,8 +11,8 @@
     height: 1.35em;
     transition: opacity 0.1s;
     pointer-events: none;
-    position: absolute;
-    top: 50%;
+    /* position: absolute; */
+    /* top: 50%; */
     transform: translateY(-50%);
   }
 
@@ -22,7 +22,7 @@
     height: 9px;
     margin-right: 5px;
     border-radius: 50%;
-    background-color: rgb(238, 0, 118);
+    background-color: #555;
   }
 
   .typing-spinner .ball:nth-child(1) {

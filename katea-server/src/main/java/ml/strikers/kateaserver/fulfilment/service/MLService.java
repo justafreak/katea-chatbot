@@ -5,7 +5,6 @@ import ml.strikers.kateaserver.fulfilment.convertor.RecommendationConverter;
 import ml.strikers.kateaserver.fulfilment.entity.Hotel;
 import ml.strikers.kateaserver.fulfilment.entity.Recommendation;
 import ml.strikers.kateaserver.util.SerializationUtil;
-import ml.strikers.kateaserver.voting.rest.v1.dto.VoteRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -40,7 +39,7 @@ public class MLService {
     }
 
     private List<Hotel> sendRecommendation(Recommendation recommendation) {
-        return Arrays.asList(restTemplate.postForObject(recommendationUrl, SerializationUtil.write(recommendation), Hotel[].class));
+        return Arrays.asList(restTemplate.postForObject(recommendationUrl, recommendation, Hotel[].class));
     }
 
 }
