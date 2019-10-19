@@ -16,9 +16,8 @@ public class RecommendationEntityMapper {
 
     public FullEntity<IncompleteKey> buildRecommendationEntity(KeyFactory recommendationKeyFactory,
                                                                Recommendation recommendation) {
-        return newBuilder(recommendationKeyFactory.newKey())
+        FullEntity.Builder<IncompleteKey> builder = newBuilder(recommendationKeyFactory.newKey())
                 .set(Recommendation.ID, recommendation.getId().toString())
-                .set(Recommendation.SESSION_ID, recommendation.getSessionId().toString())
                 .set(Recommendation.HOTEL_ID, recommendation.getHotelId().toString())
                 .set(Recommendation.LIKE, recommendation.getLike())
                 .set(Recommendation.ACCOMMODATION_QUALITY_WIFI, recommendation.getAccommodationQualityWifi())
@@ -35,7 +34,14 @@ public class RecommendationEntityMapper {
                 .set(Recommendation.TRAVEL_TYPE_COMPANION_SOLO, recommendation.getTravelTypeCompanionSolo())
                 .set(Recommendation.TRAVEL_TYPE_COMPANION_KIDS, recommendation.getTravelTypeCompanionKids())
                 .set(Recommendation.TRAVEL_TYPE_COMPANION_COUPLE, recommendation.getTravelTypeCompanionCouple())
-                .set(Recommendation.TRAVEL_TYPE_COMPANION_FRIENDS, recommendation.getTravelTypeCompanionFriends())
+                .set(Recommendation.TRAVEL_TYPE_COMPANION_FRIENDS, recommendation.getTravelTypeCompanionFriends());
+        if (recommendation.getSessionId() != null) {
+            builder.set(Recommendation.SESSION_ID, recommendation.getSessionId().toString());
+        } else {
+            builder.set(Recommendation.REVIEW, recommendation.getReview())
+                    .set(Recommendation.SENTIMENT_SCORE, recommendation.getSentimentScore());
+        }
+        return builder
                 .build();
     }
 

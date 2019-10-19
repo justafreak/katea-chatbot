@@ -1,11 +1,11 @@
 package ml.strikers.kateaserver.fulfilment.repository;
 
-import com.google.cloud.datastore.Datastore;
-import com.google.cloud.datastore.KeyFactory;
-import com.google.cloud.datastore.Query;
+import com.google.cloud.datastore.*;
+import com.google.cloud.datastore.StructuredQuery.PropertyFilter;
 import ml.strikers.kateaserver.fulfilment.entity.Hotel;
 import ml.strikers.kateaserver.fulfilment.entity.Price;
 import ml.strikers.kateaserver.fulfilment.repository.mapping.HotelEntityMapper;
+import ml.strikers.kateaserver.review.entity.HotelReviewsAnalysisResponse;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -33,6 +33,17 @@ public class HotelRepository extends AbstractRepository<Hotel, UUID> {
     public Hotel save(Hotel hotel) {
         datastore.add(hotelEntityMapper.buildHotelEntity(hotelKeyFactory, priceKeyFactory, hotel));
         return hotel;
+    }
+
+    public void update( HotelReviewsAnalysisResponse analysisResponse) {
+        QueryResults<Entity> queryResult = datastore.run(Query.newEntityQueryBuilder().setFilter(PropertyFilter.eq(Hotel.ID, analysisResponse.getHotelId())).build());
+        if (queryResult.hasNext()) {
+            Entity entity = queryResult.next();
+            Hotel hotel = hotelEntityMapper.entityToHotel(entity);
+            Key key = hotelKeyFactory.newKey(entity.getKey().getId());
+            Entity updatedEntity = hotelEntityMapper.updatedHotelEntity(key, priceKeyFactory, hotel, analysisResponse);
+            datastore.update(updatedEntity);
+        }
     }
 
     public List<Hotel> getHotelsByCity(String city) {

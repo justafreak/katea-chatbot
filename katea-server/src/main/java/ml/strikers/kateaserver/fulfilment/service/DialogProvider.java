@@ -40,7 +40,7 @@ public class DialogProvider {
         return fulfilment;
     }
 
-    QueryResult getDialogFlowResponse(String queryMessage, UUID uuid) throws Exception {
+    public QueryResult getDialogFlowResponse(String queryMessage, UUID uuid) throws Exception {
         final Map<String, QueryResult> queryResults = Maps.newHashMap();
         final var credentials = GoogleCredentials.fromStream(resourceFile.getInputStream());
         final var sessionsSettings = SessionsSettings.newBuilder().setCredentialsProvider(FixedCredentialsProvider.create(credentials)).build();
@@ -51,7 +51,7 @@ public class DialogProvider {
             log.info(queryInput.toString());
             DetectIntentResponse response = sessionsClient.detectIntent(session, queryInput);
             QueryResult queryResult = response.getQueryResult();
-            mlService.preprocessTheRecommendation(queryResult);
+//            mlService.preprocessTheRecommendation(queryResult);
             queryResults.put(queryMessage, queryResult);
             return queryResult;
         }
