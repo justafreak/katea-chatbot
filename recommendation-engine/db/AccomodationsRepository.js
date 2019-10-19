@@ -1,0 +1,37 @@
+const fs = require("fs");
+const path = require("path");
+const DB = require("./DB");
+const loadCSV = require("../load-csv");
+
+const kind = "Hotels";
+
+let { features } = loadCSV(__dirname + "/../data/hotels.csv", {
+  shuffle: false,
+  splitTest: 0,
+  dataColumns: ["id", "idx"],
+  labelColumns: [""]
+});
+
+class AccomodationsRepository {
+  findByIdx(idx) {
+    const [id] = features.find(f => f[1] === idx);
+    if (id) {
+      return hotels.find(hotel => hotel.id === id);
+    }
+  }
+  async loadAccomodations() {
+    const hotels = JSON.parse(
+      fs.readFileSync(
+        path.join(__dirname, "..", "data", "hotels.json"),
+        "utf-8"
+      )
+    );
+    // const db = DB.getConnection();
+    // const query = datastore.createQuery('Hotels');
+    // const [hotels] = await datastore.runQuery(query);
+
+    return hotels;
+  }
+}
+
+module.exports = AccomodationsRepository;

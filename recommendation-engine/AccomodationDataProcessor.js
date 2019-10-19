@@ -71,6 +71,16 @@ const toVector = (accomodation, labelSpace) => {
   );
 };
 
+const labelsToObject = (accomodation, labelSpace) => {
+  const labelsObj = labelSpace.reduce((acc, l) => {
+    acc[l] = 0;
+
+    return acc;
+  }, {});
+
+  return { ...labelsObj, ...getAccomodationLabels(accomodation, labelSpace) };
+};
+
 const createTestData = (hotels, featureNames) => {
   const labelsVectorDimensions = buildLabelsVector(hotels);
   const hotelData = hotels.map((hotel, idx) => {
@@ -103,5 +113,6 @@ module.exports = {
   createTestData,
   toVector,
   objectToVector,
+  labelsToObject,
   buildLabelsVector
 };

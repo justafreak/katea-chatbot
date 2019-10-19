@@ -4,11 +4,14 @@ const fs = require("fs");
 const LogisticRegression = require("./multinomial-logistic-regression/logistic-regression");
 const {
   buildLabelsVector,
+  labelsToObject,
   toVector,
   objectToVector
 } = require("./AccomodationDataProcessor");
-const hotels = JSON.parse(fs.readFileSync("../hotels.json", "utf-8"));
-const labelsVector = buildLabelsVector(hotels);
+const TrainingDataSplitter = require("./training/TrainingDataSplitter");
+const AccomodationsRepository = require("./db/AccomodationsRepository");
+const UserReviewsRepository = require("./db/UserReviewsRepository");
+
 // const plot = require("node-remote-plot");
 // const _ = require("lodash");
 
@@ -18,21 +21,20 @@ const labelsVector = buildLabelsVector(hotels);
  * The outputs are the characteristics of the ideal hotel - amenenities it should have, the venue type(hotel apartment), the area where it should be in and the price range
  */
 class Brain {
-  // @todo - Add the full feature list based on which recommendations are made
-  constructor(accomodationIds) {
-    this.accomodationIds = accomodationIds;
-  }
-  train() {
-    // @todo - This data needs to come from a NOSQL DB
-    let { features, labels, testFeatures, testLabels } = loadCSV(
-      "./data/hotels.csv",
-      {
-        shuffle: true,
-        splitTest: 50,
-        dataColumns: Brain.ALL_FEATURES,
-        labelColumns: labelsVector
-      }
-    );
+  async train() {
+    const dataSplitter = new TrainingDataSplitter();
+    const {
+      trainingData,
+      hotelFeaturesVector
+    } = await this.getRawTrainingData();
+
+    // Split the data by 80/20 rule.
+    let { features, labels } = dataSplitter.load(trainingData, {
+      shuffle: true,
+      splitTestPercent: 20,
+      featureColumns: UserReviewsRepository.ALL_USER_FEATURES,
+      labelColumns: hotelFeaturesVector
+    });
 
     this.regression = new LogisticRegression(features, labels, {
       learningRate: 0.5,
@@ -42,20 +44,51 @@ class Brain {
 
     this.regression.train();
   }
-  suggest(features, howMany = 5) {
+  async getRawTrainingData() {
+    const userReviewsRepo = new UserReviewsRepository();
+    const reviews = await userReviewsRepo.loadUserReviews();
+
+    const accomodationsRepo = new AccomodationsRepository();
+    const hotels = await accomodationsRepo.loadAccomodations();
+    const hotelFeaturesVector = buildLabelsVector(hotels);
+
+    const trainingData = reviews
+      .map(review => {
+        const features = { ...review };
+        const hotel = hotels.find(h => h.id == features.hotel_id);
+        if (!hotel) {
+          return null;
+        }
+        // Transform the hotel into a vector representing it's characteristics
+        const labels = labelsToObject(hotel, hotelFeaturesVector);
+
+        // Each record in the DB contains also the sessionId and hotelId.
+        // We need to remove these
+        delete features.session_id;
+        delete features.hotel_id;
+        delete features.like;
+
+        return { ...features, ...labels };
+      })
+      .filter(f => !!f);
+
+    return { trainingData, hotelFeaturesVector };
+  }
+  async suggest(features, howMany = 5) {
     const idealAccomodationTraitsTensor = this.regression.predict([
-      objectToVector(features, Brain.ALL_FEATURES, true)
+      objectToVector(features, UserReviewsRepository.ALL_USER_FEATURES, true)
     ]);
 
+    const accomodationsRepo = new AccomodationsRepository();
+    const hotels = await accomodationsRepo.loadAccomodations();
+    const hotelFeaturesVector = buildLabelsVector(hotels);
     // Find the most similar hotels to this one
     return hotels
       .map(hotel => {
-        const hotelTraitsTensor = tf.tensor([toVector(hotel, labelsVector)]);
-        const distance = tf.losses.cosineDistance(
-          idealAccomodationTraitsTensor,
-          hotelTraitsTensor,
-          1
-        );
+        const hotelTraitsTensor = tf.tensor([
+          toVector(hotel, hotelFeaturesVector)
+        ]);
+        const distance = hotelTraitsTensor.mul(hotelTraitsTensor).norm();
 
         return { hotel, distance };
       })
@@ -66,25 +99,6 @@ class Brain {
   // @todo - Incorporate user feedback in the learning data set
   learnFromUser(hotelId, suggestedFeatures) {}
 }
-
-Brain.ALL_FEATURES = [
-  "travel_type_work",
-  "travel_type_honeymoon",
-  "travel_type_citybreak",
-  "travel_type_holiday",
-  "travel_type_backpack",
-  "travel_companion_solo",
-  "travel_companion_kids",
-  "travel_companion_couple",
-  "travel_companion_friends",
-  "accomodation_quality_cleanliness",
-  "accomodation_quality_breakfast",
-  "accomodation_quality_quiet",
-  "accomodation_quality_price",
-  "accomodation_quality_location",
-  "accomodation_quality_wifi",
-  "accomodation_quality_staff"
-];
 
 // INPUT: FEATURES_NAMES
 // OUTPUT: HOTELS
