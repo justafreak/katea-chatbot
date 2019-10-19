@@ -6,6 +6,7 @@ import ml.strikers.kateaserver.voting.service.VoteService;
 import ml.strikers.kateaserver.web.rest.v1.dto.CarouselList;
 import ml.strikers.kateaserver.web.rest.v1.dto.Response;
 import ml.strikers.kateaserver.web.rest.v1.dto.ResponseType;
+import ml.strikers.kateaserver.web.rest.v1.dto.SimpleReply;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,7 +31,7 @@ public class VotingController {
         carouselList.setType(ResponseType.CAROUSEL);
         carouselList.setReply(recommendations);
         response.setParameters(voteRequest.getParameters());
-        response.setMessage(carouselList);
+        response.setMessage(List.of(carouselList, new SimpleReply("Here are our recommendations")));
         response.setSessionId(voteRequest.getSessionId());
         return response;
     }

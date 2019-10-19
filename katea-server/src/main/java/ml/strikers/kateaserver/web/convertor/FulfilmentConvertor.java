@@ -7,6 +7,8 @@ import ml.strikers.kateaserver.web.rest.v1.dto.Response;
 import ml.strikers.kateaserver.web.rest.v1.dto.ResponseType;
 import ml.strikers.kateaserver.web.rest.v1.dto.SimpleReply;
 
+import java.util.List;
+
 import static java.util.Objects.isNull;
 
 @UtilityClass
@@ -23,7 +25,7 @@ public class FulfilmentConvertor {
                     .reply(fulfilment.getFulfilmentSimpleResponse())
                     .type(ResponseType.TEXT)
                     .build();
-            response.setMessage(simpleReply);
+            response.setMessage(List.of(simpleReply));
             return response;
         }
 
@@ -31,9 +33,7 @@ public class FulfilmentConvertor {
                 .reply(fulfilment.getHotelList())
                 .type(ResponseType.CAROUSEL)
                 .build();
-        response.setMessage(carouselList);
-
-
+        response.setMessage(List.of(carouselList));
         return response;
     }
 

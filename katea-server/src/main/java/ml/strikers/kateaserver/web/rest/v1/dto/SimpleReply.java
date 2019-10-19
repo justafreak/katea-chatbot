@@ -15,4 +15,7 @@ public class SimpleReply implements IMessage {
     private ResponseType type = ResponseType.TEXT;
     private String reply;
 
+    public SimpleReply(String reply) {
+        this.reply = reply;
+    }
 }
