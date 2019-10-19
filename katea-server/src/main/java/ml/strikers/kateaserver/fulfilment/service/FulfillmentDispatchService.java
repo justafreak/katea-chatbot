@@ -46,7 +46,7 @@ public class FulfillmentDispatchService {
 
     @SuppressWarnings("unchecked")
     private GoogleCloudDialogflowV2beta1WebhookResponse recommendIntent(GoogleCloudDialogflowV2beta1WebhookResponse webHookResponse) {
-        webHookResponse.setFulfillmentMessages(List.of(convert(mlService.preprocessTheRecommendation(webHookResponse))));
+        webHookResponse.setFulfillmentMessages(List.of(convert(mlService.preprocessQualityFacilities(webHookResponse))));
         webHookResponse.setFulfillmentText("Here are our recommendations");
         return webHookResponse;
     }
