@@ -35,6 +35,7 @@ class LogisticRegression {
     const totalBatches = Math.floor(
       this.features.shape[0] / this.options.batchSize
     );
+
     for (let i = 0; i < this.options.iterations; i++) {
       for (let batch = 0; batch < totalBatches; batch++) {
         this.gradientDescent(
@@ -88,7 +89,7 @@ class LogisticRegression {
   recordCost() {
     const cost = tf.tidy(() => {
       const guesses = this.features.matMul(this.weights).softmax();
-      const term1 = this.labels.transpose().matMul(guesses.log());
+      const term1 = this.labels.transpose().matMul(guesses.add(1e-7).log());
       const term2 = this.labels
         .mul(-1)
         .add(1)
@@ -97,6 +98,7 @@ class LogisticRegression {
           guesses
             .mul(-1)
             .add(1)
+            .add(1e-7)
             .log()
         );
 
@@ -106,6 +108,7 @@ class LogisticRegression {
         .mul(-1)
         .get(0, 0);
     });
+
     this.costHistory.unshift(cost);
   }
 

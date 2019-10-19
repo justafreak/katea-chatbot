@@ -10,19 +10,19 @@
 </script>
 
 <style>
-  .carouselItem__img {
+  .kcb-carouselItem-img {
     width: 100%;
     cursor: pointer;
   }
 
-  .carouselItem__title {
+  .kcb-carouselItem-title {
     font-size: 14px;
     margin: 0 8px;
     text-align: center;
     height: 34px;
   }
 
-  .carouselItem__price {
+  .kcb-carouselItem-price {
     font-size: 12px;
     margin: 8px;
   }
@@ -32,13 +32,13 @@
   <img
     src={carouselItem.imageUrl}
     alt=""
-    class="carouselItem__img"
+    class="kcb-carouselItem-img"
     on:click={ev => {
       ev.preventDefault();
       onViewRecommendation();
     }} />
-  <h3 class="carouselItem__title">{carouselItem.name}</h3>
-  <p class="carouselItem__price">{formattedPrice}</p>
+  <h3 class="kcb-carouselItem-title">{carouselItem.name}</h3>
+  <p class="kcb-carouselItem-price">{formattedPrice}</p>
   <Rate value={Math.round(carouselItem.rating / 2)} length={5} />
-  <p class="carouselItem__price">Area: {carouselItem.zone}</p>
+  <p class="kcb-carouselItem-price">Area: {carouselItem.zone}</p>
 </div>

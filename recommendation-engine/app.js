@@ -30,25 +30,6 @@ app.post("/suggestions", async (req, res) => {
   res.json(bestHotelMatches);
 });
 
-app.post("/learn", (req, res) => {
-  const hotelId = Math.floor(Math.random() * Math.floor(100));
-  //
-  const outcome = 1;
-  recEngine.learnFromUser(
-    hotelId,
-    {
-      accomodation_quality_wifi: 0.5,
-      accomodation_quality_staff: 0.5,
-      accomodation_quality_location: 0.5,
-      accomodation_quality_price: 0.5,
-      accomodation_quality_quiet: 0.5,
-      accomodation_quality_breakfast: 0.5,
-      accomodation_quality_cleanliness: 0.5
-    },
-    outcome
-  );
-});
-
 app.post("/train", async (req, res) => {
   recEngine.train();
 
