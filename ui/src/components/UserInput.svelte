@@ -40,7 +40,7 @@
     border-radius: 10px;
     transition: background-color 0.2s ease, box-shadow 0.2s ease;
     cursor: text;
-    border: 2px solid #89a8a5;
+    border: 2px solid #a1a3a7;
   }
 
   .sc-user-input--text {
@@ -97,7 +97,7 @@
   .sc-user-input.active {
     box-shadow: none;
     background-color: white;
-    box-shadow: 0px -5px 20px 0px #89a8a5;
+    box-shadow: 0px -5px 20px 0px #a1a3a7;
   }
 
   .sc-user-input-container {

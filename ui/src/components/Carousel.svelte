@@ -4,7 +4,7 @@
   import MessageWithButtons from './MessageWithButtons.svelte';
   import { MSG_TYPE_CAROUSEL } from '../constants/msgType';
   import { USER_FEEDBACK_LIKE, USER_FEEDBACK_DISLIKE } from '../constants/userFeedbackType';
-  import { makeRecommendation } from '../api/recommend';
+  import { makeRecommendation } from '../api/recommendation';
 
   export let message = {
     type: MSG_TYPE_QUICK_REPLY,
