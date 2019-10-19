@@ -12,7 +12,7 @@ export const messages = writable([
     type: MSG_TYPE_TEXT,
     author: BOT,
     reply: 'First things first. Where are you heading to?'
-  },
+  }
   // {
   //   type: MSG_TYPE_TEXT,
   //   author: HUMAN,
@@ -117,11 +117,11 @@ export const messages = writable([
   //   author: BOT,
   //   reply: 'Anything you liked or would you like me to dig deeper?'
   // },
-  {
-    type: MSG_TYPE_QUICK_REPLY,
-    author: BOT,
-    reply: ['No. I only need to buy you a drink now', 'Please dig deeper']
-  }
+  // {
+  //   type: MSG_TYPE_QUICK_REPLY,
+  //   author: BOT,
+  //   reply: ['No. I only need to buy you a drink now', 'Please dig deeper']
+  // }
 ]);
 
 export const storeBotMsg = (type, reply) => {

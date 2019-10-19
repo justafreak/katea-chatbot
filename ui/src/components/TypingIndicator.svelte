@@ -22,7 +22,7 @@
     height: 9px;
     margin-right: 5px;
     border-radius: 50%;
-    background-color: #555;
+    background-color: #585a56;
   }
 
   .typing-spinner .ball:nth-child(1) {

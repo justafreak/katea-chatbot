@@ -30,10 +30,33 @@
   ];
 </script>
 
-<Carousel perPage={{ 1: 1, 451: 3 }} autoplay={3000}>
-  {#each message.reply as carouselItem}
-    <MessageWithButtons {btnData} direction={'column'} id={carouselItem.id}>
-      <CarouselItem {carouselItem} />
-    </MessageWithButtons>
-  {/each}
-</Carousel>
+<style>
+  .carousel-container {
+    display: flex;
+    width: 100%;
+  }
+  .carousel-container :global(.carousel ul) {
+    margin-top: 0;
+  }
+  .carousel-container :global(.carousel ul li) {
+    background-color: #a1a3a7;
+    cursor: pointer;
+  }
+  .carousel-container :global(.carousel ul li):hover {
+    background-color: #585a56;
+  }
+  .carousel-container :global(button.right),
+  .carousel-container :global(button.left) {
+    display: none;
+  }
+</style>
+
+<div class="carousel-container">
+  <Carousel perPage={{ 1: 1, 451: 3 }} autoplay={10000}>
+    {#each message.reply as carouselItem}
+      <MessageWithButtons {btnData} direction={'column'} id={carouselItem.id}>
+        <CarouselItem {carouselItem} />
+      </MessageWithButtons>
+    {/each}
+  </Carousel>
+</div>

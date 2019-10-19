@@ -20,7 +20,7 @@
   }
 
   .sc-user-input--send-icon.isActive path {
-    fill: #89a8a5;
+    fill: #585a56;
   }
 
   .sc-user-input--send-icon-wrapper {
