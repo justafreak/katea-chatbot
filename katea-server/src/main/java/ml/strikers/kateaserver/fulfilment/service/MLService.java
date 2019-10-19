@@ -1,17 +1,17 @@
 package ml.strikers.kateaserver.fulfilment.service;
 
 import com.google.cloud.dialogflow.v2.QueryResult;
-import ml.strikers.kateaserver.fulfilment.entity.FulfilmentHotelRequest;
-import ml.strikers.kateaserver.fulfilment.entity.Hotel;
+import ml.strikers.kateaserver.fulfilment.entity.DialogFlowEntity;
+import ml.strikers.kateaserver.fulfilment.entity.Recommendation;
+import ml.strikers.kateaserver.util.SerializationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
+import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class MLService {
@@ -27,35 +27,34 @@ public class MLService {
         this.restTemplate = restTemplate;
     }
 
-    public List<Hotel> getSuggestions(FulfilmentHotelRequest request) {
-        return restTemplate
-                .exchange(
-                        recommendationUrl,
-                        HttpMethod.POST,
-                        null,
-                        new ParameterizedTypeReference<List<Hotel>>(){})
-                .getBody();
-    }
 
     @Autowired
     RecommendationMapper recommendationMapper;
 
 
     public void preprocessTheRecommendation(QueryResult queryResult) {
-        final var parameters = queryResult.getParameters();
-        final var quality = parameters.getFieldsMap()
-                .get("quality")
+        preprocessQualityFacilities(queryResult);
+    }
+
+    public void preprocessQualityFacilities(QueryResult queryResult) {
+        final var facilities = getFacilities(queryResult, DialogFlowEntity.QUALITY);
+        Recommendation recommendation = recommendationMapper.map(facilities);
+        recommendation.setSessionId(UUID.randomUUID());
+        sendRecommendation(recommendation);
+    }
+
+    private void sendRecommendation(Recommendation recommendation) {
+        restTemplate.postForObject(recommendationUrl, SerializationUtil.write(recommendation), String.class);
+    }
+
+    private List<String> getFacilities(QueryResult queryResult, DialogFlowEntity dialogFlowEntity) {
+        return queryResult.getParameters().getFieldsMap()
+                .get(dialogFlowEntity.getType())
                 .getListValue()
-                .getValues(0);
-
-        final var allFields = quality.getAllFields();
-
-        Recommendation recommendation = new Recommendation();
-        HttpEntity<Recommendation> request = new HttpEntity<>(recommendation);
-        restTemplate.postForEntity("https://4f96dd0f.ngrok.io/suggestions", request, Recommendation.class);
-        allFields.get("string_value");
-
-
+                .getValuesList()
+                .stream()
+                .map(com.google.protobuf.Value::getStringValue)
+                .collect(Collectors.toList());
     }
 }
 
