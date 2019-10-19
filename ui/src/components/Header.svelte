@@ -1,7 +1,7 @@
 <script>
   import chatIconUrl from '../assets/icons/chat-icon.svg';
 
-  export let teamName = '';
+  export let botName = '';
 </script>
 
 <style>
@@ -47,5 +47,5 @@
 
 <div class="sc-header">
   <div class="sc-message--avatar" style="background-image: url({chatIconUrl})" />
-  <div class="sc-header--team-name">{teamName}</div>
+  <div class="sc-header--team-name">{botName}</div>
 </div>

@@ -27,6 +27,11 @@ public class DialogProvider {
     @Value("${dialogflow.default.language}")
     private String languageCode;
 
+    private final MLService mlService;
+
+    public DialogProvider(MLService mlService) {
+        this.mlService = mlService;
+    }
 
     public Fulfilment getFulfilment(String queryMessage, UUID uuid) throws Exception {
         QueryResult queryResult = getDialogFlowResponse(queryMessage, uuid);
@@ -46,6 +51,7 @@ public class DialogProvider {
             log.info(queryInput.toString());
             DetectIntentResponse response = sessionsClient.detectIntent(session, queryInput);
             QueryResult queryResult = response.getQueryResult();
+            mlService.preprocessTheRecommendation(queryResult);
             queryResults.put(queryMessage, queryResult);
             return queryResult;
         }

@@ -3,8 +3,6 @@
   import Message from './Message.svelte';
 
   export let messages = [];
-  export let onDelete = () => {};
-  export let onSubmit = () => {};
 
   let msgListElement;
   afterUpdate(() => {
@@ -24,6 +22,12 @@
     padding: 40px 28%;
   }
 
+  @media (max-width: 450px) {
+    .sc-message-list {
+      padding: 40px 0;
+    }
+  }
+
   ::-webkit-scrollbar {
     width: 12px;
     background-color: #f5f5f5;
@@ -31,10 +35,12 @@
   ::-webkit-scrollbar-thumb {
     border-radius: 10px;
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
     background-color: #555;
   }
   ::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
     border-radius: 10px;
     background-color: #f5f5f5;
   }
@@ -42,6 +48,6 @@
 
 <div class="sc-message-list" bind:this={msgListElement}>
   {#each messages as message}
-    <Message {message} {onDelete} {onSubmit} />
+    <Message {message} />
   {/each}
 </div>

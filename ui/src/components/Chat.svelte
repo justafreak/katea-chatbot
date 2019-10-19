@@ -35,5 +35,5 @@
 
 <div class="sc-chat-window">
   <MessageList {messages} />
-  <UserInput {messages} />
+  <UserInput />
 </div>

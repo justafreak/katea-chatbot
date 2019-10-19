@@ -3,7 +3,7 @@
   import Chat from './Chat.svelte';
   import { messages } from '../stores/messages.js';
 
-  export let name = '';
+  export let botName;
 </script>
 
 <style>
@@ -11,9 +11,15 @@
     background-image: linear-gradient(-225deg, #b4cccc 35%, #ffffff);
     height: 100%;
   }
+
+  @media (max-width: 450px) {
+    .app-container {
+      height: 94%;
+    }
+  }
 </style>
 
 <div class="app-container">
-  <Header teamName="Katea" imageUrl="" />
-  <Chat {name} messages={$messages} />
+  <Header {botName} />
+  <Chat messages={$messages} />
 </div>
