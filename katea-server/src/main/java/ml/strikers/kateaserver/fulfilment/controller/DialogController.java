@@ -41,7 +41,7 @@ public class DialogController {
 
     @PostMapping("/webhook")
     public GoogleCloudDialogflowV2beta1WebhookResponse test(@RequestBody String response) throws IOException {
-        return fulfillmentDispatchService.dispatch(
+        return fulfillmentDispatchService.handle(
                 SerializationUtil.read(response, GoogleCloudDialogflowV2beta1WebhookResponse.class)
         );
     }

@@ -19,6 +19,7 @@ public class QueryResultConverter {
         Fulfilment fulfilment = new Fulfilment();
         fulfilment.setFulfilmentSimpleResponse(queryResult.getFulfillmentText());
         fulfilment.setHotelList(convert(queryResult.getFulfillmentMessages(0)));
+        fulfilment.setParameters(queryResult.getParameters().getFieldsMap());
         return fulfilment;
     }
 
