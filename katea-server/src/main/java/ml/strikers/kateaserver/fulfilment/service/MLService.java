@@ -19,6 +19,9 @@ public class MLService {
     @Value("${recommendation.client.url}")
     private String recommendationUrl;
 
+    @Value("${train.client.url}")
+    private String trainUrl;
+
     private RestTemplate restTemplate;
 
 
@@ -34,6 +37,10 @@ public class MLService {
 
     public List<Hotel> getSuggestions(Recommendation recommendation) {
         return Arrays.asList(restTemplate.postForObject(recommendationUrl, recommendation, Hotel[].class));
+    }
+
+    public void triggerTrain() {
+        restTemplate.postForObject(trainUrl, null, String.class);
     }
 
 }

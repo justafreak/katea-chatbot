@@ -8,6 +8,7 @@ import ml.strikers.kateaserver.fulfilment.entity.Hotel;
 import ml.strikers.kateaserver.fulfilment.entity.VoteHotel;
 import ml.strikers.kateaserver.fulfilment.repository.HotelRepository;
 import ml.strikers.kateaserver.util.SerializationUtil;
+import ml.strikers.kateaserver.web.rest.v1.dto.Constants;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -46,7 +47,7 @@ public class FulfillmentDispatchService {
 
     private GoogleCloudDialogflowV2beta1WebhookResponse recommendIntent(GoogleCloudDialogflowV2beta1WebhookResponse webHookResponse) {
         webHookResponse.setFulfillmentMessages(List.of(convert(mlService.preprocessQualityFacilities(webHookResponse))));
-        webHookResponse.setFulfillmentText("Here are our recommendations");
+        webHookResponse.setFulfillmentText(Constants.RECOMMENDATIONS);
         return webHookResponse;
     }
 

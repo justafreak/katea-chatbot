@@ -25,6 +25,8 @@ public class VoteService {
     public List<Hotel> getRecommendations(VoteRequest voteRequest) {
         final Recommendation recommendation = RecommendationConverter.voteRequestRecommendation(voteRequest);
         recommendationRepository.save(recommendation);
-        return mlService.getSuggestions(recommendation);
+        final List<Hotel> suggestions = mlService.getSuggestions(recommendation);
+        mlService.triggerTrain();
+        return suggestions;
     }
 }

@@ -3,6 +3,7 @@
   import chatIconUrl from '../assets/icons/chat-icon.svg';
   import { MSG_TYPE_TEXT } from '../constants/msgType';
   import { BOT } from '../constants/author';
+  import AvatarIcon from './AvatarIcon.svelte';
 
   export let message = {
     type: MSG_TYPE_TEXT,
@@ -54,13 +55,18 @@
     background-color: #c2d2da;
     color: #585a56;
   }
+  .kcb-avatar-container {
+    align-self: center;
+  }
 </style>
 
 <div
   transition:fly={{ x: transitionDirection, duration: 2000 }}
   class={`sc-message--content ${authorClass}`}>
   {#if message.author === BOT}
-    <div class="sc-message--avatar" style="background-image: url({chatIconUrl})" />
+    <div class="kcb-avatar-container">
+      <AvatarIcon />
+    </div>
   {/if}
   <div class="sc-message--text">
     {#if !isTyping}

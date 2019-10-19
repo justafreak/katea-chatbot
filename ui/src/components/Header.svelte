@@ -1,5 +1,5 @@
 <script>
-  import chatIconUrl from '../assets/icons/chat-icon.svg';
+  import AvatarIcon from './AvatarIcon.svelte';
 
   export let botName = '';
 </script>
@@ -29,16 +29,6 @@
     cursor: pointer;
     border-radius: 5px;
   }
-  .sc-message--avatar {
-    background-repeat: no-repeat;
-    background-size: 100%;
-    background-position: center;
-    min-width: 40px;
-    min-height: 40px;
-    border-radius: 50%;
-    align-self: center;
-    margin-right: 15px;
-  }
 
   @media (max-width: 450px) {
     .sc-header {
@@ -48,6 +38,6 @@
 </style>
 
 <div class="sc-header">
-  <div class="sc-message--avatar" style="background-image: url({chatIconUrl})" />
+  <AvatarIcon />
   <div class="sc-header--team-name">{botName}</div>
 </div>

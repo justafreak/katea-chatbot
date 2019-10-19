@@ -6,9 +6,8 @@
 </script>
 
 <style>
-  .sc-chat-window {
+  .kcb-chat-window {
     height: calc(100% - 120px);
-    max-height: 590px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -19,7 +18,7 @@
   }
 
   @media (max-width: 450px) {
-    .sc-chat-window {
+    .kcb-chat-window {
       width: 100%;
       height: 100%;
       max-height: 100%;
@@ -27,13 +26,13 @@
       bottom: 0px;
       border-radius: 0px;
     }
-    .sc-chat-window {
+    .kcb-chat-window {
       transition: 0.1s ease-in-out;
     }
   }
 </style>
 
-<div class="sc-chat-window">
+<div class="kcb-chat-window">
   <MessageList {messages} />
   <UserInput />
 </div>
