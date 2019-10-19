@@ -24,7 +24,7 @@ public class VotingController {
 
     @PostMapping("")
     public Response query(@RequestBody VoteRequest voteRequest) {
-        final List<Hotel> recommendations = voteService.getResponse(voteRequest);
+        final List<Hotel> recommendations = voteService.getRecommendations(voteRequest);
         Response response = new Response();
         CarouselList carouselList = new CarouselList();
         carouselList.setType(ResponseType.CAROUSEL);

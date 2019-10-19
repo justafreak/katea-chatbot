@@ -13,7 +13,7 @@ import java.util.UUID;
 
 public class RecommendationConverter {
 
-    public static Recommendation voteRequestTRecommendation(VoteRequest voteRequest) {
+    public static Recommendation voteRequestRecommendation(VoteRequest voteRequest) {
         final var facilities = getFacilitiesFromParametersMap(voteRequest.getParameters(), DialogFlowEntity.QUALITY);
         final var recommendation = RecommendationMapper.map(facilities);
         recommendation.setSessionId(voteRequest.getSessionId());
