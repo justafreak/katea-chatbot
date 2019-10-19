@@ -16,6 +16,7 @@ public class FulfilmentConvertor {
         final var response = new Response();
         response.setSessionId(fulfilment.getUUID());
         final var hotelList = fulfilment.getHotelList();
+        response.setParameters(fulfilment.getParameters());
 
         if (isNull(hotelList) || hotelList.isEmpty()) {
             final var simpleReply = SimpleReply.builder()
@@ -31,6 +32,7 @@ public class FulfilmentConvertor {
                 .type(ResponseType.CAROUSEL)
                 .build();
         response.setMessage(carouselList);
+
 
         return response;
     }

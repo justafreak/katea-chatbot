@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Map;
 import java.util.UUID;
 
 @Data
@@ -15,6 +16,6 @@ public class Response {
 
     private UUID sessionId;
     private IMessage message;
-
+    private Map<String, Object> parameters;
 }
 
