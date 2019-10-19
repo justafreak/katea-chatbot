@@ -21,6 +21,7 @@
     "express": "^4.17.1",
     "lodash": "^4.17.15",
     "memoize": "^0.1.1",
+    "morgan": "^1.9.1",
     "node-remote-plot": "^1.2.0",
     "shuffle-seed": "^1.1.6"
   }

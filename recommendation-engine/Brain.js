@@ -52,11 +52,12 @@ class Brain {
     );
   }
   async getRawTrainingData() {
-    const userReviewsRepo = new UserReviewsRepository();
-    const reviews = await userReviewsRepo.loadUserReviews();
-
     const accomodationsRepo = new AccomodationsRepository();
     const hotels = await accomodationsRepo.loadAccomodations();
+
+    const userReviewsRepo = new UserReviewsRepository();
+    const reviews = await userReviewsRepo.loadUserReviews(hotels);
+
     const hotelFeaturesVector = buildLabelsVector(hotels);
 
     const trainingData = reviews

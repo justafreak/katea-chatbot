@@ -2,6 +2,7 @@ require("@tensorflow/tfjs-node");
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const morgan = require("morgan");
 const Brain = require("./Brain");
 
 const app = express();
@@ -20,6 +21,7 @@ const defaultPredictionPoint = {
 };
 
 app.use(cors());
+app.use(morgan("common"));
 app.use(bodyParser.json());
 
 app.get("/train", (req, res) => {
