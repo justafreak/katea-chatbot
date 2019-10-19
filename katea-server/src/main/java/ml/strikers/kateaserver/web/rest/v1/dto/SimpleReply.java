@@ -14,5 +14,4 @@ public class SimpleReply implements IMessage {
     @Builder.Default
     private ResponseType type = ResponseType.TEXT;
     private String reply;
-
 }

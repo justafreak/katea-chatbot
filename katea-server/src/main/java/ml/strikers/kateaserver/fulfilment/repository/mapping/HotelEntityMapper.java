@@ -57,7 +57,7 @@ public class HotelEntityMapper {
                 .set(Hotel.VENUE_TYPE, hotel.getVenueType())
                 .set(Hotel.ZONE, hotel.getZone())
                 .set(Hotel.REVIEW_COUNT, hotel.getReviewCount())
-                .set(Hotel.FACILITIES, SerializationUtil.write(hotel.getFacilities()))
+                .set(Hotel.FACILITIES, hotel.getFacilities().stream().map(StringValue::new).collect(Collectors.toList()))
                 .set(Hotel.LAT_LONG, hotel.getLatLong())
                 .set(Hotel.SENTIMENT_SCORE, analysisResponse.getSentiment().getScore())
                 .set(Hotel.SENTIMENT_VALUE, analysisResponse.getSentiment().getValue().toString())

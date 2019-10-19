@@ -1,6 +1,7 @@
 package ml.strikers.kateaserver.util;
 
 
+import ml.strikers.kateaserver.fulfilment.entity.Hotel;
 import ml.strikers.kateaserver.fulfilment.entity.Recommendation;
 import ml.strikers.kateaserver.fulfilment.repository.HotelRepository;
 import ml.strikers.kateaserver.fulfilment.repository.RecommendationRepository;
@@ -34,12 +35,12 @@ public class DatabasePopulator {
 
 
     public void populate() {
-//        List<Hotel> hotels = dataExtractor.extract(hotelsResource, Hotel[].class);
+        List<Hotel> hotels = dataExtractor.extract(hotelsResource, Hotel[].class);
 //        List<Review> reviews = dataExtractor.extract(reviewsResource, Review[].class);
-//        hotels.forEach(hotelRepository::save);
+        hotels.forEach(hotelRepository::save);
 //        reviews.forEach(reviewRepository::save);
-        List<Recommendation> recommendations = dataExtractor.extract(recommendationResource, Recommendation[].class);
-        recommendations.forEach(recommendationRepository::save);
+//        List<Recommendation> recommendations = dataExtractor.extract(recommendationResource, Recommendation[].class);
+//        recommendations.forEach(recommendationRepository::save);
     }
 
 }
