@@ -40,6 +40,7 @@
   }
   .carousel-container :global(.carousel ul li) {
     background-color: #a1a3a7;
+    cursor: pointer;
   }
   .carousel-container :global(.carousel ul li):hover {
     background-color: #585a56;
@@ -51,7 +52,7 @@
 </style>
 
 <div class="carousel-container">
-  <Carousel perPage={{ 1: 1, 451: 3 }} autoplay={3000}>
+  <Carousel perPage={{ 1: 1, 451: 3 }} autoplay={10000}>
     {#each message.reply as carouselItem}
       <MessageWithButtons {btnData} direction={'column'} id={carouselItem.id}>
         <CarouselItem {carouselItem} />
