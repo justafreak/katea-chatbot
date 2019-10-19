@@ -1,12 +1,10 @@
 package ml.strikers.kateaserver.fulfilment.entity;
 
-import com.google.protobuf.Value;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 @Data
 @NoArgsConstructor

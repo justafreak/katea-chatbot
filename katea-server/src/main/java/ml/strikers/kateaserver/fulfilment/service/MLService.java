@@ -1,7 +1,8 @@
 package ml.strikers.kateaserver.fulfilment.service;
 
-import com.google.cloud.dialogflow.v2.QueryResult;
+import com.google.api.services.dialogflow.v2.model.GoogleCloudDialogflowV2beta1WebhookResponse;
 import ml.strikers.kateaserver.fulfilment.entity.DialogFlowEntity;
+import ml.strikers.kateaserver.fulfilment.entity.Hotel;
 import ml.strikers.kateaserver.fulfilment.entity.Recommendation;
 import ml.strikers.kateaserver.util.SerializationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,9 +10,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Service
 public class MLService {
@@ -22,39 +24,37 @@ public class MLService {
 
     private RestTemplate restTemplate;
 
+    private final RecommendationMapper recommendationMapper;
+
     @Autowired
-    public MLService(RestTemplate restTemplate) {
+    public MLService(RestTemplate restTemplate, RecommendationMapper recommendationMapper) {
         this.restTemplate = restTemplate;
+        this.recommendationMapper = recommendationMapper;
     }
 
 
-    @Autowired
-    RecommendationMapper recommendationMapper;
-
-
-    public void preprocessTheRecommendation(QueryResult queryResult) {
-        preprocessQualityFacilities(queryResult);
+    public List<Hotel> preprocessTheRecommendation(GoogleCloudDialogflowV2beta1WebhookResponse webHookResponse) {
+        return preprocessQualityFacilities(webHookResponse);
     }
 
-    public void preprocessQualityFacilities(QueryResult queryResult) {
+    public List<Hotel> preprocessQualityFacilities(GoogleCloudDialogflowV2beta1WebhookResponse webHookResponse) {
+        final LinkedHashMap<String, Object> queryResult = (LinkedHashMap) webHookResponse.get("queryResult");
         final var facilities = getFacilities(queryResult, DialogFlowEntity.QUALITY);
-        Recommendation recommendation = recommendationMapper.map(facilities);
-        recommendation.setSessionId(UUID.randomUUID());
-        sendRecommendation(recommendation);
+        final var recommendation = recommendationMapper.map(facilities);
+        final var session = (String) webHookResponse.get("session");
+        final var split = session.split("/");
+        final var sessionId = split[split.length - 1];
+        recommendation.setSessionId(UUID.fromString(sessionId));
+        return sendRecommendation(recommendation);
     }
 
-    private void sendRecommendation(Recommendation recommendation) {
-        restTemplate.postForObject(recommendationUrl, SerializationUtil.write(recommendation), String.class);
+    private List<Hotel> sendRecommendation(Recommendation recommendation) {
+        return Arrays.asList(restTemplate.postForObject(recommendationUrl, SerializationUtil.write(recommendation), Hotel[].class));
     }
 
-    private List<String> getFacilities(QueryResult queryResult, DialogFlowEntity dialogFlowEntity) {
-        return queryResult.getParameters().getFieldsMap()
-                .get(dialogFlowEntity.getType())
-                .getListValue()
-                .getValuesList()
-                .stream()
-                .map(com.google.protobuf.Value::getStringValue)
-                .collect(Collectors.toList());
+    private List<String> getFacilities(LinkedHashMap<String, Object> queryResult, DialogFlowEntity dialogFlowEntity) {
+        LinkedHashMap parameters = (LinkedHashMap) queryResult.get("parameters");
+        return (List<String>) parameters.get(dialogFlowEntity.getType());
     }
 }
 

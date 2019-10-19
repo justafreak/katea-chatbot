@@ -22,9 +22,12 @@ public class FulfillmentDispatchService {
 
     private final HotelRecommendService hotelRecommendService;
 
-    public FulfillmentDispatchService(HotelRepository hotelRepository, HotelRecommendService hotelRecommendService) {
+    private final MLService mlService;
+
+    public FulfillmentDispatchService(HotelRepository hotelRepository, HotelRecommendService hotelRecommendService, MLService mlService) {
         this.hotelRepository = hotelRepository;
         this.hotelRecommendService = hotelRecommendService;
+        this.mlService = mlService;
     }
 
     @SuppressWarnings("unchecked")
@@ -43,14 +46,7 @@ public class FulfillmentDispatchService {
 
     @SuppressWarnings("unchecked")
     private GoogleCloudDialogflowV2beta1WebhookResponse recommendIntent(GoogleCloudDialogflowV2beta1WebhookResponse webHookResponse) {
-        final LinkedHashMap<String, Object> queryResult = (LinkedHashMap) webHookResponse.get("queryResult");
-        final LinkedHashMap<String, Object> parameters = (LinkedHashMap) queryResult.get("parameters");
-        final var request = FulfilmentHotelRequest.builder()
-                .city((String) parameters.get("geo-city"))
-                .companions((String) parameters.get("companions"))
-                .facilities((List) parameters.get("quality"))
-                .tripType((String) parameters.get("trip-type")).build();
-        webHookResponse.setFulfillmentMessages(List.of(convert(hotelRecommendService.getMatchingHotelsML(request))));
+        webHookResponse.setFulfillmentMessages(List.of(convert(mlService.preprocessTheRecommendation(webHookResponse))));
         webHookResponse.setFulfillmentText("Here are our recommendations");
         return webHookResponse;
     }

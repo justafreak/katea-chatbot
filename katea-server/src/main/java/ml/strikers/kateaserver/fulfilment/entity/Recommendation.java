@@ -36,6 +36,7 @@ public class Recommendation {
     public static final String TRAVEL_TYPE_COMPANION_COUPLE = "travelTypeCompanionCouple";
     public static final String TRAVEL_TYPE_COMPANION_FRIENDS = "travelTypeCompanionFriends";
 
+    @JsonProperty("id")
     private UUID id;
 
     @JsonProperty("sessionId")
@@ -48,49 +49,49 @@ public class Recommendation {
     private double like;
 
     @JsonProperty("accomodation_quality_wifi")
-    private Double accommodationQualityWifi;
+    private double accommodationQualityWifi;
 
     @JsonProperty("accomodation_quality_staff")
-    private Double accommodationQualityStaff;
+    private double accommodationQualityStaff;
 
     @JsonProperty("accomodation_quality_location")
-    private Double accommodationQualityLocation;
+    private double accommodationQualityLocation;
 
     @JsonProperty("accomodation_quality_quiet")
-    private Double accommodationQualityPrice;
+    private double accommodationQualityPrice;
 
     @JsonProperty("accomodation_quality_quiet")
-    private Double accommodationQualityQuiet;
+    private double accommodationQualityQuiet;
 
     @JsonProperty("accomodation_quality_breakfast")
-    private Double accommodationQualityBreakFast;
+    private double accommodationQualityBreakFast;
 
     @JsonProperty("accomodation_quality_cleanliness")
-    private Double accommodationQualityCleanLiness;
+    private double accommodationQualityCleanLiness;
 
     @JsonProperty("travel_type_work")
-    private Double travelTypeWork;
+    private double travelTypeWork;
 
     @JsonProperty("travel_type_honeymoon")
-    private Double travelTypeHoneyMoon;
+    private double travelTypeHoneyMoon;
 
     @JsonProperty("travel_type_citybreak")
-    private Double travelTypeCityBreak;
+    private double travelTypeCityBreak;
 
     @JsonProperty("travel_type_holiday")
-    private Double travelTypeHoliday;
+    private double travelTypeHoliday;
 
     @JsonProperty("travel_companion_solo")
-    private Double travelTypeCompanionSolo;
+    private double travelTypeCompanionSolo;
 
     @JsonProperty("travel_companion_kids")
-    private Double travelTypeCompanionKids;
+    private double travelTypeCompanionKids;
 
     @JsonProperty("travel_companion_couple")
-    private Double travelTypeCompanionCouple;
+    private double travelTypeCompanionCouple;
 
     @JsonProperty("travel_companion_friends")
-    private Double travelTypeCompanionFriends;
+    private double travelTypeCompanionFriends;
 
 
 }
