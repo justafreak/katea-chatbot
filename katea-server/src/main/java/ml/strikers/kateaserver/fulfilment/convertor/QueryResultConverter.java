@@ -6,6 +6,7 @@ import lombok.experimental.UtilityClass;
 import ml.strikers.kateaserver.fulfilment.entity.Fulfilment;
 import ml.strikers.kateaserver.fulfilment.entity.Hotel;
 import ml.strikers.kateaserver.util.SerializationUtil;
+import ml.strikers.kateaserver.web.convertor.ParameterConverter;
 
 import java.io.IOException;
 import java.util.List;
@@ -19,6 +20,7 @@ public class QueryResultConverter {
         Fulfilment fulfilment = new Fulfilment();
         fulfilment.setFulfilmentSimpleResponse(queryResult.getFulfillmentText());
         fulfilment.setHotelList(convert(queryResult.getFulfillmentMessages(0)));
+        fulfilment.setParameters(ParameterConverter.convert(queryResult.getParameters().getFieldsMap()));
         return fulfilment;
     }
 
