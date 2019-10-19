@@ -27,6 +27,7 @@ app.get("/train", (req, res) => {
 });
 
 app.post("/suggestions", async (req, res) => {
+  console.log(`Processing request with params ${JSON.stringify(req.body)}`);
   const { features } = req.body;
 
   const bestHotelMatches = await recEngine.suggest(
