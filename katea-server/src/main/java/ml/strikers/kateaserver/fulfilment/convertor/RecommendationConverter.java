@@ -38,4 +38,5 @@ public class RecommendationConverter {
     private static List<String> getFacilitiesFromParametersMap(Map<String, Object> parametersMap, DialogFlowEntity dialogFlowEntity) {
         return (List<String>) parametersMap.get(dialogFlowEntity.getType());
     }
+
 }
