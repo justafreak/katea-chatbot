@@ -1,10 +1,10 @@
 package ml.strikers.kateaserver.fulfilment.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.codehaus.jackson.annotate.JsonProperty;
 
 import java.util.UUID;
 
@@ -57,7 +57,7 @@ public class Recommendation {
     @JsonProperty("accomodation_quality_location")
     private double accommodationQualityLocation;
 
-    @JsonProperty("accomodation_quality_quiet")
+    @JsonProperty("accomodation_quality_price")
     private double accommodationQualityPrice;
 
     @JsonProperty("accomodation_quality_quiet")
