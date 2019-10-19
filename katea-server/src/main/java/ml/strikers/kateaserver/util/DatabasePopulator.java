@@ -15,21 +15,15 @@ import java.util.List;
 public class DatabasePopulator {
 
     private final DataExtractor dataExtractor;
-
+    private final HotelRepository hotelRepository;
+    private final ReviewRepository reviewRepository;
+    private final RecommendationRepository recommendationRepository;
     @Value("classpath:data/hotels.json")
     private Resource hotelsResource;
-
     @Value("classpath:data/reviews.json")
     private Resource reviewsResource;
-
     @Value("classpath:data/recommendation.json")
     private Resource recommendationResource;
-
-    private final HotelRepository hotelRepository;
-
-    private final ReviewRepository reviewRepository;
-
-    private final RecommendationRepository recommendationRepository;
 
     public DatabasePopulator(DataExtractor dataExtractor, HotelRepository hotelRepository, ReviewRepository reviewRepository, RecommendationRepository recommendationRepository) {
         this.dataExtractor = dataExtractor;

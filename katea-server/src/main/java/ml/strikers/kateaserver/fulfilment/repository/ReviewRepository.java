@@ -11,9 +11,8 @@ import java.util.UUID;
 @Repository
 public class ReviewRepository extends AbstractRepository<Review, UUID> {
 
-    private KeyFactory reviewKeyFactory = datastore.newKeyFactory().setKind(Review.KIND);
-
     private final ReviewEntityMapper reviewEntityMapper;
+    private KeyFactory reviewKeyFactory = datastore.newKeyFactory().setKind(Review.KIND);
 
     public ReviewRepository(Datastore datastore, ReviewEntityMapper reviewEntityMapper) {
         super(datastore);

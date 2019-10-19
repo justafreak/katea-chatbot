@@ -1,22 +1,36 @@
 package ml.strikers.kateaserver.fulfilment.service;
 
+import lombok.extern.slf4j.Slf4j;
 import ml.strikers.kateaserver.fulfilment.entity.QualityFacilities;
 import ml.strikers.kateaserver.fulfilment.entity.Recommendation;
-import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
-@Component
+
+@Slf4j
 public class RecommendationMapper {
 
     private static final Double PRESENT = 1d;
+    private static final List<String> existingQualities = Arrays.stream(QualityFacilities.values())
+            .map(Enum::name)
+            .collect(Collectors.toList());
 
-    public Recommendation map(List<String> qualities) {
+    public static Recommendation map(List<String> qualities) {
         Recommendation recommendation = new Recommendation();
-        qualities.forEach(quality -> QualityFacilities.valueOf(quality)
-                .getSetter().accept(recommendation, PRESENT));
+        qualities.forEach(quality -> {
+            if (existingQualities.contains(quality)) {
+                QualityFacilities qualityFacilities = QualityFacilities.valueOf(quality);
+                qualityFacilities
+                        .getSetter().accept(recommendation, PRESENT);
+            } else {
+                log.warn("Unrecognized quality {}", quality);
+            }
+        });
         return recommendation;
     }
 
-
+    public RecommendationMapper() {
+    }
 }

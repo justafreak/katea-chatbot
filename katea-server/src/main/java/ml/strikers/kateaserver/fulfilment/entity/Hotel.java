@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ml.strikers.kateaserver.review.entity.SentimentValue;
 
 import java.util.Comparator;
 import java.util.List;
@@ -29,7 +30,10 @@ public class Hotel {
     public static final String REVIEW_COUNT = "reviewCount";
     public static final String FACILITIES = "facilities";
     public static final String LAT_LONG = "latLong";
-
+    public static final String SENTIMENT_VALUE = "sentimentValue";
+    public static final String SENTIMENT_SCORE = "sentimentScore";
+    public static final String REVIEW_RECOMMENDED_FACILITIES = "reviewRecommendedFacilities";
+    public static final Comparator<Hotel> SCORE_COMPARATOR = Comparator.comparing(Hotel::getRecommendScore);
     private UUID id;
     private String name;
     private String imageUrl;
@@ -43,8 +47,9 @@ public class Hotel {
     private List<String> facilities;
     private String latLong;
     private int recommendScore;
-
-    public static final Comparator<Hotel> SCORE_COMPARATOR = Comparator.comparing(Hotel::getRecommendScore);
+    private SentimentValue sentimentValue;
+    private double sentimentScore;
+    private List<String> reviewRecommendedFacilities;
 
 
 }

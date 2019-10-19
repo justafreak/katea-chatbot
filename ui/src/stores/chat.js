@@ -1,3 +1,5 @@
-import { writable } from "svelte/store";
+import { writable } from 'svelte/store';
 
-export const open = writable(false);
+export const showTypingIndicator = writable(false);
+
+export const switchTypingIndicator = value => showTypingIndicator.set(value);

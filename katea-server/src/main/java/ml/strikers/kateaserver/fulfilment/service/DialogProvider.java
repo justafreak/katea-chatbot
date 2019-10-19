@@ -27,7 +27,6 @@ public class DialogProvider {
     @Value("${dialogflow.default.language}")
     private String languageCode;
 
-
     public Fulfilment getFulfilment(String queryMessage, UUID uuid) throws Exception {
         QueryResult queryResult = getDialogFlowResponse(queryMessage, uuid);
         Fulfilment fulfilment = QueryResultConverter.covertResultToFulfilment(queryResult);
@@ -35,7 +34,7 @@ public class DialogProvider {
         return fulfilment;
     }
 
-    QueryResult getDialogFlowResponse(String queryMessage, UUID uuid) throws Exception {
+    public QueryResult getDialogFlowResponse(String queryMessage, UUID uuid) throws Exception {
         final Map<String, QueryResult> queryResults = Maps.newHashMap();
         final var credentials = GoogleCredentials.fromStream(resourceFile.getInputStream());
         final var sessionsSettings = SessionsSettings.newBuilder().setCredentialsProvider(FixedCredentialsProvider.create(credentials)).build();

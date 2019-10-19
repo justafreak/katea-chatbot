@@ -16,6 +16,7 @@ public class VoteHotel {
     private FulfilmentHotelRequest fulfilmentHotelRequest;
     private UUID hotelId;
     private Action action;
+
     public enum Action {
         UPVOTE, DOWNVOTE
     }

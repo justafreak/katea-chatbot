@@ -39,7 +39,7 @@ public class ParameterConverter {
                 return value.getStringValue().trim().isBlank()
                         ? Optional.empty() : Optional.of(value.getStringValue().trim());
             case LIST_VALUE:
-            return Optional.of(convert(value.getListValue()));
+                return Optional.of(convert(value.getListValue()));
 
         }
         return Optional.empty();
