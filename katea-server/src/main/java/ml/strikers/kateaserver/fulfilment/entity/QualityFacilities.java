@@ -10,9 +10,8 @@ public enum QualityFacilities {
     location(Recommendation::setAccommodationQualityLocation),
     wifi(Recommendation::setAccommodationQualityWifi),
     staff(Recommendation::setAccommodationQualityStaff),
-    quiet(Recommendation::setAccommodationQualityQuiet);
-//    restaurant(Recommendation::setAccommodationQualityRestaurant),
-//    bar(Recommendation::setAccommodationQualityBar);
+    quiet(Recommendation::setAccommodationQualityQuiet),
+    restaurant(Recommendation::setAccommodationQualityBreakFast);
 
     private final BiConsumer<Recommendation, Double> setter;
 
