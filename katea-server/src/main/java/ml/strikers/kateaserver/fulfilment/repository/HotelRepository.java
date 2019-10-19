@@ -31,7 +31,7 @@ public class HotelRepository extends AbstractRepository<Hotel, UUID> {
 
     @Override
     public Hotel save(Hotel hotel) {
-        datastore.add(hotelEntityMapper.buildHotelEntity(hotelKeyFactory, priceKeyFactory, hotel));
+                    datastore.add(hotelEntityMapper.buildHotelEntity(hotelKeyFactory, priceKeyFactory, hotel));
         return hotel;
     }
 
