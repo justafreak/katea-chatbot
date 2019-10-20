@@ -25,6 +25,6 @@ export const detectIntent = async requestData => {
 
     await handleSuccess(response);
   } catch (e) {
-    storeBotMsg(MSG_TYPE_TEXT, "Sorry I didn't get that last parent. Can you please repeat it?");
+    storeBotMsg(MSG_TYPE_TEXT, "Sorry I didn't get that last part. Can you please repeat it?");
   }
 };
