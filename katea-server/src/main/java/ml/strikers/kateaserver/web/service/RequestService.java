@@ -20,11 +20,11 @@ public class RequestService {
         this.dialogProvider = dialogProvider;
     }
 
-    public Response getResponse(Request request) throws Exception {
+    public Response detectIntent(Request request) throws Exception {
         final var queryMessage = request.getMessage();
         final var sessionId = request.getSessionId();
         final var uuid = isNull(sessionId) ? UUID.randomUUID() : sessionId;
-        final var fulfilment = dialogProvider.getFulfilment(queryMessage, uuid);
+        final var fulfilment = dialogProvider.detectIntent(queryMessage, uuid);
         return FulfilmentConvertor.fulfilmentToResponseConvertor(fulfilment);
     }
 }

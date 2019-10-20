@@ -7,12 +7,22 @@ import com.google.protobuf.Value;
 import lombok.extern.slf4j.Slf4j;
 import ml.strikers.kateaserver.exception.DeserializationException;
 import ml.strikers.kateaserver.fulfilment.service.DialogProvider;
-import ml.strikers.kateaserver.review.entity.*;
+import ml.strikers.kateaserver.review.entity.HotelReviews;
+import ml.strikers.kateaserver.review.entity.HotelReviewsAnalysisResponse;
+import ml.strikers.kateaserver.review.entity.ReviewAnalysisResponse;
+import ml.strikers.kateaserver.review.entity.Sentiment;
+import ml.strikers.kateaserver.review.entity.SentimentValue;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.OptionalDouble;
+import java.util.Set;
+import java.util.UUID;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 

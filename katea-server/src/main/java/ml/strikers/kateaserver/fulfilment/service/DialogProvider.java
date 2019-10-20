@@ -3,7 +3,13 @@ package ml.strikers.kateaserver.fulfilment.service;
 import com.google.api.client.util.Maps;
 import com.google.api.gax.core.FixedCredentialsProvider;
 import com.google.auth.oauth2.GoogleCredentials;
-import com.google.cloud.dialogflow.v2.*;
+import com.google.cloud.dialogflow.v2.DetectIntentResponse;
+import com.google.cloud.dialogflow.v2.QueryInput;
+import com.google.cloud.dialogflow.v2.QueryResult;
+import com.google.cloud.dialogflow.v2.SessionName;
+import com.google.cloud.dialogflow.v2.SessionsClient;
+import com.google.cloud.dialogflow.v2.SessionsSettings;
+import com.google.cloud.dialogflow.v2.TextInput;
 import lombok.extern.slf4j.Slf4j;
 import ml.strikers.kateaserver.fulfilment.convertor.QueryResultConverter;
 import ml.strikers.kateaserver.fulfilment.entity.Fulfilment;
@@ -27,7 +33,7 @@ public class DialogProvider {
     @Value("${dialogflow.default.language}")
     private String languageCode;
 
-    public Fulfilment getFulfilment(String queryMessage, UUID uuid) throws Exception {
+    public Fulfilment detectIntent(String queryMessage, UUID uuid) throws Exception {
         QueryResult queryResult = getDialogFlowResponse(queryMessage, uuid);
         Fulfilment fulfilment = QueryResultConverter.covertResultToFulfilment(queryResult);
         fulfilment.setUUID(uuid);
