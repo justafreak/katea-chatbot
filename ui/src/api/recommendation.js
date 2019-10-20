@@ -31,6 +31,6 @@ export const makeRecommendation = async requestData => {
 
     await handleSuccess(response);
   } catch (e) {
-    storeBotMsg(MSG_TYPE_TEXT, 'Woops');
+    storeBotMsg(MSG_TYPE_TEXT, "Sorry I didn't get that last part. Can you please repeat it?");
   }
 };
